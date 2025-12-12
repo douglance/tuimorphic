@@ -1,0 +1,118 @@
+/**
+ * Input Styles
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ * MIT License
+ */
+
+.root {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  background: var(--theme-border);
+  padding: 0 1ch;
+  margin-bottom: 0;
+}
+
+.placeholder {
+  font-style: italic;
+  color: var(--theme-overlay);
+}
+
+.inputContainer {
+  position: relative;
+  display: block;
+  cursor: text;
+}
+
+.displayed {
+  overflow: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+  overflow-wrap: anywhere;
+  background: var(--theme-background-input);
+  box-shadow: inset 0 0 0 2px var(--theme-border);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  padding: calc(var(--theme-line-height-base) * 0.25em) 1ch;
+  min-height: calc(var(--theme-line-height-base) * (var(--font-size) * 2));
+  display: flex;
+  align-items: center;
+}
+
+.focused {
+  .block {
+    background: var(--theme-focused-foreground);
+  }
+
+  .placeholder {
+    background: var(--theme-focused-foreground);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 1s step-start 0s infinite;
+}
+
+.block {
+  display: inline-block;
+  min-width: 1ch;
+  background: var(--theme-text);
+  color: var(--theme-background);
+  height: calc(var(--font-size) * var(--theme-line-height-base));
+  vertical-align: bottom;
+}
+
+.hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  background: transparent;
+  caret-color: transparent;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  padding: calc(var(--theme-line-height-base) * 0.25em) 1ch;
+  margin: 0;
+  line-height: var(--theme-line-height-base);
+  font-size: var(--font-size);
+  font-family: var(--font-family-mono);
+  z-index: 1;
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px var(--theme-focused-foreground) inset;
+    -webkit-text-fill-color: var(--theme-text);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Focus ring on container when input is focused
+.inputContainer:focus-within .displayed {
+  box-shadow:
+    inset 0 0 0 2px var(--theme-border),
+    0 0 0 2px var(--theme-focused-border);
+}

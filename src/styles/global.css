@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+/**
+ * Tuimorphic Global Styles
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ * MIT License
+ */
+
+/* ============================================
+   CSS Reset
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   CSS Custom Properties (Theme Tokens)
+   ============================================ */
+
+:root {
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: 'IBM Plex Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', 'Droid Sans Mono', 'Source Code Pro', monospace;
+  --font-size: 14px;
+  --font-size-small: 12px;
+  --font-size-large: 16px;
+  --theme-line-height-base: 1.5;
+
+  /* Z-Index Scale */
+  --z-index-1: 1;
+  --z-index-2: 2;
+  --z-index-3: 3;
+  --z-index-4: 4;
+  --z-index-5: 5;
+  --z-index-6: 6;
+  --z-index-7: 7;
+  --z-index-8: 8;
+  --z-index-9: 9;
+  --z-index-10: 10;
+
+  /* Base Colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Gray Scale */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+  --color-gray-950: #0a0a0a;
+
+  /* Blue Scale */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+
+  /* Green Scale */
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+
+  /* Red Scale */
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+
+  /* Yellow Scale */
+  --color-yellow-50: #fefce8;
+  --color-yellow-100: #fef9c3;
+  --color-yellow-500: #eab308;
+  --color-yellow-600: #ca8a04;
+  --color-yellow-700: #a16207;
+}
+
+/* ============================================
+   Light Theme (Default)
+   ============================================ */
+
+:root,
+body,
+body.theme-light {
+  /* Theme Tokens */
+  --theme-background: var(--color-white);
+  --theme-background-secondary: var(--color-gray-50);
+  --theme-background-input: var(--color-white);
+  --theme-text: var(--color-black);
+  --theme-text-secondary: var(--color-gray-600);
+  --theme-border: var(--color-gray-300);
+  --theme-border-light: var(--color-gray-200);
+
+  /* Button Tokens */
+  --theme-button: var(--color-black);
+  --theme-button-text: var(--color-white);
+  --theme-button-background: var(--color-gray-100);
+  --theme-button-foreground: var(--color-gray-400);
+
+  /* Interactive States */
+  --theme-focused-foreground: var(--color-gray-100);
+  --theme-focused-border: var(--color-black);
+  --theme-hover-background: var(--color-gray-50);
+
+  /* Overlay */
+  --theme-overlay: var(--color-gray-500);
+  --theme-overlay-background: rgba(0, 0, 0, 0.5);
+
+  /* Accent Colors */
+  --theme-accent: var(--color-blue-600);
+  --theme-accent-light: var(--color-blue-100);
+  --theme-success: var(--color-green-600);
+  --theme-error: var(--color-red-600);
+  --theme-warning: var(--color-yellow-600);
+}
+
+/* ============================================
+   Dark Theme
+   ============================================ */
+
+body.theme-dark {
+  --theme-background: var(--color-black);
+  --theme-background-secondary: var(--color-gray-900);
+  --theme-background-input: var(--color-gray-950);
+  --theme-text: var(--color-white);
+  --theme-text-secondary: var(--color-gray-400);
+  --theme-border: var(--color-gray-700);
+  --theme-border-light: var(--color-gray-800);
+
+  /* Button Tokens */
+  --theme-button: var(--color-white);
+  --theme-button-text: var(--color-black);
+  --theme-button-background: var(--color-gray-800);
+  --theme-button-foreground: var(--color-gray-600);
+
+  /* Interactive States */
+  --theme-focused-foreground: var(--color-gray-800);
+  --theme-focused-border: var(--color-white);
+  --theme-hover-background: var(--color-gray-900);
+
+  /* Overlay */
+  --theme-overlay: var(--color-gray-500);
+  --theme-overlay-background: rgba(255, 255, 255, 0.1);
+
+  /* Accent Colors */
+  --theme-accent: var(--color-blue-500);
+  --theme-accent-light: var(--color-blue-700);
+  --theme-success: var(--color-green-500);
+  --theme-error: var(--color-red-500);
+  --theme-warning: var(--color-yellow-500);
+}
+
+/* ============================================
+   Color Tints (Accent Variations)
+   ============================================ */
+
+body.tint-green {
+  --theme-accent: oklch(0.65 0.2 145);
+  --theme-button: oklch(0.65 0.2 145);
+}
+
+body.tint-blue {
+  --theme-accent: oklch(0.65 0.2 250);
+  --theme-button: oklch(0.65 0.2 250);
+}
+
+body.tint-red {
+  --theme-accent: oklch(0.65 0.2 25);
+  --theme-button: oklch(0.65 0.2 25);
+}
+
+body.tint-yellow {
+  --theme-accent: oklch(0.75 0.15 85);
+  --theme-button: oklch(0.75 0.15 85);
+}
+
+body.tint-purple {
+  --theme-accent: oklch(0.65 0.2 300);
+  --theme-button: oklch(0.65 0.2 300);
+}
+
+body.tint-orange {
+  --theme-accent: oklch(0.7 0.18 55);
+  --theme-button: oklch(0.7 0.18 55);
+}
+
+body.tint-pink {
+  --theme-accent: oklch(0.7 0.18 350);
+  --theme-button: oklch(0.7 0.18 350);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+html {
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  font-family: var(--font-family-mono);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--theme-background);
+  color: var(--theme-text);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-border);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-text-secondary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-border) transparent;
+}
+
+/* ============================================
+   Selection
+   ============================================ */
+
+::selection {
+  background: var(--theme-text);
+  color: var(--theme-background);
+}
+
+/* ============================================
+   Focus Styles
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--theme-focused-border);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Link Styles
+   ============================================ */
+
+a {
+  color: var(--theme-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--theme-accent);
+  outline-offset: 2px;
+}
