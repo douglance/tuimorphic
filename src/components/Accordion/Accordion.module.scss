@@ -1,0 +1,134 @@
+/**
+ * Accordion Styles
+ * Terminal-aesthetic accordion with MS-DOS style borders and [+]/[-] indicators
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+}
+
+.item {
+  // MS-DOS style border using box-shadow
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-border),
+    inset -2px 0 0 0 var(--theme-border),
+    inset 0 2px 0 0 var(--theme-border),
+    inset 0 -2px 0 0 var(--theme-border);
+
+  // Collapse adjacent borders
+  & + & {
+    margin-top: -2px;
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.header {
+  margin: 0;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+  width: 100%;
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  background: var(--theme-background);
+  border: none;
+  outline: none;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    background: var(--theme-background-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: -2px;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+
+    &:hover {
+      background: var(--theme-background);
+    }
+  }
+}
+
+.indicator {
+  flex-shrink: 0;
+  display: inline-block;
+  width: 3ch;
+  text-align: center;
+  font-weight: 400;
+
+  // Collapsed state: [+]
+  &::before {
+    content: '[+]';
+  }
+
+  // Expanded state: [-]
+  [data-open] > .header > .trigger > &::before,
+  [data-open] > .header .trigger > &::before {
+    content: '[-]';
+  }
+}
+
+.triggerContent {
+  flex-grow: 1;
+}
+
+.panel {
+  overflow: hidden;
+
+  // Animation for open/close
+  &[data-open] {
+    animation: slideDown 150ms ease-out;
+  }
+
+  &[data-closed] {
+    animation: slideUp 150ms ease-out;
+  }
+}
+
+.content {
+  padding: 0 2ch calc(var(--theme-line-height-base) * 1em) 2ch;
+  padding-left: calc(2ch + 3ch + 1ch); // Align with trigger content (padding + indicator + gap)
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: var(--accordion-panel-height, 500px);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    max-height: var(--accordion-panel-height, 500px);
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+  }
+}

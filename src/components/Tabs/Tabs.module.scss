@@ -1,0 +1,94 @@
+/**
+ * Tabs Styles
+ * Terminal/TUI aesthetic with monospace fonts and box-shadow borders
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+
+  // Bottom border that connects to content panel
+  border-bottom: 2px solid var(--theme-border);
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  margin: 0;
+  margin-bottom: -2px;
+  background: var(--theme-background);
+  color: var(--theme-text);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  cursor: pointer;
+  transition: 200ms ease all;
+  user-select: none;
+  outline: none;
+
+  // MS-DOS style box-shadow border (top and sides only)
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-border),
+    inset -2px 0 0 0 var(--theme-border),
+    inset 0 2px 0 0 var(--theme-border);
+
+  &:hover:not([data-disabled]) {
+    background: var(--theme-focused-foreground);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: -2px;
+    z-index: 1;
+  }
+
+  &[data-selected] {
+    background: var(--theme-focused-foreground);
+    color: var(--theme-text);
+
+    // Active tab has bottom border matching background to "connect" with content
+    box-shadow:
+      inset 2px 0 0 0 var(--theme-border),
+      inset -2px 0 0 0 var(--theme-border),
+      inset 0 2px 0 0 var(--theme-border),
+      inset 0 -2px 0 0 var(--theme-focused-foreground);
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.content {
+  padding: calc(var(--theme-line-height-base) * 1em) 2ch;
+  background: var(--theme-background);
+
+  // MS-DOS style box-shadow border (sides and bottom only, top connects to tabs)
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-border),
+    inset -2px 0 0 0 var(--theme-border),
+    inset 0 -2px 0 0 var(--theme-border);
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: -2px;
+  }
+}

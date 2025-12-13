@@ -1,0 +1,36 @@
+.badge {
+  display: inline-block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-small);
+  line-height: 1;
+  padding: 0.25em 0.75ch;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.default {
+  background: var(--theme-border);
+  color: var(--theme-text);
+}
+
+.success {
+  background: var(--theme-success);
+  color: var(--color-white);
+}
+
+.warning {
+  background: var(--theme-warning);
+  color: var(--color-black);
+}
+
+.error {
+  background: var(--theme-error);
+  color: var(--color-white);
+}
+
+.info {
+  background: var(--theme-accent);
+  color: var(--color-white);
+}

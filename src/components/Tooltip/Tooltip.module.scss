@@ -1,0 +1,28 @@
+.popup {
+  background: var(--theme-text);
+  color: var(--theme-background);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-small);
+  line-height: var(--theme-line-height-base);
+  padding: 0.25em 1ch;
+  max-width: 30ch;
+  white-space: pre-wrap;
+  z-index: var(--z-index-10);
+
+  // Animation
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease;
+
+  &[data-open] {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &[data-closed] {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}

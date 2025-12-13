@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { resolve } from 'path';
 
 export default defineConfig({
@@ -11,6 +12,14 @@ export default defineConfig({
       outDir: 'dist',
       rollupTypes: true,
     }),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'src/fonts/*',
+          dest: 'fonts',
+        },
+      ],
+    }),
   ],
   build: {
     lib: {
@@ -19,6 +28,8 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
     },
+    // Don't inline fonts - keep them as separate files
+    assetsInlineLimit: 0,
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
@@ -29,6 +40,10 @@ export default defineConfig({
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') return 'styles.css';
+          // Keep fonts in fonts directory
+          if (assetInfo.name?.endsWith('.woff2') || assetInfo.name?.endsWith('.woff')) {
+            return 'fonts/[name][extname]';
+          }
           return assetInfo.name ?? 'asset';
         },
       },

@@ -43,12 +43,9 @@ export const Card = React.forwardRef<HTMLElement, CardProps>(function Card(
     if (mode === 'left') {
       return (
         <header className={styles.action}>
-          <div className={styles.leftCorner} aria-hidden="true">
-            ┌
-          </div>
-          <div className={styles.left}>
-            <span className={styles.title}>{title}</span>
-          </div>
+          <div className={styles.leftCorner} aria-hidden="true" />
+          <h2 className={styles.title}>{title}</h2>
+          <div className={styles.right} aria-hidden="true" />
         </header>
       );
     }
@@ -56,12 +53,9 @@ export const Card = React.forwardRef<HTMLElement, CardProps>(function Card(
     if (mode === 'right') {
       return (
         <header className={styles.action}>
-          <div className={styles.right}>
-            <span className={styles.title}>{title}</span>
-          </div>
-          <div className={styles.rightCorner} aria-hidden="true">
-            ┐
-          </div>
+          <div className={styles.left} aria-hidden="true" />
+          <h2 className={styles.title}>{title}</h2>
+          <div className={styles.rightCorner} aria-hidden="true" />
         </header>
       );
     }
@@ -70,7 +64,7 @@ export const Card = React.forwardRef<HTMLElement, CardProps>(function Card(
     return (
       <header className={styles.action}>
         <div className={styles.left} aria-hidden="true" />
-        <span className={styles.title}>{title}</span>
+        <h2 className={styles.title}>{title}</h2>
         <div className={styles.right} aria-hidden="true" />
       </header>
     );
@@ -84,7 +78,7 @@ export const Card = React.forwardRef<HTMLElement, CardProps>(function Card(
       {...props}
     >
       {renderHeader()}
-      <div className={styles.children}>{children}</div>
+      <section className={styles.children}>{children}</section>
     </article>
   );
 });

@@ -9,9 +9,6 @@
   display: block;
   padding: 0;
   white-space: pre-wrap;
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size);
-  line-height: var(--theme-line-height-base);
 }
 
 .children {
@@ -26,7 +23,6 @@
   padding-bottom: calc(var(--theme-line-height-base) * 1rem);
   overflow-x: auto;
   overflow-y: hidden;
-  background: var(--theme-background);
 
   &::-webkit-scrollbar {
     display: none;
@@ -56,9 +52,8 @@
   box-shadow:
     inset 2px 0 0 0 var(--theme-text),
     inset 0 2px 0 0 var(--theme-text);
-  padding: calc((var(--font-size) * 0.5) * var(--theme-line-height-base)) 0 0px
+  padding: calc((var(--font-size) * 0.5) * var(--theme-line-height-base)) 1ch 0px
     1ch;
-  color: var(--theme-text);
 }
 
 .right {
@@ -67,9 +62,8 @@
   box-shadow:
     inset -2px 0 0 0 var(--theme-text),
     inset 0 2px 0 0 var(--theme-text);
-  padding: calc((var(--font-size) * 0.5) * var(--theme-line-height-base)) 1ch 0px
-    2ch;
-  text-align: right;
+  padding: calc((var(--font-size) * 0.5) * var(--theme-line-height-base)) 2ch 0px
+    1ch;
 }
 
 .rightCorner {
@@ -78,8 +72,7 @@
     inset -2px 0 0 0 var(--theme-text),
     inset 0 2px 0 0 var(--theme-text);
   padding: calc((var(--font-size) * 0.5) * var(--theme-line-height-base)) 1ch 0px
-    0;
-  color: var(--theme-text);
+    1ch;
 }
 
 .title {
@@ -87,8 +80,4 @@
   padding: 0 1ch 0 1ch;
   font-size: var(--font-size);
   font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--theme-text);
-  white-space: nowrap;
 }
