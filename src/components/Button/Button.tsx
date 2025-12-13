@@ -7,10 +7,10 @@ import styles from './Button.module.scss';
 
 export interface ButtonProps
   extends Omit<React.ComponentProps<typeof BaseButton>, 'className'> {
-  /** Visual theme variant */
-  theme?: 'PRIMARY' | 'SECONDARY';
+  /** Visual variant */
+  variant?: 'primary' | 'secondary';
   /** Whether the button is disabled */
-  isDisabled?: boolean;
+  disabled?: boolean;
   /** Additional CSS class names */
   className?: string;
   /** Button content */
@@ -23,34 +23,23 @@ export interface ButtonProps
  * Built on Base UI for accessibility, styled with SRCL aesthetics.
  *
  * @example
- * <Button theme="PRIMARY">Submit</Button>
- * <Button theme="SECONDARY">Cancel</Button>
- * <Button isDisabled>Disabled</Button>
+ * <Button variant="primary">Submit</Button>
+ * <Button variant="secondary">Cancel</Button>
+ * <Button disabled>Disabled</Button>
  */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
-    { theme = 'PRIMARY', isDisabled = false, className, children, ...props },
+    { variant = 'primary', disabled = false, className, children, ...props },
     ref
   ) {
-    // When disabled, render as a div to match SRCL behavior
-    if (isDisabled) {
-      return (
-        <div
-          className={classNames(styles.root, styles.disabled, className)}
-          aria-disabled="true"
-          role="button"
-        >
-          {children}
-        </div>
-      );
-    }
-
     return (
       <BaseButton
         ref={ref}
+        disabled={disabled}
         className={classNames(
           styles.root,
-          theme === 'PRIMARY' ? styles.primary : styles.secondary,
+          styles[variant],
+          disabled && styles.disabled,
           className
         )}
         {...props}

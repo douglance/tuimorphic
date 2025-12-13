@@ -1,0 +1,68 @@
+/**
+ * Avatar Styles
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ * MIT License
+ */
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  overflow: hidden;
+  background: var(--theme-border);
+  color: var(--theme-text);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: 200ms ease all;
+}
+
+.avatar:focus-visible {
+  outline: 2px solid var(--theme-focused-border);
+  outline-offset: 2px;
+}
+
+a.avatar:hover {
+  background: var(--theme-focused-foreground);
+}
+
+a.avatar:focus {
+  background: var(--theme-focused-foreground);
+}
+
+/* Size variants */
+.small {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+}
+
+.medium {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+.large {
+  width: 48px;
+  height: 48px;
+  font-size: 16px;
+}
+
+/* Image styling */
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Initials styling */
+.initials {
+  font-family: var(--font-family-mono);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  user-select: none;
+}

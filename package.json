@@ -23,8 +23,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:demo": "tsc && vite build --config vite.config.demo.ts",
     "preview": "vite preview",
-    "lint": "tsc --noEmit"
+    "preview:demo": "vite preview --config vite.config.demo.ts",
+    "lint": "tsc --noEmit",
+    "deploy": "pnpm build:demo && wrangler pages deploy dist-demo --project-name tuimorphic"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

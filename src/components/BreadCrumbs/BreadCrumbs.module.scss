@@ -1,0 +1,70 @@
+/**
+ * BreadCrumbs Styles
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ * MIT License
+ */
+
+.root {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listItem {
+  display: inline-flex;
+  align-items: center;
+}
+
+.item {
+  color: var(--theme-text);
+}
+
+.current {
+  color: var(--theme-text-muted, var(--theme-text));
+}
+
+.separator {
+  display: inline-block;
+  margin: 0 1ch;
+  color: var(--theme-text-muted, var(--theme-border));
+  user-select: none;
+}
+
+.link {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--theme-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: 200ms ease color;
+
+  &:hover {
+    color: var(--theme-accent);
+  }
+
+  &:focus {
+    color: var(--theme-accent);
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: 2px;
+  }
+}

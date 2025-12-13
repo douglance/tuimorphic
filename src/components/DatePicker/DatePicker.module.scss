@@ -1,0 +1,175 @@
+/**
+ * DatePicker Styles
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ * MIT License
+ */
+
+.root {
+  display: block;
+  width: fit-content;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  background: var(--theme-border);
+  padding: 0 1ch;
+}
+
+.calendar {
+  background: var(--theme-background);
+  box-shadow: inset 0 0 0 2px var(--theme-border);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0.5em 1ch;
+  background: var(--theme-border);
+  color: var(--theme-text);
+}
+
+.monthYear {
+  flex: 1;
+  text-align: center;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3ch;
+  height: calc(var(--font-size) * var(--theme-line-height-base));
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--theme-text);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: 1;
+  cursor: pointer;
+  transition: background 100ms ease;
+
+  &:hover {
+    background: var(--theme-focused-foreground);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: -2px;
+  }
+
+  &:active {
+    background: var(--theme-text);
+    color: var(--theme-background);
+  }
+}
+
+.dayHeaders {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 2px solid var(--theme-border);
+}
+
+.dayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25em 0;
+  font-weight: 400;
+  color: var(--theme-text-secondary);
+  text-transform: uppercase;
+  font-size: var(--font-size);
+}
+
+.grid {
+  display: block;
+  padding: 0.5em;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow:
+      inset 0 0 0 2px var(--theme-border),
+      0 0 0 2px var(--theme-focused-border);
+  }
+}
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.emptyDay {
+  width: 4ch;
+  height: calc(var(--font-size) * var(--theme-line-height-base) * 1.5);
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4ch;
+  height: calc(var(--font-size) * var(--theme-line-height-base) * 1.5);
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--theme-text);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: 1;
+  cursor: pointer;
+  transition: background 100ms ease;
+
+  &:hover:not(.disabled) {
+    background: var(--theme-focused-foreground);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.today {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.selected {
+  background: var(--theme-text);
+  color: var(--theme-background);
+
+  &:hover:not(.disabled) {
+    background: var(--theme-text);
+    color: var(--theme-background);
+  }
+}
+
+.focused {
+  box-shadow: inset 0 0 0 2px var(--theme-focused-border);
+}
+
+.disabled {
+  color: var(--theme-overlay);
+  cursor: not-allowed;
+
+  &:hover {
+    background: transparent;
+  }
+}

@@ -1,0 +1,116 @@
+/**
+ * Message Styles
+ * MS-DOS terminal aesthetic with speech bubbles and triangular pointers
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ */
+
+// MessageList container
+.messageList {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--theme-line-height-base) * 1rem);
+  width: 100%;
+}
+
+// Individual message wrapper
+.message {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+
+  &.left {
+    align-self: flex-start;
+    align-items: flex-start;
+  }
+
+  &.right {
+    align-self: flex-end;
+    align-items: flex-end;
+  }
+}
+
+// Author name above the bubble
+.author {
+  padding: 0 2ch;
+  font-size: var(--font-size);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--theme-text-muted, var(--theme-text));
+  margin-bottom: 0.25em;
+}
+
+// Container for pointer and bubble
+.bubbleContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+// Triangular pointer on the left
+.pointerLeft {
+  flex-shrink: 0;
+  color: var(--theme-text);
+  line-height: 1;
+  margin-top: calc(var(--theme-line-height-base) * 0.25em);
+  margin-right: -1px;
+}
+
+// Triangular pointer on the right
+.pointerRight {
+  flex-shrink: 0;
+  color: var(--theme-text);
+  line-height: 1;
+  margin-top: calc(var(--theme-line-height-base) * 0.25em);
+  margin-left: -1px;
+}
+
+// Speech bubble box
+.bubble {
+  position: relative;
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-text),
+    inset -2px 0 0 0 var(--theme-text),
+    inset 0 2px 0 0 var(--theme-text),
+    inset 0 -2px 0 0 var(--theme-text);
+  background: var(--theme-background);
+}
+
+// Message content
+.content {
+  padding: calc(var(--theme-line-height-base) * 0.5rem) 2ch;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: var(--theme-text);
+}
+
+// Timestamp below the bubble
+.timestamp {
+  padding: 0.25em 2ch 0;
+  font-size: calc(var(--font-size) * 0.85);
+  color: var(--theme-text-muted, var(--theme-text));
+  opacity: 0.7;
+}
+
+// Position-specific adjustments
+.left {
+  .author {
+    padding-left: 3ch; // Account for pointer width
+  }
+
+  .timestamp {
+    padding-left: 3ch;
+  }
+}
+
+.right {
+  .author {
+    padding-right: 3ch;
+  }
+
+  .timestamp {
+    padding-right: 3ch;
+  }
+}

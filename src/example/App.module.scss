@@ -146,6 +146,52 @@
   margin-top: 1rem;
 }
 
+.actionButtonGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.popoverGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.popoverActions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.drawerGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.drawerNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  a {
+    color: var(--theme-text);
+    text-decoration: none;
+    font-family: var(--font-family-mono);
+
+    &:hover {
+      color: var(--theme-focused-text);
+    }
+  }
+}
+
+.drawerActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .form {
   display: flex;
   flex-direction: column;

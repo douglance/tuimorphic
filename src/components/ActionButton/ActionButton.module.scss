@@ -1,30 +1,62 @@
 /**
- * Button Styles
+ * ActionButton Styles
  * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
  * MIT License
  */
 
 .root {
-  vertical-align: top;
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  margin: 0;
-  outline: 0;
-  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2ch;
   font-family: var(--font-family-mono);
-  width: 100%;
   font-size: var(--font-size);
-  line-height: calc(var(--theme-line-height-base) * 2em);
+  font-weight: 400;
+  line-height: var(--theme-line-height-base);
   min-height: calc(var(--theme-line-height-base) * (var(--font-size) * 2));
-  padding: 0 2ch 0 2ch;
+  padding: 0 2ch;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  text-align: left;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: 200ms ease all;
+  letter-spacing: 0.5px;
   cursor: pointer;
   user-select: none;
+  transition: 200ms ease all;
+  width: 100%;
 }
 
+.content {
+  display: inline-flex;
+  align-items: center;
+  gap: 1ch;
+  flex: 1;
+  min-width: 0;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hotkey {
+  flex-shrink: 0;
+  font-size: var(--font-size-small, 0.875em);
+  opacity: 0.6;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+// Primary variant
 .primary {
   background: var(--theme-button);
   color: var(--theme-button-text);
@@ -49,6 +81,7 @@
   }
 }
 
+// Secondary variant
 .secondary {
   background: var(--theme-background);
   color: var(--theme-text);
@@ -76,9 +109,40 @@
   }
 }
 
+// Disabled state
 .disabled {
   background: var(--theme-button-background);
   color: var(--theme-button-foreground);
   cursor: not-allowed;
   pointer-events: none;
+  opacity: 0.5;
+}
+
+// Loading state
+.loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+// Spinner animation for loading state
+.spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+
+  &::before {
+    content: '⟳';
+    display: inline-block;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
