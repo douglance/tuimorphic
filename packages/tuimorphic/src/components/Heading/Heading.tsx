@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Heading.module.scss';
+import styles from './Heading.module.css';
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 

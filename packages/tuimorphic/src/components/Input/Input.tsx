@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
 import { useCombinedRefs } from '@/hooks/useCombinedRefs';
-import styles from './Input.module.scss';
+import styles from './Input.module.css';
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className'> {

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './TreeView.module.scss';
+import styles from './TreeView.module.css';
 
 export interface TreeNode {
   /** Unique identifier for the node */

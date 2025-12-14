@@ -1,0 +1,96 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--theme-overlay-background);
+  z-index: var(--z-index-9);
+
+  /* Animation */
+  opacity: 0;
+  transition: opacity 150ms ease;
+
+  &[data-open] {
+    opacity: 1;
+  }
+
+  &[data-closed] {
+    opacity: 0;
+  }
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 320px;
+  max-width: 90vw;
+  background: var(--theme-background);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  z-index: var(--z-index-10);
+
+  /* MS-DOS style border + retro offset shadow */
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-text),
+    inset -2px 0 0 0 var(--theme-text),
+    inset 0 2px 0 0 var(--theme-text),
+    inset 0 -2px 0 0 var(--theme-text),
+    1ch 1ch 0 0 var(--theme-border-subdued);
+
+  /* Animation */
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.95);
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease;
+
+  &[data-open] {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &[data-closed] {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  background: var(--theme-text);
+  color: var(--theme-background);
+}
+
+.icon {
+  color: var(--theme-warning, var(--color-yellow-500, #eab308));
+  background: var(--theme-background);
+  padding: 0 0.5ch;
+  font-weight: 700;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.description {
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  padding-bottom: calc(var(--theme-line-height-base) * 0.5em);
+  color: var(--theme-text);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1ch;
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  padding-bottom: calc(var(--theme-line-height-base) * 1em);
+}

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './ActionButton.module.scss';
+import styles from './ActionButton.module.css';
 
 export interface ActionButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {

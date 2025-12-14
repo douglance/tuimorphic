@@ -1,0 +1,87 @@
+/**
+ * Toolbar Styles
+ * Terminal-aesthetic toolbar (sacred.computer style)
+ */
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  background: var(--theme-background);
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-text),
+    inset -2px 0 0 0 var(--theme-text),
+    inset 0 2px 0 0 var(--theme-text),
+    inset 0 -2px 0 0 var(--theme-text);
+}
+
+.horizontal {
+  flex-direction: row;
+  padding: 0.25em 0.5ch;
+  gap: 0.5ch;
+}
+
+.vertical {
+  flex-direction: column;
+  padding: 0.5em 0.25ch;
+  gap: 0.25em;
+}
+
+.button,
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25em 1ch;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--theme-text);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover:not([data-disabled]) {
+    background: var(--theme-focused-foreground);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: -2px;
+  }
+
+  &:active:not([data-disabled]) {
+    background: var(--theme-button);
+    color: var(--theme-button-text);
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.separator {
+  width: 1px;
+  height: 1em;
+  background: var(--theme-border);
+
+  .vertical > & {
+    width: 100%;
+    height: 1px;
+  }
+}
+
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+
+  .vertical > & {
+    flex-direction: column;
+  }
+}

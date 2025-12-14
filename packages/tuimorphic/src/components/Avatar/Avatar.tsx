@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Avatar.module.scss';
+import styles from './Avatar.module.css';
 
 export interface AvatarProps {
   /** Image source URL */

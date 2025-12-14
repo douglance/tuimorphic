@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Code.module.scss';
+import styles from './Code.module.css';
 
 export interface CodeProps extends React.HTMLAttributes<HTMLElement> {
   /** Visual variant */

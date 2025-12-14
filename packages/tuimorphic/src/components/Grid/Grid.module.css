@@ -1,0 +1,61 @@
+/**
+ * Grid Styles
+ * Simple text-based layout container with monospace alignment
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ */
+
+/* ============================================================================
+   Grid Root
+   ============================================================================ */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  row-gap: var(--grid-row-gap, 2ch);
+  column-gap: var(--grid-column-gap, 2ch);
+  width: 100%;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+}
+
+/* ============================================================================
+   Auto-fit Responsive Mode
+   ============================================================================ */
+
+.autoFit {
+  /* Auto-fit columns with minimum width of 20ch for readable TUI content */
+  grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr));
+}
+
+/* ============================================================================
+   Grid Item
+   ============================================================================ */
+
+.item {
+  min-width: 0; /* Prevent grid blowout from long content */
+}
+
+/* ============================================================================
+   Spanning Items
+   ============================================================================ */
+
+.spanning {
+  grid-column: span var(--grid-item-span, 1);
+}
+
+/* ============================================================================
+   Responsive Behavior
+   ============================================================================ */
+
+@media (max-width: 60ch) {
+  .grid {
+    /* Stack items on small screens */
+    grid-template-columns: 1fr;
+  }
+
+  .spanning {
+    /* Reset span on small screens to prevent overflow */
+    grid-column: span 1;
+  }
+}

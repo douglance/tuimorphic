@@ -1,13 +1,20 @@
 export {
   Accordion,
   AccordionItem,
+  AccordionHeader,
   AccordionTrigger,
   AccordionContent,
   AccordionRoot,
-  AccordionHeader,
+  AccordionPanel,
   type AccordionProps,
   type AccordionItemProps,
+  type AccordionHeaderProps,
   type AccordionTriggerProps,
   type AccordionContentProps,
+  type AccordionRootState,
+  type AccordionItemState,
+  type AccordionHeaderState,
+  type AccordionTriggerState,
+  type AccordionPanelState,
 } from './Accordion';
 export { default } from './Accordion';

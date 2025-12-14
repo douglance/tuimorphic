@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Alert.module.scss';
+import styles from './Alert.module.css';
 
 export interface AlertProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Visual variant indicating alert severity */

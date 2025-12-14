@@ -1,68 +1,52 @@
 'use client';
 
 import * as React from 'react';
+import { forwardRef } from 'react';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { classNames } from '@/utils/classNames';
-import styles from './Menu.module.scss';
+import styles from './Menu.module.css';
+
+type PopupState = Parameters<
+  Extract<BaseMenu.Popup.Props['className'], Function>
+>[0];
+
+type ItemState = Parameters<
+  Extract<BaseMenu.Item.Props['className'], Function>
+>[0];
+
+type SeparatorState = Parameters<
+  Extract<BaseMenu.Separator.Props['className'], Function>
+>[0];
+
+export interface MenuRootProps extends BaseMenu.Root.Props {}
+
+export interface MenuTriggerProps extends BaseMenu.Trigger.Props {}
+
+export interface MenuPortalProps extends BaseMenu.Portal.Props {}
+
+export interface MenuPositionerProps extends BaseMenu.Positioner.Props {}
+
+export interface MenuPopupProps
+  extends Omit<BaseMenu.Popup.Props, 'className'> {
+  className?: string | ((state: PopupState) => string | undefined);
+}
+
+export interface MenuItemProps extends Omit<BaseMenu.Item.Props, 'className'> {
+  className?: string | ((state: ItemState) => string | undefined);
+  onSelect?: () => void;
+}
+
+export interface MenuSeparatorProps
+  extends Omit<BaseMenu.Separator.Props, 'className'> {
+  className?: string | ((state: SeparatorState) => string | undefined);
+}
 
 export interface MenuProps {
-  /** Element that triggers the menu to open */
   trigger?: React.ReactElement;
-  /** Menu items and content */
   children?: React.ReactNode;
-  /** Additional CSS class names */
   className?: string;
 }
 
-export interface MenuItemProps {
-  /** Callback when item is selected */
-  onSelect?: () => void;
-  /** Whether the item is disabled */
-  disabled?: boolean;
-  /** Item content */
-  children?: React.ReactNode;
-  /** Additional CSS class names */
-  className?: string;
-}
-
-export interface MenuSeparatorProps {
-  /** Additional CSS class names */
-  className?: string;
-}
-
-/**
- * Menu component for dropdown actions and navigation.
- *
- * @example
- * // Simple usage
- * <Menu trigger={<Button>Actions</Button>}>
- *   <MenuItem onSelect={() => console.log('Edit')}>Edit</MenuItem>
- *   <MenuItem onSelect={() => console.log('Delete')}>Delete</MenuItem>
- * </Menu>
- *
- * @example
- * // With separator and disabled item
- * <Menu trigger={<Button>File</Button>}>
- *   <MenuItem onSelect={handleNew}>New</MenuItem>
- *   <MenuItem onSelect={handleOpen}>Open</MenuItem>
- *   <MenuSeparator />
- *   <MenuItem onSelect={handleSave}>Save</MenuItem>
- *   <MenuItem disabled>Save As...</MenuItem>
- * </Menu>
- *
- * @example
- * // Using compound components for advanced control
- * <MenuRoot>
- *   <MenuTrigger render={<Button>Options</Button>} />
- *   <MenuPortal>
- *     <MenuPositioner sideOffset={4}>
- *       <MenuPopup>
- *         <MenuItem onSelect={handleAction}>Action</MenuItem>
- *       </MenuPopup>
- *     </MenuPositioner>
- *   </MenuPortal>
- * </MenuRoot>
- */
 export function Menu({ trigger, children, className }: MenuProps) {
   return (
     <BaseMenu.Root>
@@ -78,71 +62,82 @@ export function Menu({ trigger, children, className }: MenuProps) {
   );
 }
 
-/**
- * Menu item component for individual menu actions.
- *
- * @example
- * <MenuItem onSelect={() => console.log('Selected')}>
- *   Action Item
- * </MenuItem>
- */
-export function MenuItem({
-  onSelect,
-  disabled,
-  children,
-  className,
-}: MenuItemProps) {
-  return (
+export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
+  ({ onSelect, className, children, ...props }, ref) => (
     <BaseMenu.Item
-      className={classNames(styles.item, className)}
-      disabled={disabled}
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.item,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
       onClick={onSelect}
+      {...props}
     >
       <span className={styles.indicator} aria-hidden="true">
         ›
       </span>
       <span className={styles.itemContent}>{children}</span>
     </BaseMenu.Item>
-  );
-}
-
-/**
- * Menu separator for visual grouping of menu items.
- *
- * @example
- * <MenuItem>Item 1</MenuItem>
- * <MenuSeparator />
- * <MenuItem>Item 2</MenuItem>
- */
-export function MenuSeparator({ className }: MenuSeparatorProps) {
-  return (
-    <BaseMenu.Separator className={classNames(styles.separator, className)} />
-  );
-}
-
-// Export sub-components for advanced usage
-export const MenuRoot = BaseMenu.Root;
-export const MenuTrigger = BaseMenu.Trigger;
-export const MenuPortal = BaseMenu.Portal;
-
-export const MenuPositioner = ({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof BaseMenu.Positioner>) => (
-  <BaseMenu.Positioner className={className} {...props}>
-    {children}
-  </BaseMenu.Positioner>
+  )
 );
+MenuItem.displayName = 'MenuItem';
 
-export const MenuPopup = ({
-  className,
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }) => (
-  <BaseMenu.Popup className={classNames(styles.popup, className)} {...props}>
-    {children}
-  </BaseMenu.Popup>
+export const MenuSeparator = forwardRef<HTMLDivElement, MenuSeparatorProps>(
+  ({ className, ...props }, ref) => (
+    <BaseMenu.Separator
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.separator,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    />
+  )
 );
+MenuSeparator.displayName = 'MenuSeparator';
+
+export const MenuRoot = (props: MenuRootProps) => <BaseMenu.Root {...props} />;
+MenuRoot.displayName = 'MenuRoot';
+
+export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
+  (props, ref) => <BaseMenu.Trigger ref={ref} {...props} />
+);
+MenuTrigger.displayName = 'MenuTrigger';
+
+export const MenuPortal = (props: MenuPortalProps) => (
+  <BaseMenu.Portal {...props} />
+);
+MenuPortal.displayName = 'MenuPortal';
+
+export const MenuPositioner = forwardRef<HTMLDivElement, MenuPositionerProps>(
+  ({ className, children, ...props }, ref) => (
+    <BaseMenu.Positioner ref={ref} className={className} {...props}>
+      {children}
+    </BaseMenu.Positioner>
+  )
+);
+MenuPositioner.displayName = 'MenuPositioner';
+
+export const MenuPopup = forwardRef<HTMLDivElement, MenuPopupProps>(
+  ({ className, children, ...props }, ref) => (
+    <BaseMenu.Popup
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.popup,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    >
+      {children}
+    </BaseMenu.Popup>
+  )
+);
+MenuPopup.displayName = 'MenuPopup';
 
 export default Menu;

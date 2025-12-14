@@ -1,10 +1,59 @@
 'use client';
 
 import * as React from 'react';
+import { forwardRef } from 'react';
 import { Tabs as BaseTabs } from '@base-ui/react/tabs';
 import { classNames } from '@/utils/classNames';
-import styles from './Tabs.module.scss';
+import styles from './Tabs.module.css';
 
+// State types for className functions
+type RootState = Parameters<
+  Extract<BaseTabs.Root.Props['className'], Function>
+>[0];
+
+type ListState = Parameters<
+  Extract<BaseTabs.List.Props['className'], Function>
+>[0];
+
+type TabState = Parameters<
+  Extract<BaseTabs.Tab.Props['className'], Function>
+>[0];
+
+type PanelState = Parameters<
+  Extract<BaseTabs.Panel.Props['className'], Function>
+>[0];
+
+type IndicatorState = Parameters<
+  Extract<BaseTabs.Indicator.Props['className'], Function>
+>[0];
+
+// Prop interfaces extending Base UI
+export interface TabsRootProps
+  extends Omit<BaseTabs.Root.Props, 'className'> {
+  className?: string | ((state: RootState) => string | undefined);
+}
+
+export interface TabsListProps
+  extends Omit<BaseTabs.List.Props, 'className'> {
+  className?: string | ((state: ListState) => string | undefined);
+}
+
+export interface TabsTabProps
+  extends Omit<BaseTabs.Tab.Props, 'className'> {
+  className?: string | ((state: TabState) => string | undefined);
+}
+
+export interface TabsPanelProps
+  extends Omit<BaseTabs.Panel.Props, 'className'> {
+  className?: string | ((state: PanelState) => string | undefined);
+}
+
+export interface TabsIndicatorProps
+  extends Omit<BaseTabs.Indicator.Props, 'className'> {
+  className?: string | ((state: IndicatorState) => string | undefined);
+}
+
+// Backwards-compatible convenience interfaces (existing API)
 export interface TabsProps {
   /** Selected tab value (controlled) */
   value?: string | number | null;
@@ -18,7 +67,7 @@ export interface TabsProps {
   className?: string;
 }
 
-export interface TabsListProps {
+export interface TabsListPropsLegacy {
   /** Tab triggers */
   children?: React.ReactNode;
   /** Additional CSS class names */
@@ -84,7 +133,7 @@ export interface TabsContentProps {
  * </Tabs>
  * ```
  */
-export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(function Tabs(
+export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   { value, defaultValue, onValueChange, children, className },
   ref
 ) {
@@ -106,7 +155,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(function Tabs(
  *
  * Provides horizontal layout for tab buttons with terminal-style borders.
  */
-export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
+export const TabsList = forwardRef<HTMLDivElement, TabsListPropsLegacy>(
   function TabsList({ children, className }, ref) {
     return (
       <BaseTabs.List ref={ref} className={classNames(styles.list, className)}>
@@ -121,7 +170,7 @@ export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
  *
  * Must be used within a TabsList. The value prop must match a corresponding TabsContent.
  */
-export const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
+export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
   function TabsTrigger({ value, children, disabled, className }, ref) {
     return (
       <BaseTabs.Tab
@@ -142,7 +191,7 @@ export const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>
  * The value prop must match a corresponding TabsTrigger.
  * Only the active panel is rendered.
  */
-export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
+export const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
   function TabsContent({ value, children, className }, ref) {
     return (
       <BaseTabs.Panel
@@ -155,5 +204,84 @@ export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
     );
   }
 );
+
+// Compound components for advanced usage (extending Base UI props)
+
+export const TabsRoot = forwardRef<HTMLDivElement, TabsRootProps>(
+  ({ className, ...props }, ref) => (
+    <BaseTabs.Root
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.root,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    />
+  )
+);
+TabsRoot.displayName = 'TabsRoot';
+
+export const TabsListAdvanced = forwardRef<HTMLDivElement, TabsListProps>(
+  ({ className, ...props }, ref) => (
+    <BaseTabs.List
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.list,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    />
+  )
+);
+TabsListAdvanced.displayName = 'TabsListAdvanced';
+
+export const TabsTab = forwardRef<HTMLButtonElement, TabsTabProps>(
+  ({ className, ...props }, ref) => (
+    <BaseTabs.Tab
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.trigger,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    />
+  )
+);
+TabsTab.displayName = 'TabsTab';
+
+export const TabsPanel = forwardRef<HTMLDivElement, TabsPanelProps>(
+  ({ className, ...props }, ref) => (
+    <BaseTabs.Panel
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.content,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    />
+  )
+);
+TabsPanel.displayName = 'TabsPanel';
+
+export const TabsIndicator = forwardRef<HTMLSpanElement, TabsIndicatorProps>(
+  ({ className, ...props }, ref) => (
+    <BaseTabs.Indicator
+      ref={ref}
+      className={(state) =>
+        typeof className === 'function' ? className(state) : className
+      }
+      {...props}
+    />
+  )
+);
+TabsIndicator.displayName = 'TabsIndicator';
 
 export default Tabs;

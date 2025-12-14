@@ -3,61 +3,33 @@
 import * as React from 'react';
 import { Switch } from '@base-ui/react/switch';
 import { classNames } from '@/utils/classNames';
-import styles from './Toggle.module.scss';
+import styles from './Toggle.module.css';
 
-export interface ToggleProps {
-  /** Whether the toggle is on (controlled) */
-  checked?: boolean;
-  /** Default checked state (uncontrolled) */
-  defaultChecked?: boolean;
-  /** Callback when state changes */
-  onCheckedChange?: (checked: boolean) => void;
-  /** Label text */
+type ToggleState = Parameters<
+  Extract<Switch.Root.Props['className'], Function>
+>[0];
+
+export interface ToggleProps extends Omit<Switch.Root.Props, 'className'> {
   label?: string;
-  /** Whether the toggle is disabled */
-  disabled?: boolean;
-  /** Name attribute for forms */
-  name?: string;
-  /** Additional CSS class names */
-  className?: string;
+  className?: string | ((state: ToggleState) => string | undefined);
 }
 
-/**
- * Toggle (switch) component with terminal-style [ON]/[OFF] display.
- *
- * @example
- * <Toggle label="Enable notifications" />
- * <Toggle checked={true} label="Active" />
- */
 export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
-  function Toggle(
-    {
-      checked,
-      defaultChecked,
-      onCheckedChange,
-      label,
-      disabled = false,
-      name,
-      className,
-    },
-    ref
-  ) {
+  function Toggle({ label, className, disabled, ...props }, ref) {
     return (
       <label
-        className={classNames(
-          styles.container,
-          disabled && styles.disabled,
-          className
-        )}
+        className={classNames(styles.container, disabled && styles.disabled)}
       >
         <Switch.Root
           ref={ref}
-          checked={checked}
-          defaultChecked={defaultChecked}
-          onCheckedChange={onCheckedChange}
           disabled={disabled}
-          name={name}
-          className={styles.toggle}
+          className={(state) =>
+            classNames(
+              styles.toggle,
+              typeof className === 'function' ? className(state) : className
+            )
+          }
+          {...props}
         >
           <Switch.Thumb className={styles.thumb} />
         </Switch.Root>

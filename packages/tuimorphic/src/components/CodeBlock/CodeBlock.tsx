@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './CodeBlock.module.scss';
+import styles from './CodeBlock.module.css';
 
 export interface CodeBlockProps extends Omit<React.HTMLAttributes<HTMLElement>, 'className' | 'onCopy'> {
   /** The code string to display */

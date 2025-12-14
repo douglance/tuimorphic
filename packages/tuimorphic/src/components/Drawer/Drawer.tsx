@@ -3,17 +3,33 @@
 import * as React from 'react';
 import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import { classNames } from '@/utils/classNames';
-import styles from './Drawer.module.scss';
+import styles from './Drawer.module.css';
 
 export type DrawerSide = 'left' | 'right' | 'top' | 'bottom';
 
-export interface DrawerProps {
-  /** Whether the drawer is open (controlled) */
-  open?: boolean;
-  /** Default open state (uncontrolled) */
-  defaultOpen?: boolean;
-  /** Callback when open state changes */
-  onOpenChange?: (open: boolean) => void;
+// State types for state-based className functions
+type DialogBackdropState = Parameters<
+  Extract<BaseDialog.Backdrop.Props['className'], Function>
+>[0];
+
+type DialogPopupState = Parameters<
+  Extract<BaseDialog.Popup.Props['className'], Function>
+>[0];
+
+type DialogTitleState = Parameters<
+  Extract<BaseDialog.Title.Props['className'], Function>
+>[0];
+
+type DialogDescriptionState = Parameters<
+  Extract<BaseDialog.Description.Props['className'], Function>
+>[0];
+
+type DialogCloseState = Parameters<
+  Extract<BaseDialog.Close.Props['className'], Function>
+>[0];
+
+export interface DrawerProps
+  extends Omit<BaseDialog.Root.Props, 'children'> {
   /** Side the drawer slides in from */
   side?: DrawerSide;
   /** Drawer title displayed in the header */
@@ -26,6 +42,58 @@ export interface DrawerProps {
   trigger?: React.ReactElement;
   /** Additional CSS class names for the drawer panel */
   className?: string;
+}
+
+export interface DrawerRootProps extends BaseDialog.Root.Props {}
+
+export interface DrawerTriggerProps extends BaseDialog.Trigger.Props {}
+
+export interface DrawerPortalProps extends BaseDialog.Portal.Props {}
+
+export interface DrawerBackdropProps
+  extends Omit<BaseDialog.Backdrop.Props, 'className'> {
+  /** Additional CSS class names */
+  className?: string | ((state: DialogBackdropState) => string | undefined);
+}
+
+export interface DrawerPanelProps
+  extends Omit<BaseDialog.Popup.Props, 'className'> {
+  /** Side the drawer slides in from */
+  side?: DrawerSide;
+  /** Additional CSS class names */
+  className?: string | ((state: DialogPopupState) => string | undefined);
+}
+
+export interface DrawerHeaderProps extends React.HTMLAttributes<HTMLElement> {
+  /** Additional CSS class names */
+  className?: string;
+  /** Header content */
+  children?: React.ReactNode;
+}
+
+export interface DrawerTitleProps
+  extends Omit<BaseDialog.Title.Props, 'className'> {
+  /** Additional CSS class names */
+  className?: string | ((state: DialogTitleState) => string | undefined);
+}
+
+export interface DrawerDescriptionProps
+  extends Omit<BaseDialog.Description.Props, 'className'> {
+  /** Additional CSS class names */
+  className?: string | ((state: DialogDescriptionState) => string | undefined);
+}
+
+export interface DrawerCloseProps
+  extends Omit<BaseDialog.Close.Props, 'className'> {
+  /** Additional CSS class names */
+  className?: string | ((state: DialogCloseState) => string | undefined);
+}
+
+export interface DrawerContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Additional CSS class names */
+  className?: string;
+  /** Content */
+  children?: React.ReactNode;
 }
 
 /**
@@ -78,22 +146,20 @@ export function Drawer({
   children,
   trigger,
   className,
+  ...props
 }: DrawerProps) {
   return (
     <BaseDialog.Root
       open={open}
       defaultOpen={defaultOpen}
       onOpenChange={onOpenChange}
+      {...props}
     >
       {trigger && <BaseDialog.Trigger render={trigger} />}
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className={styles.backdrop} />
         <BaseDialog.Popup
-          className={classNames(
-            styles.popup,
-            styles[side],
-            className
-          )}
+          className={classNames(styles.popup, styles[side], className)}
         >
           {(title || description) && (
             <header className={styles.header}>
@@ -122,9 +188,7 @@ export function Drawer({
               [X]
             </BaseDialog.Close>
           )}
-          <div className={styles.content}>
-            {children}
-          </div>
+          <div className={styles.content}>{children}</div>
         </BaseDialog.Popup>
       </BaseDialog.Portal>
     </BaseDialog.Root>
@@ -139,22 +203,26 @@ export function Drawer({
  * Root component for compound drawer pattern.
  * Provides controlled/uncontrolled state management.
  */
-export const DrawerRoot = BaseDialog.Root;
+export const DrawerRoot = (props: DrawerRootProps) => (
+  <BaseDialog.Root {...props} />
+);
+DrawerRoot.displayName = 'DrawerRoot';
 
 /**
  * Trigger element that opens the drawer when clicked.
  */
-export const DrawerTrigger = BaseDialog.Trigger;
+export const DrawerTrigger = React.forwardRef<HTMLButtonElement, DrawerTriggerProps>(
+  (props, ref) => <BaseDialog.Trigger ref={ref} {...props} />
+);
+DrawerTrigger.displayName = 'DrawerTrigger';
 
 /**
  * Portal for rendering drawer outside the DOM hierarchy.
  */
-export const DrawerPortal = BaseDialog.Portal;
-
-export interface DrawerBackdropProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Additional CSS class names */
-  className?: string;
-}
+export const DrawerPortal = (props: DrawerPortalProps) => (
+  <BaseDialog.Portal {...props} />
+);
+DrawerPortal.displayName = 'DrawerPortal';
 
 /**
  * Semi-transparent backdrop behind the drawer.
@@ -164,21 +232,17 @@ export const DrawerBackdrop = React.forwardRef<HTMLDivElement, DrawerBackdropPro
     return (
       <BaseDialog.Backdrop
         ref={ref}
-        className={classNames(styles.backdrop, className)}
+        className={(state) =>
+          classNames(
+            styles.backdrop,
+            typeof className === 'function' ? className(state) : className
+          )
+        }
         {...props}
       />
     );
   }
 );
-
-export interface DrawerPanelProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Side the drawer slides in from */
-  side?: DrawerSide;
-  /** Additional CSS class names */
-  className?: string;
-  /** Panel content */
-  children?: React.ReactNode;
-}
 
 /**
  * The main drawer panel container.
@@ -188,7 +252,13 @@ export const DrawerPanel = React.forwardRef<HTMLDivElement, DrawerPanelProps>(
     return (
       <BaseDialog.Popup
         ref={ref}
-        className={classNames(styles.popup, styles[side], className)}
+        className={(state) =>
+          classNames(
+            styles.popup,
+            styles[side],
+            typeof className === 'function' ? className(state) : className
+          )
+        }
         {...props}
       >
         {children}
@@ -196,13 +266,6 @@ export const DrawerPanel = React.forwardRef<HTMLDivElement, DrawerPanelProps>(
     );
   }
 );
-
-export interface DrawerHeaderProps extends React.HTMLAttributes<HTMLElement> {
-  /** Additional CSS class names */
-  className?: string;
-  /** Header content */
-  children?: React.ReactNode;
-}
 
 /**
  * Header section for the drawer with title and close button.
@@ -220,19 +283,43 @@ export const DrawerHeader = React.forwardRef<HTMLElement, DrawerHeaderProps>(
 /**
  * Title component for the drawer header.
  */
-export const DrawerTitle = BaseDialog.Title;
+export const DrawerTitle = React.forwardRef<HTMLHeadingElement, DrawerTitleProps>(
+  function DrawerTitle({ className, ...props }, ref) {
+    return (
+      <BaseDialog.Title
+        ref={ref}
+        className={(state) =>
+          classNames(
+            styles.title,
+            typeof className === 'function' ? className(state) : className
+          )
+        }
+        {...props}
+      />
+    );
+  }
+);
 
 /**
  * Description component for the drawer header.
  */
-export const DrawerDescription = BaseDialog.Description;
-
-export interface DrawerCloseProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Additional CSS class names */
-  className?: string;
-  /** Close button content (defaults to [X]) */
-  children?: React.ReactNode;
-}
+export const DrawerDescription = React.forwardRef<
+  HTMLParagraphElement,
+  DrawerDescriptionProps
+>(function DrawerDescription({ className, ...props }, ref) {
+  return (
+    <BaseDialog.Description
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.description,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    />
+  );
+});
 
 /**
  * Close button for the drawer.
@@ -242,7 +329,12 @@ export const DrawerClose = React.forwardRef<HTMLButtonElement, DrawerCloseProps>
     return (
       <BaseDialog.Close
         ref={ref}
-        className={classNames(styles.close, className)}
+        className={(state) =>
+          classNames(
+            styles.close,
+            typeof className === 'function' ? className(state) : className
+          )
+        }
         {...props}
       >
         {children}
@@ -250,13 +342,6 @@ export const DrawerClose = React.forwardRef<HTMLButtonElement, DrawerCloseProps>
     );
   }
 );
-
-export interface DrawerContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Additional CSS class names */
-  className?: string;
-  /** Content */
-  children?: React.ReactNode;
-}
 
 /**
  * Main content area of the drawer.
@@ -270,5 +355,14 @@ export const DrawerContent = React.forwardRef<HTMLDivElement, DrawerContentProps
     );
   }
 );
+
+// Export state types for consumers
+export type {
+  DialogBackdropState as DrawerBackdropState,
+  DialogPopupState as DrawerPanelState,
+  DialogTitleState as DrawerTitleState,
+  DialogDescriptionState as DrawerDescriptionState,
+  DialogCloseState as DrawerCloseState,
+};
 
 export default Drawer;

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './ActionBar.module.scss';
+import styles from './ActionBar.module.css';
 
 export interface ActionBarProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {

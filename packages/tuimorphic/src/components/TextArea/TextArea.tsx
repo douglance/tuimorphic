@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
 import { useCombinedRefs } from '@/hooks/useCombinedRefs';
-import styles from './TextArea.module.scss';
+import styles from './TextArea.module.css';
 
 export interface TextAreaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'className'> {

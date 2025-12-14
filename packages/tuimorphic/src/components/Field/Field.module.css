@@ -1,0 +1,36 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+
+  &[data-disabled] {
+    opacity: 0.5;
+  }
+}
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--theme-text);
+  cursor: pointer;
+
+  [data-disabled] > & {
+    cursor: not-allowed;
+  }
+}
+
+.description {
+  color: var(--theme-text-secondary);
+  font-size: 0.9em;
+}
+
+.error {
+  color: var(--color-red-500, #ef4444);
+
+  &::before {
+    content: '>>> ';
+  }
+}

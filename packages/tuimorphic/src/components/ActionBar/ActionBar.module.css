@@ -1,0 +1,44 @@
+/**
+ * ActionBar Styles
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ * MIT License
+ */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: 2ch;
+  width: 100%;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  padding: calc(var(--theme-line-height-base) * 0.5rem) 2ch;
+  background: var(--theme-background);
+  color: var(--theme-text);
+}
+
+/* Position variants (using 2px box-shadow for MS-DOS aesthetic consistency) */
+.top {
+  box-shadow: inset 0 -2px 0 0 var(--theme-border);
+}
+
+.bottom {
+  box-shadow: inset 0 2px 0 0 var(--theme-border);
+}
+
+/* Alignment variants */
+.align-start {
+  justify-content: flex-start;
+}
+
+.align-center {
+  justify-content: center;
+}
+
+.align-end {
+  justify-content: flex-end;
+}
+
+.align-between {
+  justify-content: space-between;
+}

@@ -1,0 +1,61 @@
+/**
+ * ToggleGroup Styles
+ * Terminal-aesthetic grouped toggles (sacred.computer style)
+ */
+
+.root {
+  display: inline-flex;
+  gap: 0;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4ch;
+  padding: 0 1ch;
+  height: calc(var(--font-size) * var(--theme-line-height-base));
+  background: var(--theme-background);
+  border: none;
+  outline: none;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  color: var(--theme-text);
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px var(--theme-border);
+  transition: 200ms ease all;
+
+  /* Remove double borders between items */
+  &:not(:first-child) {
+    margin-left: -1px;
+  }
+
+  &:hover:not([data-disabled]) {
+    background: var(--theme-focused-foreground);
+    z-index: 1;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: 2px;
+    z-index: 2;
+  }
+
+  &[data-pressed] {
+    background: var(--theme-button);
+    color: var(--theme-button-text);
+    z-index: 1;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+  }
+}

@@ -1,0 +1,255 @@
+/**
+ * SidebarLayout Styles
+ * Two-column layout with resizable sidebar and terminal aesthetics
+ * Based on SRCL (Sacred Computer) design patterns
+ */
+
+/* ============================================================================
+   Container
+   ============================================================================ */
+
+.sidebarLayout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  background: var(--theme-background);
+
+  /* Prevent text selection during drag */
+  &.isDragging {
+    user-select: none;
+    cursor: col-resize;
+  }
+}
+
+/* ============================================================================
+   Sidebar Panel
+   ============================================================================ */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  min-height: 0;
+  overflow: hidden;
+  transition: width 150ms ease;
+
+  &.collapsed {
+    width: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden;
+  }
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  /* Scrollbar styling */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--theme-background);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--theme-border);
+
+    &:hover {
+      background: var(--theme-text);
+    }
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-border) var(--theme-background);
+}
+
+/* ============================================================================
+   Handle Container (divider + resize handle + collapse button)
+   ============================================================================ */
+
+.handleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* ============================================================================
+   Vertical Divider
+   ============================================================================ */
+
+.divider {
+  width: 2px;
+  flex-grow: 1;
+  background: var(--theme-text);
+  transition: opacity 150ms ease;
+
+  &.dividerHidden {
+    opacity: 0.3;
+  }
+}
+
+/* ============================================================================
+   Resize Handle
+   ============================================================================ */
+
+.handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  margin-left: -5px;
+  cursor: col-resize;
+  z-index: 1;
+
+  /* Visual indicator on hover */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: transparent;
+    transition: background 150ms ease;
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    background: var(--theme-focused-border);
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    &::before {
+      background: var(--theme-focused-border);
+    }
+  }
+}
+
+.dragging {
+  .handle::before {
+    background: var(--theme-focused-border);
+  }
+}
+
+/* ============================================================================
+   Collapse Button
+   ============================================================================ */
+
+.collapseButton {
+  flex-shrink: 0;
+  background: var(--theme-background);
+  border: 2px solid var(--theme-text);
+  padding: 0.25em 0.5ch;
+  margin: 0;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  color: var(--theme-text);
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+  z-index: 2;
+
+  &:hover {
+    background: var(--theme-text);
+    color: var(--theme-background);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: 2px;
+  }
+}
+
+/* ============================================================================
+   Main Content Area
+   ============================================================================ */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  /* Scrollbar styling */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--theme-background);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--theme-border);
+
+    &:hover {
+      background: var(--theme-text);
+    }
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-border) var(--theme-background);
+}
+
+/* ============================================================================
+   Side Variants
+   ============================================================================ */
+
+.left {
+  flex-direction: row;
+
+  .sidebar {
+    /* Border on right side of sidebar */
+    box-shadow: none;
+  }
+
+  .handleContainer {
+    /* Divider between sidebar and main */
+  }
+}
+
+.right {
+  flex-direction: row;
+
+  .sidebar {
+    /* Border on left side of sidebar */
+    box-shadow: none;
+  }
+
+  .handleContainer {
+    /* Divider between main and sidebar */
+  }
+
+  .handle {
+    margin-left: 0;
+    margin-right: -5px;
+  }
+}

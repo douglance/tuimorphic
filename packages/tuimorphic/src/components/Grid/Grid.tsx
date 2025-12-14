@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { classNames } from "@/utils/classNames";
-import styles from "./Grid.module.scss";
+import styles from "./Grid.module.css";
 
 // ============================================================================
 // Grid Root

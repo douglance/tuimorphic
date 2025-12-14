@@ -1,0 +1,193 @@
+/**
+ * CodeBlock Styles
+ * Terminal/TUI aesthetic with monospace fonts and MS-DOS style borders
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ */
+
+/* ============================================================================
+   Root Container
+   ============================================================================ */
+
+.root {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  background: var(--theme-background);
+}
+
+/* ============================================================================
+   Toolbar (Copy Button & Language Label)
+   ============================================================================ */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2ch;
+  padding: calc(var(--theme-line-height-base) * 0.25em) 2ch;
+  background: var(--theme-border);
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-text),
+    inset -2px 0 0 0 var(--theme-text),
+    inset 0 2px 0 0 var(--theme-text);
+}
+
+.language {
+  font-size: var(--font-size);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--theme-text);
+  text-transform: uppercase;
+}
+
+.copyButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1ch;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: var(--theme-button);
+  color: var(--theme-button-text);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  font-weight: 400;
+  line-height: var(--theme-line-height-base);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  user-select: none;
+  transition: 150ms ease all;
+
+  &:hover {
+    background: var(--theme-focused-foreground);
+    color: var(--theme-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.copied {
+  background: var(--theme-success, var(--theme-focused-foreground));
+  color: var(--theme-success-text, var(--theme-text));
+}
+
+.error {
+  background: var(--theme-error, var(--theme-border));
+  color: var(--theme-error-text, var(--theme-text));
+}
+
+/* ============================================================================
+   Code Container
+   ============================================================================ */
+
+.container {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* MS-DOS style borders using box-shadow */
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-text),
+    inset -2px 0 0 0 var(--theme-text),
+    inset 0 -2px 0 0 var(--theme-text);
+
+  /* Add top border only when there's no toolbar */
+  .root:not(:has(.toolbar)) & {
+    box-shadow:
+      inset 2px 0 0 0 var(--theme-text),
+      inset -2px 0 0 0 var(--theme-text),
+      inset 0 2px 0 0 var(--theme-text),
+      inset 0 -2px 0 0 var(--theme-text);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--theme-background);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--theme-border);
+    border: 1px solid var(--theme-text);
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-border) var(--theme-background);
+}
+
+/* ============================================================================
+   Line Numbers
+   ============================================================================ */
+
+.lineNumbers {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: calc(var(--theme-line-height-base) * 0.5em) 0;
+  padding-left: 2ch;
+  padding-right: 2ch;
+  background: var(--theme-background);
+  border-right: 1px solid var(--theme-border);
+  text-align: right;
+  user-select: none;
+  color: var(--theme-overlay, rgba(128, 128, 128, 0.6));
+}
+
+.lineNumber {
+  display: block;
+  line-height: var(--theme-line-height-base);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================================
+   Code Content
+   ============================================================================ */
+
+.pre {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  overflow-x: visible;
+  white-space: pre;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.code {
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  white-space: pre;
+  word-break: normal;
+  word-wrap: normal;
+  tab-size: 2;
+}
+
+.line {
+  display: inline;
+}

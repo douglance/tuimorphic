@@ -9,5 +9,13 @@ export {
   DialogDescription,
   DialogClose,
   type DialogProps,
+  type DialogRootProps,
+  type DialogTriggerProps,
+  type DialogPortalProps,
+  type DialogBackdropProps,
+  type DialogPopupProps,
+  type DialogTitleProps,
+  type DialogDescriptionProps,
+  type DialogCloseProps,
 } from './Dialog';
 export { default } from './Dialog';

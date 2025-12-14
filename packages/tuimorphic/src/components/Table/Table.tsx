@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Table.module.scss';
+import styles from './Table.module.css';
 
 // ============================================================================
 // Table Root

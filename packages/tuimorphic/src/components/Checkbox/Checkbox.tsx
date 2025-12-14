@@ -3,29 +3,22 @@
 import * as React from 'react';
 import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox';
 import { classNames } from '@/utils/classNames';
-import styles from './Checkbox.module.scss';
+import styles from './Checkbox.module.css';
 
-export interface CheckboxProps {
-  /** Whether the checkbox is checked (controlled) */
-  checked?: boolean;
-  /** Default checked state (uncontrolled) */
-  defaultChecked?: boolean;
-  /** Callback when checked state changes */
-  onCheckedChange?: (checked: boolean) => void;
+type CheckboxRootState = Parameters<
+  Extract<BaseCheckbox.Root.Props['className'], Function>
+>[0];
+
+export interface CheckboxProps
+  extends Omit<BaseCheckbox.Root.Props, 'className'> {
   /** Label text */
   label?: string;
-  /** Whether the checkbox is disabled */
-  disabled?: boolean;
-  /** Name attribute for forms */
-  name?: string;
-  /** Value attribute for forms */
-  value?: string;
   /** Additional CSS class names */
-  className?: string;
+  className?: string | ((state: CheckboxRootState) => string | undefined);
 }
 
 /**
- * Checkbox component with terminal-style [╳] indicator.
+ * Checkbox component with terminal-style indicator.
  *
  * @example
  * <Checkbox label="Accept terms" />
@@ -33,39 +26,21 @@ export interface CheckboxProps {
  * <Checkbox disabled label="Disabled" />
  */
 export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
-  function Checkbox(
-    {
-      checked,
-      defaultChecked,
-      onCheckedChange,
-      label,
-      disabled = false,
-      name,
-      value,
-      className,
-    },
-    ref
-  ) {
+  function Checkbox({ label, className, ...props }, ref) {
     return (
-      <label
-        className={classNames(
-          styles.container,
-          disabled && styles.disabled,
-          className
-        )}
-      >
+      <label className={styles.container}>
         <BaseCheckbox.Root
           ref={ref}
-          checked={checked}
-          defaultChecked={defaultChecked}
-          onCheckedChange={onCheckedChange}
-          disabled={disabled}
-          name={name}
-          value={value}
-          className={styles.checkbox}
+          className={(state) =>
+            classNames(
+              styles.checkbox,
+              typeof className === 'function' ? className(state) : className
+            )
+          }
+          {...props}
         >
           <BaseCheckbox.Indicator className={styles.indicator}>
-            ╳
+            &#x2573;
           </BaseCheckbox.Indicator>
         </BaseCheckbox.Root>
         {label && <span className={styles.label}>{label}</span>}

@@ -3,48 +3,61 @@
 import * as React from 'react';
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion';
 import { classNames } from '@/utils/classNames';
-import styles from './Accordion.module.scss';
+import styles from './Accordion.module.css';
 
-export interface AccordionProps {
-  /** Selected value(s) for controlled mode */
-  value?: string[];
-  /** Default open item value(s) for uncontrolled mode */
-  defaultValue?: string[];
+// State types for state-based className functions
+type AccordionRootState = Parameters<
+  Extract<BaseAccordion.Root.Props['className'], Function>
+>[0];
+
+type AccordionItemState = Parameters<
+  Extract<BaseAccordion.Item.Props['className'], Function>
+>[0];
+
+type AccordionHeaderState = Parameters<
+  Extract<BaseAccordion.Header.Props['className'], Function>
+>[0];
+
+type AccordionTriggerState = Parameters<
+  Extract<BaseAccordion.Trigger.Props['className'], Function>
+>[0];
+
+type AccordionPanelState = Parameters<
+  Extract<BaseAccordion.Panel.Props['className'], Function>
+>[0];
+
+export interface AccordionProps
+  extends Omit<BaseAccordion.Root.Props, 'className' | 'onValueChange'> {
+  /** Whether multiple items can be open at once (single mode closes other items) */
+  type?: 'single' | 'multiple';
   /** Callback when open items change */
   onValueChange?: (value: string[]) => void;
-  /** Whether multiple items can be open at once */
-  type?: 'single' | 'multiple';
-  /** Whether the accordion is disabled */
-  disabled?: boolean;
-  /** Accordion items */
-  children?: React.ReactNode;
   /** Additional CSS class names */
-  className?: string;
+  className?: string | ((state: AccordionRootState) => string | undefined);
 }
 
-export interface AccordionItemProps {
-  /** Unique value identifying this item */
-  value: string;
-  /** Whether this item is disabled */
-  disabled?: boolean;
-  /** Item content (AccordionTrigger and AccordionContent) */
-  children?: React.ReactNode;
+export interface AccordionItemProps
+  extends Omit<BaseAccordion.Item.Props, 'className'> {
   /** Additional CSS class names */
-  className?: string;
+  className?: string | ((state: AccordionItemState) => string | undefined);
 }
 
-export interface AccordionTriggerProps {
-  /** Trigger content */
-  children?: React.ReactNode;
+export interface AccordionHeaderProps
+  extends Omit<BaseAccordion.Header.Props, 'className'> {
   /** Additional CSS class names */
-  className?: string;
+  className?: string | ((state: AccordionHeaderState) => string | undefined);
 }
 
-export interface AccordionContentProps {
-  /** Panel content */
-  children?: React.ReactNode;
+export interface AccordionTriggerProps
+  extends Omit<BaseAccordion.Trigger.Props, 'className'> {
   /** Additional CSS class names */
-  className?: string;
+  className?: string | ((state: AccordionTriggerState) => string | undefined);
+}
+
+export interface AccordionContentProps
+  extends Omit<BaseAccordion.Panel.Props, 'className'> {
+  /** Additional CSS class names */
+  className?: string | ((state: AccordionPanelState) => string | undefined);
 }
 
 /**
@@ -91,6 +104,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       disabled = false,
       children,
       className,
+      ...props
     },
     ref
   ) {
@@ -98,7 +112,10 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       if (onValueChange) {
         if (type === 'single') {
           // For single mode, only keep the last selected value
-          const lastValue = newValue.length > 0 ? [newValue[newValue.length - 1] as string] : [];
+          const lastValue =
+            newValue.length > 0
+              ? [newValue[newValue.length - 1] as string]
+              : [];
           onValueChange(lastValue);
         } else {
           onValueChange(newValue);
@@ -113,7 +130,13 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         defaultValue={defaultValue}
         onValueChange={handleValueChange}
         disabled={disabled}
-        className={classNames(styles.root, className)}
+        className={(state) =>
+          classNames(
+            styles.root,
+            typeof className === 'function' ? className(state) : className
+          )
+        }
+        {...props}
       >
         {children}
       </BaseAccordion.Root>
@@ -127,13 +150,19 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
  * Must be used within an Accordion.
  */
 export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
-  function AccordionItem({ value, disabled, children, className }, ref) {
+  function AccordionItem({ value, disabled, children, className, ...props }, ref) {
     return (
       <BaseAccordion.Item
         ref={ref}
         value={value}
         disabled={disabled}
-        className={classNames(styles.item, className)}
+        className={(state) =>
+          classNames(
+            styles.item,
+            typeof className === 'function' ? className(state) : className
+          )
+        }
+        {...props}
       >
         {children}
       </BaseAccordion.Item>
@@ -142,20 +171,54 @@ export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps
 );
 
 /**
- * AccordionTrigger displays the header with ▾/▸ indicators.
+ * AccordionHeader wraps the trigger element.
  *
  * Must be used within an AccordionItem.
  */
+export const AccordionHeader = React.forwardRef<HTMLHeadingElement, AccordionHeaderProps>(
+  function AccordionHeader({ className, children, ...props }, ref) {
+    return (
+      <BaseAccordion.Header
+        ref={ref}
+        className={(state) =>
+          classNames(
+            styles.header,
+            typeof className === 'function' ? className(state) : className
+          )
+        }
+        {...props}
+      >
+        {children}
+      </BaseAccordion.Header>
+    );
+  }
+);
+
+/**
+ * AccordionTrigger displays the header with indicators.
+ *
+ * Must be used within an AccordionItem. Typically wrapped in AccordionHeader.
+ */
 export const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerProps>(
-  function AccordionTrigger({ children, className }, ref) {
+  function AccordionTrigger({ children, className, ...props }, ref) {
     return (
       <BaseAccordion.Header className={styles.header}>
         <BaseAccordion.Trigger
           ref={ref}
-          className={classNames(styles.trigger, className)}
+          className={(state) =>
+            classNames(
+              styles.trigger,
+              typeof className === 'function' ? className(state) : className
+            )
+          }
+          {...props}
         >
-          <span className={styles.indicatorOpen} aria-hidden="true">▾</span>
-          <span className={styles.indicatorClosed} aria-hidden="true">▸</span>
+          <span className={styles.indicatorOpen} aria-hidden="true">
+            ▾
+          </span>
+          <span className={styles.indicatorClosed} aria-hidden="true">
+            ▸
+          </span>
           <span className={styles.triggerContent}>{children}</span>
         </BaseAccordion.Trigger>
       </BaseAccordion.Header>
@@ -169,11 +232,17 @@ export const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTri
  * Must be used within an AccordionItem.
  */
 export const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>(
-  function AccordionContent({ children, className }, ref) {
+  function AccordionContent({ children, className, ...props }, ref) {
     return (
       <BaseAccordion.Panel
         ref={ref}
-        className={classNames(styles.panel, className)}
+        className={(state) =>
+          classNames(
+            styles.panel,
+            typeof className === 'function' ? className(state) : className
+          )
+        }
+        {...props}
       >
         <div className={styles.content}>{children}</div>
       </BaseAccordion.Panel>
@@ -181,8 +250,17 @@ export const AccordionContent = React.forwardRef<HTMLDivElement, AccordionConten
   }
 );
 
-// Export sub-components for advanced usage
+// Export Base UI parts for advanced usage
 export const AccordionRoot = BaseAccordion.Root;
-export const AccordionHeader = BaseAccordion.Header;
+export const AccordionPanel = BaseAccordion.Panel;
+
+// Export state types for consumers
+export type {
+  AccordionRootState,
+  AccordionItemState,
+  AccordionHeaderState,
+  AccordionTriggerState,
+  AccordionPanelState,
+};
 
 export default Accordion;

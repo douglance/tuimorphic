@@ -1,38 +1,72 @@
 'use client';
 
 import * as React from 'react';
+import { forwardRef } from 'react';
 import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import { classNames } from '@/utils/classNames';
-import styles from './Dialog.module.scss';
+import styles from './Dialog.module.css';
+
+type BackdropState = Parameters<
+  Extract<BaseDialog.Backdrop.Props['className'], Function>
+>[0];
+
+type PopupState = Parameters<
+  Extract<BaseDialog.Popup.Props['className'], Function>
+>[0];
+
+type TitleState = Parameters<
+  Extract<BaseDialog.Title.Props['className'], Function>
+>[0];
+
+type DescriptionState = Parameters<
+  Extract<BaseDialog.Description.Props['className'], Function>
+>[0];
+
+type CloseState = Parameters<
+  Extract<BaseDialog.Close.Props['className'], Function>
+>[0];
+
+export interface DialogRootProps extends BaseDialog.Root.Props {}
+
+export interface DialogTriggerProps extends BaseDialog.Trigger.Props {}
+
+export interface DialogPortalProps extends BaseDialog.Portal.Props {}
+
+export interface DialogBackdropProps
+  extends Omit<BaseDialog.Backdrop.Props, 'className'> {
+  className?: string | ((state: BackdropState) => string | undefined);
+}
+
+export interface DialogPopupProps
+  extends Omit<BaseDialog.Popup.Props, 'className'> {
+  className?: string | ((state: PopupState) => string | undefined);
+}
+
+export interface DialogTitleProps
+  extends Omit<BaseDialog.Title.Props, 'className'> {
+  className?: string | ((state: TitleState) => string | undefined);
+}
+
+export interface DialogDescriptionProps
+  extends Omit<BaseDialog.Description.Props, 'className'> {
+  className?: string | ((state: DescriptionState) => string | undefined);
+}
+
+export interface DialogCloseProps
+  extends Omit<BaseDialog.Close.Props, 'className'> {
+  className?: string | ((state: CloseState) => string | undefined);
+}
 
 export interface DialogProps {
-  /** Whether the dialog is open (controlled) */
   open?: boolean;
-  /** Default open state (uncontrolled) */
   defaultOpen?: boolean;
-  /** Callback when open state changes */
   onOpenChange?: (open: boolean) => void;
-  /** Dialog title */
   title?: React.ReactNode;
-  /** Dialog content */
   children?: React.ReactNode;
-  /** Trigger element */
   trigger?: React.ReactElement;
-  /** Additional CSS class names */
   className?: string;
 }
 
-/**
- * Dialog component for modal interactions.
- *
- * @example
- * <Dialog
- *   trigger={<Button>Open Dialog</Button>}
- *   title="Confirm Action"
- * >
- *   <p>Are you sure you want to proceed?</p>
- * </Dialog>
- */
 export function Dialog({
   open,
   defaultOpen,
@@ -67,20 +101,105 @@ export function Dialog({
   );
 }
 
-// Export sub-components for advanced usage
-export const DialogRoot = BaseDialog.Root;
-export const DialogTrigger = BaseDialog.Trigger;
-export const DialogPortal = BaseDialog.Portal;
-export const DialogBackdrop = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <BaseDialog.Backdrop className={classNames(styles.backdrop, className)} {...props} />
+export const DialogRoot = (props: DialogRootProps) => (
+  <BaseDialog.Root {...props} />
 );
-export const DialogPopup = ({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }) => (
-  <BaseDialog.Popup className={classNames(styles.popup, className)} {...props}>
-    {children}
-  </BaseDialog.Popup>
+DialogRoot.displayName = 'DialogRoot';
+
+export const DialogTrigger = forwardRef<HTMLButtonElement, DialogTriggerProps>(
+  (props, ref) => <BaseDialog.Trigger ref={ref} {...props} />
 );
-export const DialogTitle = BaseDialog.Title;
-export const DialogDescription = BaseDialog.Description;
-export const DialogClose = BaseDialog.Close;
+DialogTrigger.displayName = 'DialogTrigger';
+
+export const DialogPortal = (props: DialogPortalProps) => (
+  <BaseDialog.Portal {...props} />
+);
+DialogPortal.displayName = 'DialogPortal';
+
+export const DialogBackdrop = forwardRef<HTMLDivElement, DialogBackdropProps>(
+  ({ className, ...props }, ref) => (
+    <BaseDialog.Backdrop
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.backdrop,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    />
+  )
+);
+DialogBackdrop.displayName = 'DialogBackdrop';
+
+export const DialogPopup = forwardRef<HTMLDivElement, DialogPopupProps>(
+  ({ className, children, ...props }, ref) => (
+    <BaseDialog.Popup
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.popup,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    >
+      {children}
+    </BaseDialog.Popup>
+  )
+);
+DialogPopup.displayName = 'DialogPopup';
+
+export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
+  ({ className, ...props }, ref) => (
+    <BaseDialog.Title
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.title,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    />
+  )
+);
+DialogTitle.displayName = 'DialogTitle';
+
+export const DialogDescription = forwardRef<
+  HTMLParagraphElement,
+  DialogDescriptionProps
+>(({ className, ...props }, ref) => (
+  <BaseDialog.Description
+    ref={ref}
+    className={(state) =>
+      classNames(
+        styles.content,
+        typeof className === 'function' ? className(state) : className
+      )
+    }
+    {...props}
+  />
+));
+DialogDescription.displayName = 'DialogDescription';
+
+export const DialogClose = forwardRef<HTMLButtonElement, DialogCloseProps>(
+  ({ className, children = '[X]', ...props }, ref) => (
+    <BaseDialog.Close
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.close,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      aria-label="Close"
+      {...props}
+    >
+      {children}
+    </BaseDialog.Close>
+  )
+);
+DialogClose.displayName = 'DialogClose';
 
 export default Dialog;

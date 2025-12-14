@@ -74,6 +74,19 @@
   --z-index-9: 9;
   --z-index-10: 10;
 
+  /* Animation Timing */
+  --duration-instant: 0ms;
+  --duration-fast: 100ms;
+  --duration-normal: 150ms;
+  --duration-slow: 200ms;
+  --duration-slower: 300ms;
+
+  /* Easing Functions */
+  --ease-default: ease;
+  --ease-in: ease-in;
+  --ease-out: ease-out;
+  --ease-in-out: ease-in-out;
+
   /* Base Colors */
   --color-white: #ffffff;
   --color-black: #000000;
@@ -125,7 +138,6 @@
    ============================================ */
 
 :root,
-body,
 body.theme-light {
   /* Theme Tokens */
   --theme-background: var(--color-white);

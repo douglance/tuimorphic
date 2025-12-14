@@ -1,0 +1,27 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em 2ch;
+  margin: 0;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  border: 1px solid var(--theme-border);
+
+  &[data-disabled] {
+    opacity: 0.5;
+  }
+}
+
+.legend {
+  padding: 0 1ch;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--theme-text);
+  background: var(--theme-background);
+
+  /* Position legend nicely */
+  margin-left: -0.5ch;
+}

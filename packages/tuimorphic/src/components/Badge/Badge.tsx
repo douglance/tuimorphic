@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Badge.module.scss';
+import styles from './Badge.module.css';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Visual variant */

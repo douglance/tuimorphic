@@ -1,0 +1,117 @@
+.root {
+  display: inline-flex;
+  align-items: stretch;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  background: var(--theme-background);
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-text),
+    inset -2px 0 0 0 var(--theme-text),
+    inset 0 2px 0 0 var(--theme-text),
+    inset 0 -2px 0 0 var(--theme-text);
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25em 1.5ch;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--theme-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+
+  &:hover:not([data-disabled]) {
+    background: var(--theme-focused-foreground);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: -2px;
+  }
+
+  &[data-popup-open],
+  &:active:not([data-disabled]) {
+    background: var(--theme-text);
+    color: var(--theme-background);
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.popup {
+  min-width: 180px;
+  padding: 0.25em 0;
+  background: var(--theme-background);
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-text),
+    inset -2px 0 0 0 var(--theme-text),
+    inset 0 2px 0 0 var(--theme-text),
+    inset 0 -2px 0 0 var(--theme-text),
+    1ch 1ch 0 0 var(--theme-border-subdued);
+  z-index: var(--z-index-10);
+  opacity: 0;
+  transform: scaleY(0.95);
+  transform-origin: top;
+  transition:
+    opacity 100ms ease,
+    transform 100ms ease;
+
+  &[data-open] {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2ch;
+  padding: 0.25em 1.5ch;
+  cursor: pointer;
+  outline: none;
+
+  &[data-highlighted] {
+    background: var(--theme-text);
+    color: var(--theme-background);
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: -2px;
+  }
+}
+
+.itemContent {
+  flex: 1;
+}
+
+.shortcut {
+  flex-shrink: 0;
+  color: var(--theme-text-secondary);
+
+  [data-highlighted] > & {
+    color: inherit;
+    opacity: 0.7;
+  }
+}
+
+.separator {
+  height: 1px;
+  margin: 0.25em 1ch;
+  background: var(--theme-border);
+}

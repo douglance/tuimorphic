@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Label.module.scss';
+import styles from './Label.module.css';
 
 export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   /** Visual variant */

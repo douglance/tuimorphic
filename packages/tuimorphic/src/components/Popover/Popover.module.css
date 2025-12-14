@@ -1,0 +1,137 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--theme-overlay-background);
+  z-index: var(--z-index-9);
+
+  /* Animation */
+  opacity: 0;
+  transition: opacity 150ms ease;
+
+  &[data-open] {
+    opacity: 1;
+  }
+
+  &[data-closed] {
+    opacity: 0;
+  }
+}
+
+.popup {
+  background: var(--theme-background);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  max-width: 40ch;
+  min-width: 20ch;
+  z-index: var(--z-index-10);
+
+  /* MS-DOS style border + spread shadow */
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-text),
+    inset -2px 0 0 0 var(--theme-text),
+    inset 0 2px 0 0 var(--theme-text),
+    inset 0 -2px 0 0 var(--theme-text),
+    0 0 0 1ch var(--theme-border-subdued);
+
+  /* Animation with transform-origin from positioner */
+  opacity: 0;
+  transform: scale(0.95);
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease;
+
+  &[data-open] {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &[data-closed] {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  /* Side-specific animations */
+  &[data-side='top'] {
+    transform-origin: bottom center;
+  }
+
+  &[data-side='bottom'] {
+    transform-origin: top center;
+  }
+
+  &[data-side='left'] {
+    transform-origin: right center;
+  }
+
+  &[data-side='right'] {
+    transform-origin: left center;
+  }
+}
+
+.title {
+  display: block;
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  margin: 0;
+  font-size: var(--font-size);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--theme-text);
+  color: var(--theme-background);
+}
+
+.description {
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+}
+
+.close {
+  position: absolute;
+  top: calc(var(--theme-line-height-base) * 0.5em);
+  right: 1ch;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  color: var(--theme-background);
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-background);
+    outline-offset: 2px;
+  }
+}
+
+.arrow {
+  display: flex;
+  color: var(--theme-text);
+
+  &[data-side='top'] {
+    bottom: -8px;
+    rotate: 180deg;
+  }
+
+  &[data-side='bottom'] {
+    top: -8px;
+    rotate: 0deg;
+  }
+
+  &[data-side='left'] {
+    right: -13px;
+    rotate: 90deg;
+  }
+
+  &[data-side='right'] {
+    left: -13px;
+    rotate: -90deg;
+  }
+}

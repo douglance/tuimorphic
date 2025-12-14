@@ -1,0 +1,103 @@
+/**
+ * TreeView Styles
+ * Terminal-aesthetic tree structure using box-drawing characters
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ */
+
+.root {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  /* Use line-height: 1 so box-drawing characters connect vertically */
+  line-height: 1;
+  color: var(--theme-text);
+  user-select: none;
+
+  /* Ensure proper box-drawing character alignment */
+  white-space: pre;
+}
+
+.nodeContainer {
+  /* Container for node and its children */
+}
+
+.node {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  border: none;
+  text-align: left;
+  min-height: 1em;
+
+  &:hover {
+    background: var(--theme-background-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: -2px;
+  }
+}
+
+.selected {
+  background: var(--theme-text);
+  color: var(--theme-background);
+
+  &:hover {
+    background: var(--theme-text);
+    color: var(--theme-background);
+  }
+}
+
+.folder {
+  /* Folder-specific styles if needed */
+}
+
+.prefix {
+  /* Box-drawing characters for tree structure */
+  /* Using Unicode: | (U+2502), |- (U+251C), L (U+2514), - (U+2500) */
+  display: flex;
+  flex-shrink: 0;
+  color: var(--theme-border);
+}
+
+.prefixSegment {
+  /* Fixed width for vertical continuation lines */
+  /* Each segment represents one level of indentation */
+  display: inline-block;
+  width: 4ch;
+  text-align: left;
+}
+
+.branchSegment {
+  /* Fixed width for branch characters (|-- or L--) */
+  display: inline-block;
+  width: 4ch;
+  text-align: left;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 3ch;
+  text-align: center;
+  margin-right: 1ch;
+  color: var(--theme-text);
+
+  /* Selected state */
+  .selected & {
+    color: var(--theme-background);
+  }
+}
+
+.label {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.children {
+  /* Children container - inherits font settings from root */
+}

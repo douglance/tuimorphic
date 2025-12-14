@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Card.module.scss';
+import styles from './Card.module.css';
 
 export interface CardProps extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
   /** Title displayed in the card header */

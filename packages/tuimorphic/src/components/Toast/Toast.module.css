@@ -1,0 +1,197 @@
+/**
+ * Toast Styles
+ * Terminal-aesthetic toast notifications with box-shadow borders
+ */
+
+.viewport {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  z-index: var(--z-index-10);
+  max-width: 400px;
+  width: 100%;
+  outline: none;
+  pointer-events: none;
+
+  /* Ensure toasts can receive pointer events */
+  & > * {
+    pointer-events: auto;
+  }
+}
+
+.root {
+  display: flex;
+  align-items: flex-start;
+  gap: 1ch;
+  padding: 0.5em 1ch;
+  background: var(--theme-background);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  box-shadow:
+    inset 2px 0 0 0 var(--toast-border-color, var(--theme-text)),
+    inset -2px 0 0 0 var(--toast-border-color, var(--theme-text)),
+    inset 0 2px 0 0 var(--toast-border-color, var(--theme-text)),
+    inset 0 -2px 0 0 var(--toast-border-color, var(--theme-text)),
+    1ch 1ch 0 0 var(--theme-border-subdued);
+
+  /* Animation - starting state (hidden) */
+  opacity: 0;
+  transform: translateX(100%);
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease;
+
+  /* Open state */
+  &[data-open] {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Starting style for entrance animation */
+  &[data-starting-style] {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  /* Ending style for exit animation */
+  &[data-ending-style] {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  /* Swipe gesture states */
+  &[data-swipe='move'] {
+    transform: translateX(var(--toast-swipe-movement-x, 0));
+    transition: none;
+  }
+
+  &[data-swipe='end'] {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  /* Swipe direction variants for ending animation */
+  &[data-ending-style][data-swipe-direction='left'] {
+    transform: translateX(calc(var(--toast-swipe-movement-x, 0) - 100%));
+  }
+
+  &[data-ending-style][data-swipe-direction='right'] {
+    transform: translateX(calc(var(--toast-swipe-movement-x, 0) + 100%));
+  }
+}
+
+/* Type indicator character */
+.indicator {
+  flex-shrink: 0;
+  font-weight: bold;
+  color: var(--toast-indicator-color, var(--theme-text));
+}
+
+/* Type variants */
+.info {
+  --toast-border-color: var(--theme-accent);
+  --toast-indicator-color: var(--theme-accent);
+}
+
+.success {
+  --toast-border-color: var(--theme-success);
+  --toast-indicator-color: var(--theme-success);
+}
+
+.warning {
+  --toast-border-color: var(--theme-warning);
+  --toast-indicator-color: var(--theme-warning);
+}
+
+.error {
+  --toast-border-color: var(--theme-error);
+  --toast-indicator-color: var(--theme-error);
+}
+
+/* Content container */
+.content {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Toast title */
+.title {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--theme-text);
+
+  /* Hide empty title elements */
+  &:empty {
+    display: none;
+  }
+}
+
+/* Toast description */
+.description {
+  color: var(--theme-text-secondary);
+  margin: 0;
+
+  /* Add spacing when title is present */
+  .title + & {
+    margin-top: 0.25em;
+  }
+
+  /* Hide empty description elements */
+  &:empty {
+    display: none;
+  }
+}
+
+/* Action button container */
+.action {
+  flex-shrink: 0;
+
+  /* Style action buttons */
+  button {
+    background: none;
+    border: none;
+    padding: 0 0.5ch;
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--theme-accent);
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--theme-focused-border);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--theme-focused-border);
+      outline-offset: 2px;
+    }
+  }
+}
+
+/* Close button */
+.close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--theme-text);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--theme-focused-border);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: 2px;
+  }
+}

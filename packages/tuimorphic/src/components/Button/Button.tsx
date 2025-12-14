@@ -3,18 +3,17 @@
 import * as React from 'react';
 import { Button as BaseButton } from '@base-ui/react/button';
 import { classNames } from '@/utils/classNames';
-import styles from './Button.module.scss';
+import styles from './Button.module.css';
 
-export interface ButtonProps
-  extends Omit<React.ComponentProps<typeof BaseButton>, 'className'> {
+type ButtonState = Parameters<
+  Extract<BaseButton.Props['className'], Function>
+>[0];
+
+export interface ButtonProps extends Omit<BaseButton.Props, 'className'> {
   /** Visual variant */
   variant?: 'primary' | 'secondary';
-  /** Whether the button is disabled */
-  disabled?: boolean;
   /** Additional CSS class names */
-  className?: string;
-  /** Button content */
-  children?: React.ReactNode;
+  className?: string | ((state: ButtonState) => string | undefined);
 }
 
 /**
@@ -28,24 +27,19 @@ export interface ButtonProps
  * <Button disabled>Disabled</Button>
  */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(
-    { variant = 'primary', disabled = false, className, children, ...props },
-    ref
-  ) {
+  function Button({ variant = 'primary', className, ...props }, ref) {
     return (
       <BaseButton
         ref={ref}
-        disabled={disabled}
-        className={classNames(
-          styles.root,
-          styles[variant],
-          disabled && styles.disabled,
-          className
-        )}
+        className={(state) =>
+          classNames(
+            styles.root,
+            styles[variant],
+            typeof className === 'function' ? className(state) : className
+          )
+        }
         {...props}
-      >
-        {children}
-      </BaseButton>
+      />
     );
   }
 );

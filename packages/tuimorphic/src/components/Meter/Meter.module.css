@@ -1,0 +1,33 @@
+.meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 1ch;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+}
+
+.bar {
+  white-space: pre;
+  letter-spacing: 0;
+
+  /* Color based on threshold states */
+  [data-low] > & {
+    color: var(--color-red-500, #ef4444);
+  }
+
+  [data-high] > & {
+    color: var(--color-yellow-500, #eab308);
+  }
+
+  [data-optimum] > & {
+    color: var(--color-green-500, #22c55e);
+  }
+}
+
+.label {
+  min-width: 4ch;
+  text-align: right;
+  color: var(--theme-text-secondary);
+}

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './DatePicker.module.scss';
+import styles from './DatePicker.module.css';
 
 export interface DatePickerProps {
   /** Selected date value (controlled) */

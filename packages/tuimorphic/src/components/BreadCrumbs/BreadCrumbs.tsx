@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './BreadCrumbs.module.scss';
+import styles from './BreadCrumbs.module.css';
 
 export interface BreadCrumbItem {
   /** Display label for the breadcrumb */

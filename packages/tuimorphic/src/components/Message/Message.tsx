@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Message.module.scss';
+import styles from './Message.module.css';
 
 export interface MessageProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Message content */

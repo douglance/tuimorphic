@@ -1,0 +1,181 @@
+/**
+ * ComboBox Styles
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ * MIT License
+ */
+
+.root {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  background: var(--theme-border);
+  padding: 0 1ch;
+  margin-bottom: 0;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.input {
+  flex: 1;
+  min-height: calc(var(--theme-line-height-base) * (var(--font-size) * 2));
+  padding: 0 1ch;
+  padding-right: 4ch;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: var(--theme-background-input);
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-border),
+    inset -2px 0 0 0 var(--theme-border),
+    inset 0 2px 0 0 var(--theme-border),
+    inset 0 -2px 0 0 var(--theme-border);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  text-align: left;
+
+  &::placeholder {
+    font-family: var(--font-family-mono);
+    font-style: italic;
+    color: var(--theme-overlay);
+  }
+
+  &:focus {
+    box-shadow:
+      inset 2px 0 0 0 var(--theme-border),
+      inset -2px 0 0 0 var(--theme-border),
+      inset 0 2px 0 0 var(--theme-border),
+      inset 0 -2px 0 0 var(--theme-border),
+      0 0 0 2px var(--theme-focused-border);
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.trigger {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4ch;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.icon {
+  font-size: 0.75em;
+  color: var(--theme-text-secondary);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: var(--theme-background);
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-text),
+    inset -2px 0 0 0 var(--theme-text),
+    inset 0 2px 0 0 var(--theme-text),
+    inset 0 -2px 0 0 var(--theme-text);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  max-height: 20rem;
+  overflow-y: auto;
+  z-index: var(--z-index-10);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  /* Animation */
+  opacity: 0;
+  transform: scaleY(0.95);
+  transform-origin: top;
+  animation: dropdownOpen 150ms ease forwards;
+}
+
+@keyframes dropdownOpen {
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25em 1ch;
+  cursor: pointer;
+  outline: none;
+
+  &.highlighted {
+    background: var(--theme-text);
+    color: var(--theme-background);
+
+    .optionDescription {
+      color: var(--theme-background);
+      opacity: 0.7;
+    }
+
+    .highlight {
+      background: var(--theme-background);
+      color: var(--theme-text);
+    }
+  }
+}
+
+.optionLabel {
+  display: block;
+}
+
+.optionDescription {
+  display: block;
+  font-size: 0.875em;
+  color: var(--theme-text-secondary);
+  margin-top: 0.125em;
+}
+
+.highlight {
+  background: var(--theme-focused-foreground);
+  color: inherit;
+}
+
+.noResults {
+  padding: 0.5em 1ch;
+  font-style: italic;
+  color: var(--theme-text-secondary);
+}

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Loader.module.scss';
+import styles from './Loader.module.css';
 
 /**
  * Animation frame sequences for BlockLoader modes.

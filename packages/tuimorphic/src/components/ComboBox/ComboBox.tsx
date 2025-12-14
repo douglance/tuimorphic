@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
 import { useCombinedRefs } from '@/hooks/useCombinedRefs';
-import styles from './ComboBox.module.scss';
+import styles from './ComboBox.module.css';
 
 export interface ComboBoxOption {
   value: string;

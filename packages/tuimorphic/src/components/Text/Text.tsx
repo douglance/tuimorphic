@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Text.module.scss';
+import styles from './Text.module.css';
 
 type TextElement = 'p' | 'span' | 'div' | 'strong' | 'em' | 'small' | 'blockquote';
 

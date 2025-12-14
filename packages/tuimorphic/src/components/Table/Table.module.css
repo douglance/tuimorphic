@@ -1,0 +1,233 @@
+/**
+ * Table Styles
+ * Terminal/TUI aesthetic with monospace fonts and MS-DOS style borders
+ * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
+ */
+
+/* ============================================================================
+   Table Root
+   ============================================================================ */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-text);
+  background: var(--theme-background);
+
+  /* Outer border using box-shadow for MS-DOS aesthetic */
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-border),
+    inset -2px 0 0 0 var(--theme-border),
+    inset 0 2px 0 0 var(--theme-border),
+    inset 0 -2px 0 0 var(--theme-border);
+}
+
+/* ============================================================================
+   Table Header
+   ============================================================================ */
+
+.header {
+  /* Divider line between header and body (TUI-style separator) */
+  border-bottom: 1px solid var(--theme-border);
+
+  .row {
+    background: var(--theme-background);
+
+    &:hover {
+      /* Headers don't highlight on hover */
+      background: var(--theme-background);
+    }
+  }
+}
+
+/* ============================================================================
+   Table Body
+   ============================================================================ */
+
+.body {
+  /* Body rows inherit table background */
+}
+
+/* ============================================================================
+   Table Footer
+   ============================================================================ */
+
+.footer {
+  /* Divider line between body and footer */
+  border-top: 1px solid var(--theme-border);
+
+  .row {
+    background: var(--theme-background);
+
+    &:hover {
+      /* Footer rows don't highlight on hover by default */
+      background: var(--theme-background);
+    }
+  }
+}
+
+/* ============================================================================
+   Table Row
+   ============================================================================ */
+
+.row {
+  transition: background 150ms ease;
+
+  &:hover {
+    background: var(--theme-background-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--theme-focused-border);
+    outline-offset: -2px;
+  }
+
+  &.selected {
+    background: var(--theme-focused-foreground);
+  }
+}
+
+/* ============================================================================
+   Table Head (Header Cell)
+   ============================================================================ */
+
+.head {
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  vertical-align: bottom;
+  color: var(--theme-text);
+}
+
+/* ============================================================================
+   Table Cell (Data Cell)
+   ============================================================================ */
+
+.cell {
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  text-align: left;
+  vertical-align: top;
+  color: var(--theme-text);
+}
+
+/* ============================================================================
+   Table Caption
+   ============================================================================ */
+
+.caption {
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  caption-side: top;
+  text-align: left;
+  font-weight: 400;
+  color: var(--theme-text);
+  opacity: 0.8;
+}
+
+.captionBottom {
+  caption-side: bottom;
+}
+
+/* ============================================================================
+   Alignment Modifiers
+   ============================================================================ */
+
+.alignCenter {
+  text-align: center;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+/* ============================================================================
+   Numeric Cells
+   ============================================================================ */
+
+.numeric {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* ============================================================================
+   Truncation
+   ============================================================================ */
+
+.truncate {
+  max-width: 1px; /* Force cell to respect table-layout */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================================================
+   Bordered Variant
+   ============================================================================ */
+
+.bordered {
+  .head,
+  .cell {
+    /* Vertical borders between cells */
+    border-right: 1px solid var(--theme-border);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  .row {
+    /* Horizontal borders between rows */
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  /* Remove double border with footer */
+  .body .row:last-child {
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  /* Footer already has top border, adjust rows */
+  .footer .row:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ============================================================================
+   Striped Variant
+   ============================================================================ */
+
+.striped {
+  .body .row {
+    &:nth-child(even) {
+      background: var(--theme-background-hover);
+    }
+
+    &:hover {
+      background: var(--theme-focused-foreground);
+    }
+
+    &.selected {
+      background: var(--theme-focused-foreground);
+    }
+  }
+}
+
+/* ============================================================================
+   Compact Size
+   ============================================================================ */
+
+.compact {
+  .head,
+  .cell {
+    padding: calc(var(--theme-line-height-base) * 0.25em) 1ch;
+  }
+
+  .caption {
+    padding: calc(var(--theme-line-height-base) * 0.25em) 1ch;
+  }
+}

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
-import styles from './Navigation.module.scss';
+import styles from './Navigation.module.css';
 
 export interface NavItem {
   /** Display label for the navigation item */

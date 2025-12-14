@@ -4,34 +4,27 @@ import * as React from 'react';
 import { Radio as BaseRadio } from '@base-ui/react/radio';
 import { RadioGroup as BaseRadioGroup } from '@base-ui/react/radio-group';
 import { classNames } from '@/utils/classNames';
-import styles from './Radio.module.scss';
+import styles from './Radio.module.css';
 
-export interface RadioGroupProps {
-  /** Selected value (controlled) */
-  value?: string;
-  /** Default selected value (uncontrolled) */
-  defaultValue?: string;
-  /** Callback when value changes */
-  onValueChange?: (value: string) => void;
-  /** Name attribute for forms */
-  name?: string;
-  /** Whether the group is disabled */
-  disabled?: boolean;
-  /** Radio items */
-  children?: React.ReactNode;
+type RadioGroupState = Parameters<
+  Extract<BaseRadioGroup.Props['className'], Function>
+>[0];
+
+type RadioRootState = Parameters<
+  Extract<BaseRadio.Root.Props['className'], Function>
+>[0];
+
+export interface RadioGroupProps
+  extends Omit<BaseRadioGroup.Props, 'className'> {
   /** Additional CSS class names */
-  className?: string;
+  className?: string | ((state: RadioGroupState) => string | undefined);
 }
 
-export interface RadioProps {
-  /** Value of this radio option */
-  value: string;
+export interface RadioProps extends Omit<BaseRadio.Root.Props, 'className'> {
   /** Label text */
   label?: string;
-  /** Whether this option is disabled */
-  disabled?: boolean;
   /** Additional CSS class names */
-  className?: string;
+  className?: string | ((state: RadioRootState) => string | undefined);
 }
 
 /**
@@ -44,28 +37,18 @@ export interface RadioProps {
  * </RadioGroup>
  */
 export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
-  function RadioGroup(
-    { value, defaultValue, onValueChange, name, disabled, children, className },
-    ref
-  ) {
-    const handleValueChange = (newValue: unknown) => {
-      if (onValueChange && typeof newValue === 'string') {
-        onValueChange(newValue);
-      }
-    };
-
+  function RadioGroup({ className, ...props }, ref) {
     return (
       <BaseRadioGroup
         ref={ref}
-        value={value}
-        defaultValue={defaultValue}
-        onValueChange={handleValueChange}
-        name={name}
-        disabled={disabled}
-        className={classNames(styles.group, className)}
-      >
-        {children}
-      </BaseRadioGroup>
+        className={(state) =>
+          classNames(
+            styles.group,
+            typeof className === 'function' ? className(state) : className
+          )
+        }
+        {...props}
+      />
     );
   }
 );
@@ -76,20 +59,18 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
  * Must be used within a RadioGroup.
  */
 export const Radio = React.forwardRef<HTMLButtonElement, RadioProps>(
-  function Radio({ value, label, disabled, className }, ref) {
+  function Radio({ label, className, ...props }, ref) {
     return (
-      <label
-        className={classNames(
-          styles.container,
-          disabled && styles.disabled,
-          className
-        )}
-      >
+      <label className={styles.container}>
         <BaseRadio.Root
           ref={ref}
-          value={value}
-          disabled={disabled}
-          className={styles.radio}
+          className={(state) =>
+            classNames(
+              styles.radio,
+              typeof className === 'function' ? className(state) : className
+            )
+          }
+          {...props}
         >
           <BaseRadio.Indicator className={styles.indicator}>
             <span className={styles.dot} />

@@ -3,33 +3,29 @@
 import * as React from 'react';
 import { Separator } from '@base-ui/react/separator';
 import { classNames } from '@/utils/classNames';
-import styles from './Divider.module.scss';
+import styles from './Divider.module.css';
 
-export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Orientation of the divider */
-  orientation?: 'horizontal' | 'vertical';
-  /** Additional CSS class names */
-  className?: string;
+type DividerState = Parameters<
+  Extract<Separator.Props['className'], Function>
+>[0];
+
+export interface DividerProps extends Omit<Separator.Props, 'className'> {
+  className?: string | ((state: DividerState) => string | undefined);
 }
 
-/**
- * Divider component for separating content sections.
- *
- * @example
- * <Divider />
- * <Divider orientation="vertical" />
- */
 export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
   function Divider({ orientation = 'horizontal', className, ...props }, ref) {
     return (
       <Separator
         ref={ref}
         orientation={orientation}
-        className={classNames(
-          styles.divider,
-          orientation === 'vertical' ? styles.vertical : styles.horizontal,
-          className
-        )}
+        className={(state) =>
+          classNames(
+            styles.divider,
+            orientation === 'vertical' ? styles.vertical : styles.horizontal,
+            typeof className === 'function' ? className(state) : className
+          )
+        }
         {...props}
       />
     );

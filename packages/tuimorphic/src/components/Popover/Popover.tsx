@@ -1,102 +1,85 @@
 'use client';
 
 import * as React from 'react';
+import { forwardRef } from 'react';
 import { Popover as BasePopover } from '@base-ui/react/popover';
 import { classNames } from '@/utils/classNames';
-import styles from './Popover.module.scss';
+import styles from './Popover.module.css';
+
+type BackdropState = Parameters<
+  Extract<BasePopover.Backdrop.Props['className'], Function>
+>[0];
+
+type PopupState = Parameters<
+  Extract<BasePopover.Popup.Props['className'], Function>
+>[0];
+
+type TitleState = Parameters<
+  Extract<BasePopover.Title.Props['className'], Function>
+>[0];
+
+type DescriptionState = Parameters<
+  Extract<BasePopover.Description.Props['className'], Function>
+>[0];
+
+type CloseState = Parameters<
+  Extract<BasePopover.Close.Props['className'], Function>
+>[0];
+
+type ArrowState = Parameters<
+  Extract<BasePopover.Arrow.Props['className'], Function>
+>[0];
+
+export interface PopoverRootProps extends BasePopover.Root.Props {}
+
+export interface PopoverTriggerProps extends BasePopover.Trigger.Props {}
+
+export interface PopoverPortalProps extends BasePopover.Portal.Props {}
+
+export interface PopoverBackdropProps
+  extends Omit<BasePopover.Backdrop.Props, 'className'> {
+  className?: string | ((state: BackdropState) => string | undefined);
+}
+
+export interface PopoverPositionerProps extends BasePopover.Positioner.Props {}
+
+export interface PopoverPopupProps
+  extends Omit<BasePopover.Popup.Props, 'className'> {
+  className?: string | ((state: PopupState) => string | undefined);
+}
+
+export interface PopoverArrowProps
+  extends Omit<BasePopover.Arrow.Props, 'className'> {
+  className?: string | ((state: ArrowState) => string | undefined);
+}
+
+export interface PopoverTitleProps
+  extends Omit<BasePopover.Title.Props, 'className'> {
+  className?: string | ((state: TitleState) => string | undefined);
+}
+
+export interface PopoverDescriptionProps
+  extends Omit<BasePopover.Description.Props, 'className'> {
+  className?: string | ((state: DescriptionState) => string | undefined);
+}
+
+export interface PopoverCloseProps
+  extends Omit<BasePopover.Close.Props, 'className'> {
+  className?: string | ((state: CloseState) => string | undefined);
+}
 
 export interface PopoverProps {
-  /** Element that triggers the popover to open */
   trigger?: React.ReactElement;
-  /** Popover content */
   children?: React.ReactNode;
-  /** Placement relative to trigger */
   side?: 'top' | 'bottom' | 'left' | 'right';
-  /** Alignment along the side */
   align?: 'start' | 'center' | 'end';
-  /** Distance from the trigger element in pixels */
   sideOffset?: number;
-  /** Whether the popover is open (controlled) */
   open?: boolean;
-  /** Default open state (uncontrolled) */
   defaultOpen?: boolean;
-  /** Callback when open state changes */
   onOpenChange?: (open: boolean) => void;
-  /** Additional CSS class names for the popup */
   className?: string;
 }
 
-export interface PopoverTitleProps {
-  /** Title content */
-  children?: React.ReactNode;
-  /** Additional CSS class names */
-  className?: string;
-}
-
-export interface PopoverDescriptionProps {
-  /** Description content */
-  children?: React.ReactNode;
-  /** Additional CSS class names */
-  className?: string;
-}
-
-export interface PopoverCloseProps {
-  /** Close button content */
-  children?: React.ReactNode;
-  /** Additional CSS class names */
-  className?: string;
-}
-
-/**
- * Popover component for displaying transient overlay content.
- *
- * @example
- * // Simple usage
- * <Popover trigger={<Button>Open</Button>}>
- *   <p>Popover content goes here</p>
- * </Popover>
- *
- * @example
- * // With positioning
- * <Popover
- *   trigger={<Button>Info</Button>}
- *   side="bottom"
- *   align="start"
- *   sideOffset={8}
- * >
- *   <PopoverTitle>Information</PopoverTitle>
- *   <PopoverDescription>
- *     Additional details about this item.
- *   </PopoverDescription>
- * </Popover>
- *
- * @example
- * // Controlled usage
- * const [open, setOpen] = useState(false);
- * <Popover
- *   open={open}
- *   onOpenChange={setOpen}
- *   trigger={<Button>Toggle</Button>}
- * >
- *   <p>Controlled popover content</p>
- *   <PopoverClose>Close</PopoverClose>
- * </Popover>
- *
- * @example
- * // Using compound components for advanced control
- * <PopoverRoot>
- *   <PopoverTrigger render={<Button>Options</Button>} />
- *   <PopoverPortal>
- *     <PopoverPositioner side="bottom" sideOffset={8}>
- *       <PopoverPopup>
- *         <PopoverTitle>Settings</PopoverTitle>
- *         <PopoverDescription>Configure your preferences</PopoverDescription>
- *         <PopoverClose>[X]</PopoverClose>
- *       </PopoverPopup>
- *     </PopoverPositioner>
- *   </PopoverPortal>
- * </PopoverRoot>
- */
 export function Popover({
   trigger,
   children,
@@ -126,89 +109,136 @@ export function Popover({
   );
 }
 
-/**
- * Popover title component for labeling popover content.
- *
- * @example
- * <PopoverTitle>Settings</PopoverTitle>
- */
-export function PopoverTitle({ children, className }: PopoverTitleProps) {
-  return (
-    <BasePopover.Title className={classNames(styles.title, className)}>
+export const PopoverTitle = forwardRef<HTMLHeadingElement, PopoverTitleProps>(
+  ({ className, children, ...props }, ref) => (
+    <BasePopover.Title
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.title,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    >
       {children}
     </BasePopover.Title>
-  );
-}
+  )
+);
+PopoverTitle.displayName = 'PopoverTitle';
 
-/**
- * Popover description component for additional context.
- *
- * @example
- * <PopoverDescription>
- *   Configure your preferences here.
- * </PopoverDescription>
- */
-export function PopoverDescription({ children, className }: PopoverDescriptionProps) {
-  return (
-    <BasePopover.Description className={classNames(styles.description, className)}>
-      {children}
-    </BasePopover.Description>
-  );
-}
+export const PopoverDescription = forwardRef<
+  HTMLParagraphElement,
+  PopoverDescriptionProps
+>(({ className, children, ...props }, ref) => (
+  <BasePopover.Description
+    ref={ref}
+    className={(state) =>
+      classNames(
+        styles.description,
+        typeof className === 'function' ? className(state) : className
+      )
+    }
+    {...props}
+  >
+    {children}
+  </BasePopover.Description>
+));
+PopoverDescription.displayName = 'PopoverDescription';
 
-/**
- * Popover close button component.
- *
- * @example
- * <PopoverClose>[X]</PopoverClose>
- */
-export function PopoverClose({ children = '[X]', className }: PopoverCloseProps) {
-  return (
-    <BasePopover.Close className={classNames(styles.close, className)}>
+export const PopoverClose = forwardRef<HTMLButtonElement, PopoverCloseProps>(
+  ({ className, children = '[X]', ...props }, ref) => (
+    <BasePopover.Close
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.close,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    >
       {children}
     </BasePopover.Close>
-  );
-}
-
-// Export sub-components for advanced usage
-export const PopoverRoot = BasePopover.Root;
-export const PopoverTrigger = BasePopover.Trigger;
-export const PopoverPortal = BasePopover.Portal;
-export const PopoverBackdrop = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <BasePopover.Backdrop className={classNames(styles.backdrop, className)} {...props} />
+  )
 );
+PopoverClose.displayName = 'PopoverClose';
 
-export const PopoverPositioner = ({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof BasePopover.Positioner>) => (
-  <BasePopover.Positioner className={className} {...props}>
+export const PopoverRoot = (props: PopoverRootProps) => (
+  <BasePopover.Root {...props} />
+);
+PopoverRoot.displayName = 'PopoverRoot';
+
+export const PopoverTrigger = forwardRef<HTMLButtonElement, PopoverTriggerProps>(
+  (props, ref) => <BasePopover.Trigger ref={ref} {...props} />
+);
+PopoverTrigger.displayName = 'PopoverTrigger';
+
+export const PopoverPortal = (props: PopoverPortalProps) => (
+  <BasePopover.Portal {...props} />
+);
+PopoverPortal.displayName = 'PopoverPortal';
+
+export const PopoverBackdrop = forwardRef<HTMLDivElement, PopoverBackdropProps>(
+  ({ className, ...props }, ref) => (
+    <BasePopover.Backdrop
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.backdrop,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    />
+  )
+);
+PopoverBackdrop.displayName = 'PopoverBackdrop';
+
+export const PopoverPositioner = forwardRef<
+  HTMLDivElement,
+  PopoverPositionerProps
+>(({ className, children, ...props }, ref) => (
+  <BasePopover.Positioner ref={ref} className={className} {...props}>
     {children}
   </BasePopover.Positioner>
-);
+));
+PopoverPositioner.displayName = 'PopoverPositioner';
 
-export const PopoverPopup = ({
-  className,
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }) => (
-  <BasePopover.Popup className={classNames(styles.popup, className)} {...props}>
-    {children}
-  </BasePopover.Popup>
+export const PopoverPopup = forwardRef<HTMLDivElement, PopoverPopupProps>(
+  ({ className, children, ...props }, ref) => (
+    <BasePopover.Popup
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.popup,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    >
+      {children}
+    </BasePopover.Popup>
+  )
 );
+PopoverPopup.displayName = 'PopoverPopup';
 
-export const PopoverArrow = ({
-  className,
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }) => (
-  <BasePopover.Arrow className={classNames(styles.arrow, className)} {...props}>
-    {children}
-  </BasePopover.Arrow>
+export const PopoverArrow = forwardRef<HTMLDivElement, PopoverArrowProps>(
+  ({ className, children, ...props }, ref) => (
+    <BasePopover.Arrow
+      ref={ref}
+      className={(state) =>
+        classNames(
+          styles.arrow,
+          typeof className === 'function' ? className(state) : className
+        )
+      }
+      {...props}
+    >
+      {children}
+    </BasePopover.Arrow>
+  )
 );
+PopoverArrow.displayName = 'PopoverArrow';
 
 export default Popover;
