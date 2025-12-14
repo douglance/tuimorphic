@@ -76,8 +76,6 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       textareaRef.current?.focus();
     };
 
-    const showPlaceholder = !currentValue && placeholder && !isFocused;
-
     return (
       <div className={classNames(styles.root, className)}>
         {label && <label className={styles.label}>{label}</label>}
@@ -91,6 +89,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
+            placeholder={placeholder}
             {...props}
           />
 
@@ -105,11 +104,6 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           )}
         </div>
 
-        {showPlaceholder && (
-          <div className={styles.placeholderOverlay} aria-hidden="true">
-            {placeholder}
-          </div>
-        )}
       </div>
     );
   }

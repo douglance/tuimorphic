@@ -80,14 +80,3 @@
   animation: blink 1s step-start 0s infinite;
 }
 
-.placeholderOverlay {
-  position: absolute;
-  top: calc(var(--theme-line-height-base) * 0.25em + 2px);
-  left: calc(1ch + 2px);
-  color: var(--theme-overlay);
-  font-style: italic;
-  pointer-events: none;
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size);
-  line-height: var(--theme-line-height-base);
-}
