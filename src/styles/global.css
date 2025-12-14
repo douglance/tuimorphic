@@ -199,41 +199,120 @@ body.theme-dark {
 
 /* ============================================
    Color Tints (Accent Variations)
+   Apply to body: class="tint-green" or "tint-neon-green"
    ============================================ */
 
 body.tint-green {
   --theme-accent: oklch(0.65 0.2 145);
   --theme-button: oklch(0.65 0.2 145);
+  --theme-focused-foreground: oklch(0.9 0.1 145);
 }
 
 body.tint-blue {
   --theme-accent: oklch(0.65 0.2 250);
   --theme-button: oklch(0.65 0.2 250);
+  --theme-focused-foreground: oklch(0.9 0.1 250);
 }
 
 body.tint-red {
   --theme-accent: oklch(0.65 0.2 25);
   --theme-button: oklch(0.65 0.2 25);
+  --theme-focused-foreground: oklch(0.9 0.1 25);
 }
 
 body.tint-yellow {
   --theme-accent: oklch(0.75 0.15 85);
   --theme-button: oklch(0.75 0.15 85);
+  --theme-focused-foreground: oklch(0.95 0.08 85);
 }
 
 body.tint-purple {
   --theme-accent: oklch(0.65 0.2 300);
   --theme-button: oklch(0.65 0.2 300);
+  --theme-focused-foreground: oklch(0.9 0.1 300);
 }
 
 body.tint-orange {
   --theme-accent: oklch(0.7 0.18 55);
   --theme-button: oklch(0.7 0.18 55);
+  --theme-focused-foreground: oklch(0.92 0.1 55);
 }
 
 body.tint-pink {
   --theme-accent: oklch(0.7 0.18 350);
   --theme-button: oklch(0.7 0.18 350);
+  --theme-focused-foreground: oklch(0.9 0.1 350);
+}
+
+/* Neon variants - vibrant focus colors like SRCL */
+body.tint-neon-green {
+  --theme-accent: oklch(0.8 0.3 145);
+  --theme-button: oklch(0.8 0.3 145);
+  --theme-focused-foreground: oklch(0.85 0.25 145);
+}
+
+body.tint-neon-blue {
+  --theme-accent: oklch(0.75 0.25 250);
+  --theme-button: oklch(0.75 0.25 250);
+  --theme-focused-foreground: oklch(0.85 0.2 250);
+}
+
+body.tint-neon-pink {
+  --theme-accent: oklch(0.75 0.25 350);
+  --theme-button: oklch(0.75 0.25 350);
+  --theme-focused-foreground: oklch(0.85 0.2 350);
+}
+
+body.tint-neon-cyan {
+  --theme-accent: oklch(0.8 0.2 195);
+  --theme-button: oklch(0.8 0.2 195);
+  --theme-focused-foreground: oklch(0.9 0.15 195);
+}
+
+/* Dark theme neon overrides */
+body.theme-dark.tint-neon-green {
+  --theme-focused-foreground: oklch(0.4 0.2 145);
+}
+
+body.theme-dark.tint-neon-blue {
+  --theme-focused-foreground: oklch(0.35 0.15 250);
+}
+
+body.theme-dark.tint-neon-pink {
+  --theme-focused-foreground: oklch(0.35 0.15 350);
+}
+
+body.theme-dark.tint-neon-cyan {
+  --theme-focused-foreground: oklch(0.35 0.15 195);
+}
+
+/* Dark theme regular tint overrides */
+body.theme-dark.tint-green {
+  --theme-focused-foreground: oklch(0.3 0.08 145);
+}
+
+body.theme-dark.tint-blue {
+  --theme-focused-foreground: oklch(0.3 0.08 250);
+}
+
+body.theme-dark.tint-red {
+  --theme-focused-foreground: oklch(0.3 0.08 25);
+}
+
+body.theme-dark.tint-yellow {
+  --theme-focused-foreground: oklch(0.35 0.06 85);
+}
+
+body.theme-dark.tint-purple {
+  --theme-focused-foreground: oklch(0.3 0.08 300);
+}
+
+body.theme-dark.tint-orange {
+  --theme-focused-foreground: oklch(0.32 0.08 55);
+}
+
+body.theme-dark.tint-pink {
+  --theme-focused-foreground: oklch(0.3 0.08 350);
 }
 
 /* ============================================

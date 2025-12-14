@@ -36,8 +36,24 @@ import { Code } from '../components/Code';
 import { Label } from '../components/Label';
 import styles from './App.module.scss';
 
+const TINTS = [
+  { value: '', label: 'Default' },
+  { value: 'tint-green', label: 'Green' },
+  { value: 'tint-blue', label: 'Blue' },
+  { value: 'tint-red', label: 'Red' },
+  { value: 'tint-yellow', label: 'Yellow' },
+  { value: 'tint-purple', label: 'Purple' },
+  { value: 'tint-orange', label: 'Orange' },
+  { value: 'tint-pink', label: 'Pink' },
+  { value: 'tint-neon-green', label: 'Neon Green' },
+  { value: 'tint-neon-blue', label: 'Neon Blue' },
+  { value: 'tint-neon-pink', label: 'Neon Pink' },
+  { value: 'tint-neon-cyan', label: 'Neon Cyan' },
+];
+
 export default function App() {
   const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
+  const [tint, setTint] = React.useState('');
   const [checkboxValue, setCheckboxValue] = React.useState(false);
   const [radioValue, setRadioValue] = React.useState('option1');
   const [toggleValue, setToggleValue] = React.useState(false);
@@ -47,10 +63,21 @@ export default function App() {
   const [sliderValue, setSliderValue] = React.useState(50);
   const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(undefined);
 
+  const updateBodyClasses = (newTheme: string, newTint: string) => {
+    const classes = [`theme-${newTheme}`];
+    if (newTint) classes.push(newTint);
+    document.body.className = classes.join(' ');
+  };
+
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    document.body.className = `theme-${newTheme}`;
+    updateBodyClasses(newTheme, tint);
+  };
+
+  const handleTintChange = (newTint: string) => {
+    setTint(newTint);
+    updateBodyClasses(theme, newTint);
   };
 
   return (
@@ -62,6 +89,12 @@ export default function App() {
         </p>
         <div className={styles.headerActions}>
           <Badge variant="info">v0.2.0</Badge>
+          <Select
+            value={tint}
+            onValueChange={handleTintChange}
+            placeholder="Color Tint"
+            options={TINTS}
+          />
           <Button variant="secondary" onClick={toggleTheme}>
             Toggle {theme === 'light' ? 'Dark' : 'Light'} Mode
           </Button>

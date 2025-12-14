@@ -5,20 +5,20 @@
 
 .root {
   vertical-align: top;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 400;
   text-align: center;
   margin: 0;
   outline: 0;
   border: 0;
   font-family: var(--font-family-mono);
-  width: 100%;
   font-size: var(--font-size);
   line-height: calc(var(--theme-line-height-base) * 2em);
   min-height: calc(var(--theme-line-height-base) * (var(--font-size) * 2));
-  padding: 0 2ch;
+  padding: 0 1ch;
   text-transform: uppercase;
-  letter-spacing: 1px;
   transition: 200ms ease all;
   cursor: pointer;
   user-select: none;
@@ -49,15 +49,18 @@
 }
 
 .secondary {
-  background: transparent;
+  background: var(--theme-button-background);
   color: var(--theme-text);
+  box-shadow: inset 0 0 0 2px var(--theme-button-foreground);
 
   &:hover {
     background: var(--theme-focused-foreground);
+    box-shadow: inset 0 0 0 2px transparent;
   }
 
   &:focus {
     background: var(--theme-focused-foreground);
+    box-shadow: inset 0 0 0 2px transparent;
   }
 
   &:focus-visible {

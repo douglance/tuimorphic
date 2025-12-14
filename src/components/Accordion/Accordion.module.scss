@@ -26,9 +26,10 @@
 .trigger {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 0.5ch;
   width: 100%;
-  padding: 0.5em 0;
+  padding: 0;
   background: transparent;
   border: none;
   outline: none;
@@ -37,11 +38,12 @@
   line-height: var(--theme-line-height-base);
   color: var(--theme-text);
   text-align: left;
+  text-transform: uppercase;
   cursor: pointer;
   user-select: none;
 
   &:hover {
-    color: var(--theme-focused-text);
+    background: var(--theme-focused-foreground);
   }
 
   &:focus-visible {
@@ -53,7 +55,7 @@
     cursor: not-allowed;
 
     &:hover {
-      color: var(--theme-text);
+      background: transparent;
     }
   }
 }
