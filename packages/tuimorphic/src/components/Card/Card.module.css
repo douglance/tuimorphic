@@ -76,8 +76,17 @@
 }
 
 .title {
-  flex-shrink: 0;
-  padding: 0 1ch 0 1ch;
-  font-size: var(--font-size);
-  font-weight: 400;
+  /* Force override global heading styles */
+  all: unset !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+  padding: 0 1ch !important;
+  margin: 0 !important;
+  font-size: var(--font-size) !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  border: none !important;
+  background: none !important;
+  /* Center text baseline on the border line */
+  transform: translateY(-0.5ch) !important;
 }
