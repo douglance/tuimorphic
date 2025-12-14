@@ -1,6 +1,6 @@
 {
   "name": "tuimorphic",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Terminal-aesthetic React components built on Base UI with SRCL styling",
   "type": "module",
   "main": "./dist/index.cjs",
