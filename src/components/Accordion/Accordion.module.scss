@@ -68,6 +68,7 @@
       background: var(--theme-background);
     }
   }
+
 }
 
 .indicator {
@@ -107,8 +108,10 @@
 }
 
 .content {
-  padding: 0 2ch calc(var(--theme-line-height-base) * 1em) 2ch;
+  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch calc(var(--theme-line-height-base) * 1em) 2ch;
   padding-left: calc(2ch + 3ch + 1ch); // Align with trigger content (padding + indicator + gap)
+  // Interior divider above content using box-shadow (2px to match outer borders)
+  box-shadow: inset 0 2px 0 0 var(--theme-border);
 }
 
 @keyframes slideDown {
