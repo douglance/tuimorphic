@@ -3,6 +3,10 @@ node_modules/
 
 # Build output
 dist/
+dist-demo/
+
+# Screenshots
+*.png
 
 # IDE
 .idea/
