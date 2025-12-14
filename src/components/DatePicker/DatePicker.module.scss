@@ -21,7 +21,11 @@
 
 .calendar {
   background: var(--theme-background);
-  box-shadow: inset 0 0 0 2px var(--theme-border);
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-border),
+    inset -2px 0 0 0 var(--theme-border),
+    inset 0 2px 0 0 var(--theme-border),
+    inset 0 -2px 0 0 var(--theme-border);
   font-family: var(--font-family-mono);
   font-size: var(--font-size);
   line-height: var(--theme-line-height-base);
@@ -162,7 +166,11 @@
 }
 
 .focused {
-  box-shadow: inset 0 0 0 2px var(--theme-focused-border);
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-focused-border),
+    inset -2px 0 0 0 var(--theme-focused-border),
+    inset 0 2px 0 0 var(--theme-focused-border),
+    inset 0 -2px 0 0 var(--theme-focused-border);
 }
 
 .disabled {

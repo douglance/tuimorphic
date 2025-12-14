@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
+import { useCombinedRefs } from '@/hooks/useCombinedRefs';
 import styles from './SidebarLayout.module.scss';
 
 export interface SidebarLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -252,28 +253,5 @@ export const SidebarLayout = React.forwardRef<HTMLDivElement, SidebarLayoutProps
     );
   }
 );
-
-/**
- * Combines multiple refs into a single callback ref.
- */
-function useCombinedRefs<T>(
-  ...refs: Array<React.Ref<T> | null | undefined>
-): React.RefCallback<T> {
-  return React.useCallback(
-    (element: T | null) => {
-      for (const ref of refs) {
-        if (!ref) continue;
-
-        if (typeof ref === 'function') {
-          ref(element);
-        } else {
-          (ref as React.MutableRefObject<T | null>).current = element;
-        }
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    refs
-  );
-}
 
 export default SidebarLayout;

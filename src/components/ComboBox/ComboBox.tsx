@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
+import { useCombinedRefs } from '@/hooks/useCombinedRefs';
 import styles from './ComboBox.module.scss';
 
 export interface ComboBoxOption {
@@ -95,7 +96,7 @@ export const ComboBox = React.forwardRef<HTMLInputElement, ComboBoxProps>(
     const inputRef = React.useRef<HTMLInputElement>(null);
     const listRef = React.useRef<HTMLUListElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
-    const combinedRef = useCombinedRef(ref, inputRef);
+    const combinedRef = useCombinedRefs(ref, inputRef);
 
     // Internal state for uncontrolled mode
     const [internalValue, setInternalValue] = React.useState(defaultValue);
@@ -326,27 +327,5 @@ export const ComboBox = React.forwardRef<HTMLInputElement, ComboBoxProps>(
     );
   }
 );
-
-/**
- * Combine multiple refs into one.
- */
-function useCombinedRef<T>(
-  ...refs: Array<React.Ref<T> | undefined>
-): React.RefCallback<T> {
-  return React.useCallback(
-    (element: T) => {
-      for (const ref of refs) {
-        if (!ref) continue;
-        if (typeof ref === 'function') {
-          ref(element);
-        } else {
-          (ref as React.MutableRefObject<T>).current = element;
-        }
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    refs
-  );
-}
 
 export default ComboBox;

@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { classNames } from '@/utils/classNames';
+import { useCombinedRefs } from '@/hooks/useCombinedRefs';
 import styles from './TextArea.module.scss';
 
 export interface TextAreaProps
@@ -44,7 +45,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     ref
   ) {
     const textareaRef = React.useRef<HTMLTextAreaElement>(null);
-    const combinedRef = useCombinedRef(ref, textareaRef);
+    const combinedRef = useCombinedRefs(ref, textareaRef);
 
     const [internalValue, setInternalValue] = React.useState(
       (defaultValue as string) ?? ''
@@ -114,24 +115,5 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     );
   }
 );
-
-function useCombinedRef<T>(
-  ...refs: Array<React.Ref<T> | undefined>
-): React.RefCallback<T> {
-  return React.useCallback(
-    (element: T) => {
-      for (const ref of refs) {
-        if (!ref) continue;
-        if (typeof ref === 'function') {
-          ref(element);
-        } else {
-          (ref as React.MutableRefObject<T>).current = element;
-        }
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    refs
-  );
-}
 
 export default TextArea;
