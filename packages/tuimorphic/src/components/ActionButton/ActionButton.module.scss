@@ -7,7 +7,8 @@
 .root {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 0;
   cursor: pointer;
   outline: 0;
   border: 0;
@@ -18,21 +19,14 @@
   font-size: var(--font-size);
   flex-shrink: 0;
   background: transparent;
+  user-select: none;
 
-  &:hover .hotkey {
+  &:hover {
     background: var(--theme-focused-foreground);
   }
 
-  &:hover .content {
-    box-shadow: inset 0 0 0 2px var(--theme-focused-foreground);
-  }
-
-  &:focus .hotkey {
+  &:focus {
     background: var(--theme-focused-foreground);
-  }
-
-  &:focus .content {
-    box-shadow: inset 0 0 0 2px var(--theme-focused-foreground);
   }
 
   &:focus-visible {
@@ -42,12 +36,13 @@
 }
 
 .hotkey {
-  background: var(--theme-button-foreground);
+  background: transparent;
   color: var(--theme-text);
   cursor: pointer;
   flex-shrink: 0;
   font-weight: 400;
-  padding: 0 1ch;
+  padding: 0;
+  padding-right: 1ch;
   text-indent: 0;
   user-select: none;
 }
@@ -56,12 +51,11 @@
   display: inline-flex;
   align-items: center;
   gap: 1ch;
-  background: var(--theme-button-background);
-  box-shadow: inset 0 0 0 2px var(--theme-button-foreground);
+  background: transparent;
   cursor: pointer;
   flex-shrink: 0;
   font-weight: 400;
-  padding: 0 1ch;
+  padding: 0;
   text-indent: 0;
   text-transform: uppercase;
   user-select: none;
@@ -80,35 +74,19 @@
   white-space: nowrap;
 }
 
-// Primary variant - filled content
+// Primary variant
 .primary {
-  .content {
-    background: var(--theme-button);
-    color: var(--theme-button-text);
-    box-shadow: none;
-  }
-
-  &:hover .content,
-  &:focus .content {
-    background: var(--theme-focused-foreground);
-    color: var(--theme-text);
-    box-shadow: none;
-  }
+  color: var(--theme-text);
 }
 
-// Secondary variant - outlined content
+// Secondary variant
 .secondary {
-  .content {
-    background: var(--theme-button-background);
-    color: var(--theme-text);
-  }
+  color: var(--theme-text);
 }
 
 // Selected state
 .selected {
-  .content {
-    background: var(--theme-focused-foreground);
-  }
+  background: var(--theme-focused-foreground);
 }
 
 // Disabled state

@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Pages
+name: Deploy Docs to Cloudflare Pages
 
 on:
   push:
@@ -29,12 +29,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build demo
-        run: pnpm build:demo
+      - name: Build library
+        run: pnpm --filter tuimorphic build
+
+      - name: Build docs
+        run: pnpm --filter docs build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist-demo --project-name=tuimorphic
+          command: pages deploy packages/docs/out --project-name=tuimorphic

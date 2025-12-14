@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'packages/tuimorphic/**'
+      - '.github/workflows/publish.yml'
 
 jobs:
   publish:
@@ -30,10 +33,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm build
+      - name: Build library
+        run: pnpm --filter tuimorphic build
 
       - name: Publish
+        working-directory: packages/tuimorphic
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
