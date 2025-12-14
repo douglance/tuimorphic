@@ -7,7 +7,8 @@
 .root {
   font-family: var(--font-family-mono);
   font-size: var(--font-size);
-  line-height: var(--theme-line-height-base);
+  // Use line-height: 1 so box-drawing characters connect vertically
+  line-height: 1;
   color: var(--theme-text);
   user-select: none;
 
@@ -28,7 +29,7 @@
   background: transparent;
   border: none;
   text-align: left;
-  min-height: calc(var(--theme-line-height-base) * 1em);
+  min-height: 1em;
 
   &:hover {
     background: var(--theme-background-hover);
@@ -57,8 +58,24 @@
 .prefix {
   // Box-drawing characters for tree structure
   // Using Unicode: │ (U+2502), ├ (U+251C), └ (U+2514), ─ (U+2500)
+  display: flex;
   flex-shrink: 0;
   color: var(--theme-border);
+}
+
+.prefixSegment {
+  // Fixed width for vertical continuation lines
+  // Each segment represents one level of indentation
+  display: inline-block;
+  width: 4ch;
+  text-align: left;
+}
+
+.branchSegment {
+  // Fixed width for branch characters (├── or └──)
+  display: inline-block;
+  width: 4ch;
+  text-align: left;
 }
 
 .icon {
@@ -66,16 +83,7 @@
   width: 3ch;
   text-align: center;
   margin-right: 1ch;
-
-  // Folder indicators [+]/[-]
-  .folder & {
-    color: var(--theme-text);
-  }
-
-  // File indicator
-  .node:not(.folder) & {
-    color: var(--theme-border);
-  }
+  color: var(--theme-text);
 
   // Selected state
   .selected & {

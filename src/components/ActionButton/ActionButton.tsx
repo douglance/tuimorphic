@@ -64,6 +64,7 @@ export const ActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProp
         aria-busy={loading}
         {...props}
       >
+        {!loading && hotkey && <span className={styles.hotkey}>{hotkey}</span>}
         <span className={styles.content}>
           {loading ? (
             <>
@@ -77,7 +78,6 @@ export const ActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProp
             </>
           )}
         </span>
-        {!loading && hotkey && <span className={styles.hotkey}>{hotkey}</span>}
       </button>
     );
   }

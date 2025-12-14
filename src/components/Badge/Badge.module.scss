@@ -1,36 +1,33 @@
+/**
+ * Badge Styles
+ * Terminal-aesthetic badge - simple inline text (sacred.computer style)
+ */
+
 .badge {
-  display: inline-block;
+  display: inline;
   font-family: var(--font-family-mono);
-  font-size: var(--font-size-small);
-  line-height: 1;
-  padding: 0.25em 0.75ch;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: var(--font-size);
+  line-height: inherit;
   white-space: nowrap;
-  vertical-align: middle;
+  vertical-align: baseline;
 }
 
 .default {
-  background: var(--theme-border);
   color: var(--theme-text);
 }
 
 .success {
-  background: var(--theme-success);
-  color: var(--color-white);
+  color: var(--theme-success);
 }
 
 .warning {
-  background: var(--theme-warning);
-  color: var(--color-black);
+  color: var(--theme-warning);
 }
 
 .error {
-  background: var(--theme-error);
-  color: var(--color-white);
+  color: var(--theme-error);
 }
 
 .info {
-  background: var(--theme-accent);
-  color: var(--color-white);
+  color: var(--theme-accent);
 }

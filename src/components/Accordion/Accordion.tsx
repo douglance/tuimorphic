@@ -142,7 +142,7 @@ export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps
 );
 
 /**
- * AccordionTrigger displays the header with [+]/[-] indicators.
+ * AccordionTrigger displays the header with ▾/▸ indicators.
  *
  * Must be used within an AccordionItem.
  */
@@ -154,7 +154,8 @@ export const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTri
           ref={ref}
           className={classNames(styles.trigger, className)}
         >
-          <span className={styles.indicator} aria-hidden="true" />
+          <span className={styles.indicatorOpen} aria-hidden="true">▾</span>
+          <span className={styles.indicatorClosed} aria-hidden="true">▸</span>
           <span className={styles.triggerContent}>{children}</span>
         </BaseAccordion.Trigger>
       </BaseAccordion.Header>

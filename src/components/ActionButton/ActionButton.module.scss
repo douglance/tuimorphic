@@ -7,8 +7,8 @@
 .root {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 2ch;
+  justify-content: flex-start;
+  gap: 1ch;
   font-family: var(--font-family-mono);
   font-size: var(--font-size);
   font-weight: 400;
@@ -24,7 +24,6 @@
   cursor: pointer;
   user-select: none;
   transition: 200ms ease all;
-  width: 100%;
 }
 
 .content {
@@ -50,8 +49,7 @@
 
 .hotkey {
   flex-shrink: 0;
-  font-size: var(--font-size-small, 0.875em);
-  opacity: 0.6;
+  font-size: var(--font-size);
   text-transform: none;
   letter-spacing: 0;
 }
@@ -83,20 +81,17 @@
 
 // Secondary variant
 .secondary {
-  background: var(--theme-background);
-  color: var(--theme-text);
-  box-shadow:
-    inset 2px 0 0 0 var(--theme-border),
-    inset -2px 0 0 0 var(--theme-border),
-    inset 0 2px 0 0 var(--theme-border),
-    inset 0 -2px 0 0 var(--theme-border);
+  background: var(--theme-button);
+  color: var(--theme-button-text);
 
   &:hover {
     background: var(--theme-focused-foreground);
+    color: var(--theme-text);
   }
 
   &:focus {
     background: var(--theme-focused-foreground);
+    color: var(--theme-text);
   }
 
   &:focus-visible {

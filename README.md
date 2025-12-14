@@ -1,8 +1,13 @@
 # Tuimorphic
 
+[![npm version](https://img.shields.io/npm/v/tuimorphic.svg)](https://www.npmjs.com/package/tuimorphic)
+[![npm downloads](https://img.shields.io/npm/dm/tuimorphic.svg)](https://www.npmjs.com/package/tuimorphic)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue.svg)](https://www.typescriptlang.org/)
+
 Terminal-aesthetic React components built on [Base UI](https://base-ui.com/) with styling inspired by [SRCL/Sacred Computer](https://sacred.computer).
 
-![Tuimorphic Demo](tuimorphic-screenshot.png)
+**[Live Demo](https://tuimorphic.com/)** | **[GitHub](https://github.com/douglance/tuimorphic)** | **[npm](https://www.npmjs.com/package/tuimorphic)**
 
 ## Features
 
@@ -35,7 +40,7 @@ npm install react react-dom
 
 ```tsx
 import { Button, Card, Input, Badge } from 'tuimorphic';
-import 'tuimorphic/dist/styles.css';
+import 'tuimorphic/styles.css';
 
 export default function App() {
   return (
@@ -48,6 +53,8 @@ export default function App() {
   );
 }
 ```
+
+See all components in action at [tuimorphic.com](https://tuimorphic.com/).
 
 ## Theming
 
@@ -156,7 +163,7 @@ Override theme tokens in your CSS:
 | `ActionBar` | Action button bar |
 | `ActionButton` | Icon action button |
 
-## Component Examples
+## Examples
 
 ### Dialog
 
@@ -206,24 +213,20 @@ function Example() {
 ### Accordion
 
 ```tsx
-import { Accordion } from 'tuimorphic';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from 'tuimorphic';
 
 function Example() {
   return (
-    <Accordion.Root>
-      <Accordion.Item value="item1">
-        <Accordion.Header>
-          <Accordion.Trigger>Section One</Accordion.Trigger>
-        </Accordion.Header>
-        <Accordion.Content>Content for section one</Accordion.Content>
-      </Accordion.Item>
-      <Accordion.Item value="item2">
-        <Accordion.Header>
-          <Accordion.Trigger>Section Two</Accordion.Trigger>
-        </Accordion.Header>
-        <Accordion.Content>Content for section two</Accordion.Content>
-      </Accordion.Item>
-    </Accordion.Root>
+    <Accordion defaultValue={['item1']}>
+      <AccordionItem value="item1">
+        <AccordionTrigger>Section One</AccordionTrigger>
+        <AccordionContent>Content for section one</AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item2">
+        <AccordionTrigger>Section Two</AccordionTrigger>
+        <AccordionContent>Content for section two</AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 }
 ```
@@ -260,50 +263,6 @@ function Example() {
 }
 ```
 
-## Development
-
-```bash
-# Install dependencies
-pnpm install
-
-# Start dev server
-pnpm dev
-
-# Build library
-pnpm build
-
-# Build demo app
-pnpm build:demo
-
-# Type check
-pnpm lint
-
-# Deploy demo to Cloudflare Pages
-pnpm deploy
-```
-
-## Project Structure
-
-```
-src/
-├── components/          # 37 component directories
-│   ├── Button/
-│   │   ├── Button.tsx
-│   │   ├── Button.module.scss
-│   │   └── index.ts
-│   └── ...
-├── styles/
-│   └── global.css       # Theme tokens and global styles
-├── fonts/
-│   └── Unifont.woff2    # Monospace font
-├── utils/
-│   └── classNames.ts    # Class merging utility
-├── example/
-│   ├── App.tsx          # Demo application
-│   └── main.tsx
-└── index.ts             # Library exports
-```
-
 ## TypeScript
 
 All components export their props interfaces:
@@ -314,6 +273,26 @@ import { Button, type ButtonProps } from 'tuimorphic';
 const CustomButton: React.FC<ButtonProps> = (props) => {
   return <Button {...props} className="custom-styles" />;
 };
+```
+
+## Contributing
+
+```bash
+# Clone the repo
+git clone https://github.com/douglance/tuimorphic.git
+cd tuimorphic
+
+# Install dependencies
+pnpm install
+
+# Start dev server
+pnpm dev
+
+# Build library
+pnpm build
+
+# Type check
+pnpm lint
 ```
 
 ## Browser Support
@@ -331,4 +310,4 @@ const CustomButton: React.FC<ButtonProps> = (props) => {
 
 ## License
 
-MIT
+[MIT](https://github.com/douglance/tuimorphic/blob/main/LICENSE)

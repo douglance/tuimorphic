@@ -1,7 +1,6 @@
 /**
  * Input Styles
- * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
- * MIT License
+ * Terminal-aesthetic input (sacred.computer style)
  */
 
 .root {
@@ -16,15 +15,12 @@
   font-size: var(--font-size);
   line-height: var(--theme-line-height-base);
   color: var(--theme-text);
-  background: var(--theme-border);
-  padding: 0 1ch;
   margin-bottom: 0;
 }
 
 .placeholder {
   font-family: var(--font-family-mono);
-  font-style: italic;
-  color: var(--theme-overlay);
+  color: var(--theme-text-secondary);
 }
 
 .inputContainer {
@@ -38,28 +34,20 @@
   white-space: nowrap;
   pointer-events: none;
   overflow-wrap: anywhere;
-  background: var(--theme-background-input);
-  box-shadow:
-    inset 2px 0 0 0 var(--theme-border),
-    inset -2px 0 0 0 var(--theme-border),
-    inset 0 2px 0 0 var(--theme-border),
-    inset 0 -2px 0 0 var(--theme-border);
+  background: var(--theme-background);
+  border-bottom: 1px solid var(--theme-border);
   font-family: var(--font-family-mono);
   font-size: var(--font-size);
   line-height: var(--theme-line-height-base);
-  padding: calc(var(--theme-line-height-base) * 0.25em) 1ch;
-  min-height: calc(var(--theme-line-height-base) * (var(--font-size) * 2));
+  padding: 0.25em 0;
+  min-height: calc(var(--theme-line-height-base) * 1.5em);
   display: flex;
   align-items: center;
 }
 
 .focused {
   .block {
-    background: var(--theme-focused-foreground);
-  }
-
-  .placeholder {
-    background: var(--theme-focused-foreground);
+    background: var(--theme-text);
   }
 }
 
@@ -98,7 +86,7 @@
   border: none;
   outline: none;
   overflow: hidden;
-  padding: calc(var(--theme-line-height-base) * 0.25em) 1ch;
+  padding: 0.25em 0;
   margin: 0;
   line-height: var(--theme-line-height-base);
   font-size: var(--font-size);
@@ -106,7 +94,7 @@
   z-index: 1;
 
   &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px var(--theme-focused-foreground) inset;
+    -webkit-box-shadow: 0 0 0px 1000px var(--theme-background) inset;
     -webkit-text-fill-color: var(--theme-text);
   }
 
@@ -115,11 +103,7 @@
   }
 }
 
-// Focus ring on container when input is focused
+// Focus indicator
 .inputContainer:focus-within .displayed {
-  box-shadow:
-    inset 2px 0 0 0 var(--theme-focused-border),
-    inset -2px 0 0 0 var(--theme-focused-border),
-    inset 0 2px 0 0 var(--theme-focused-border),
-    inset 0 -2px 0 0 var(--theme-focused-border);
+  border-bottom-color: var(--theme-text);
 }

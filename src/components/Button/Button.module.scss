@@ -1,7 +1,6 @@
 /**
  * Button Styles
- * Based on SRCL (Sacred Computer) - https://github.com/internet-development/www-sacred
- * MIT License
+ * Terminal-aesthetic button (sacred.computer style)
  */
 
 .root {
@@ -17,7 +16,7 @@
   font-size: var(--font-size);
   line-height: calc(var(--theme-line-height-base) * 2em);
   min-height: calc(var(--theme-line-height-base) * (var(--font-size) * 2));
-  padding: 0 2ch 0 2ch;
+  padding: 0 2ch;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: 200ms ease all;
@@ -26,22 +25,17 @@
 }
 
 .primary {
-  background: var(--theme-background);
-  color: var(--theme-text);
-  box-shadow:
-    inset 2px 0 0 0 var(--theme-text),
-    inset -2px 0 0 0 var(--theme-text),
-    inset 0 2px 0 0 var(--theme-text),
-    inset 0 -2px 0 0 var(--theme-text);
+  background: var(--theme-button);
+  color: var(--theme-button-text);
 
   &:hover {
-    background: var(--theme-text);
-    color: var(--theme-background);
+    background: var(--theme-focused-foreground);
+    color: var(--theme-text);
   }
 
   &:focus {
-    background: var(--theme-text);
-    color: var(--theme-background);
+    background: var(--theme-focused-foreground);
+    color: var(--theme-text);
   }
 
   &:focus-visible {
@@ -55,13 +49,8 @@
 }
 
 .secondary {
-  background: var(--theme-background);
+  background: transparent;
   color: var(--theme-text);
-  box-shadow:
-    inset 2px 0 0 0 var(--theme-border),
-    inset -2px 0 0 0 var(--theme-border),
-    inset 0 2px 0 0 var(--theme-border),
-    inset 0 -2px 0 0 var(--theme-border);
 
   &:hover {
     background: var(--theme-focused-foreground);
@@ -82,8 +71,7 @@
 }
 
 .disabled {
-  background: var(--theme-button-background);
-  color: var(--theme-button-foreground);
+  opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }

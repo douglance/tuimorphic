@@ -257,9 +257,14 @@ function TreeNodeComponent({
   const isSelected = selectedNodeId === node.id;
   const isFolder = hasChildren && !node.isFile;
 
-  // Build the prefix for this node's line
-  const prefixChars = parentPrefixes.map((showLine) => (showLine ? '\u2502   ' : '    '));
-  const branchChar = isLast ? '\u2514\u2500\u2500 ' : '\u251C\u2500\u2500 ';
+  // Build the prefix segments for this node's line
+  // Each segment is rendered as a fixed-width span for proper alignment
+  const prefixSegments = parentPrefixes.map((showLine, index) => (
+    <span key={index} className={styles.prefixSegment}>
+      {showLine ? '\u2502' : ' '}
+    </span>
+  ));
+  const branchChar = isLast ? '\u2514\u2500\u2500' : '\u251C\u2500\u2500';
 
   // Determine the icon to display
   const getIcon = (): React.ReactNode => {
@@ -269,7 +274,7 @@ function TreeNodeComponent({
     if (isFolder) {
       return isExpanded ? '[-]' : '[+]';
     }
-    return '\u2500';
+    return null;
   };
 
   // Build prefix array for children
@@ -292,12 +297,16 @@ function TreeNodeComponent({
         onKeyDown={(event) => onKeyDown(event, node)}
       >
         <span className={styles.prefix} aria-hidden="true">
-          {level > 0 && prefixChars.join('')}
-          {level > 0 && branchChar}
+          {prefixSegments}
+          {level > 0 && (
+            <span className={styles.branchSegment}>{branchChar}</span>
+          )}
         </span>
-        <span className={styles.icon} aria-hidden="true">
-          {getIcon()}
-        </span>
+        {(isFolder || node.icon) && (
+          <span className={styles.icon} aria-hidden="true">
+            {getIcon()}
+          </span>
+        )}
         <span className={styles.label}>{node.label}</span>
       </div>
 
