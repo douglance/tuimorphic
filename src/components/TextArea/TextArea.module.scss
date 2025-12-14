@@ -41,6 +41,7 @@
   color: var(--theme-text);
 
   &::placeholder {
+    font-family: var(--font-family-mono);
     color: var(--theme-overlay);
     font-style: italic;
   }

@@ -48,6 +48,7 @@
   text-align: left;
 
   &::placeholder {
+    font-family: var(--font-family-mono);
     font-style: italic;
     color: var(--theme-overlay);
   }

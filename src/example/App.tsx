@@ -69,87 +69,6 @@ export default function App() {
       </header>
 
       <main className={styles.main}>
-        {/* Typography */}
-        <section className={styles.section}>
-          <Heading level={2} decorated>Typography</Heading>
-          <Card title="HEADINGS">
-            <div className={styles.typographyStack}>
-              <Heading level={1}>Heading Level 1</Heading>
-              <Heading level={2}>Heading Level 2</Heading>
-              <Heading level={3}>Heading Level 3</Heading>
-              <Heading level={4}>Heading Level 4</Heading>
-              <Heading level={5}>Heading Level 5</Heading>
-              <Heading level={6}>Heading Level 6</Heading>
-            </div>
-          </Card>
-          <Card title="DECORATED HEADINGS">
-            <div className={styles.typographyStack}>
-              <Heading level={2} decorated decorationStyle="double">Double Border</Heading>
-              <Heading level={2} decorated decorationStyle="single">Single Border</Heading>
-              <Heading level={2} decorated decorationStyle="arrow">Arrow Style</Heading>
-            </div>
-          </Card>
-          <Card title="TEXT VARIANTS">
-            <div className={styles.typographyStack}>
-              <Text>Default body text for general content and descriptions.</Text>
-              <Text variant="secondary">Secondary text for supporting information.</Text>
-              <Text variant="muted">Muted text for less important details.</Text>
-              <Text variant="caption">Caption text for annotations and metadata.</Text>
-            </div>
-          </Card>
-          <Card title="TEXT SIZES">
-            <div className={styles.typographyStack}>
-              <Text size="xs">Extra small text (xs)</Text>
-              <Text size="sm">Small text (sm)</Text>
-              <Text size="md">Medium text (md) - default</Text>
-              <Text size="lg">Large text (lg)</Text>
-              <Text size="xl">Extra large text (xl)</Text>
-            </div>
-          </Card>
-          <Card title="INLINE CODE">
-            <Text>
-              Use <Code>npm install tuimorphic</Code> to install the package.
-              Press <Code kbd>Ctrl</Code>+<Code kbd>C</Code> to copy.
-            </Text>
-            <div className={styles.codeVariants}>
-              <Text><Code variant="default">default code</Code></Text>
-              <Text><Code variant="subtle">subtle code</Code></Text>
-              <Text><Code variant="accent">accent code</Code></Text>
-            </div>
-          </Card>
-          <Card title="LABELS">
-            <div className={styles.labelGrid}>
-              <Label>Default Label</Label>
-              <Label required>Required Label</Label>
-              <Label optional>Optional Label</Label>
-              <Label variant="disabled">Disabled Label</Label>
-            </div>
-            <div className={styles.labelGrid}>
-              <Label size="sm">Small Label</Label>
-              <Label size="md">Medium Label</Label>
-              <Label size="lg">Large Label</Label>
-            </div>
-          </Card>
-        </section>
-
-        <Divider />
-
-        {/* Action Bar */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>═══ ACTION BAR ═══</h2>
-          <Card title="TOOLBAR WITH HOTKEYS">
-            <ActionBar align="start">
-              <ActionButton hotkey="⌘S" variant="primary">Save</ActionButton>
-              <ActionButton hotkey="⌘Z">Undo</ActionButton>
-              <ActionButton hotkey="⌘Y">Redo</ActionButton>
-              <ActionButton hotkey="⌘C">Copy</ActionButton>
-              <ActionButton hotkey="⌘V">Paste</ActionButton>
-            </ActionBar>
-          </Card>
-        </section>
-
-        <Divider />
-
         {/* Accordion */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>═══ ACCORDION ═══</h2>
@@ -179,6 +98,22 @@ export default function App() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+          </Card>
+        </section>
+
+        <Divider />
+
+        {/* Action Bar */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>═══ ACTION BAR ═══</h2>
+          <Card title="TOOLBAR WITH HOTKEYS">
+            <ActionBar align="start">
+              <ActionButton hotkey="⌘S" variant="primary">Save</ActionButton>
+              <ActionButton hotkey="⌘Z">Undo</ActionButton>
+              <ActionButton hotkey="⌘Y">Redo</ActionButton>
+              <ActionButton hotkey="⌘C">Copy</ActionButton>
+              <ActionButton hotkey="⌘V">Paste</ActionButton>
+            </ActionBar>
           </Card>
         </section>
 
@@ -873,6 +808,71 @@ function App() {
               ]}
               defaultExpanded={['1', '2']}
             />
+          </Card>
+        </section>
+
+        <Divider />
+
+        {/* Typography */}
+        <section className={styles.section}>
+          <Heading level={2} decorated>Typography</Heading>
+          <Card title="HEADINGS">
+            <div className={styles.typographyStack}>
+              <Heading level={1}>Heading Level 1</Heading>
+              <Heading level={2}>Heading Level 2</Heading>
+              <Heading level={3}>Heading Level 3</Heading>
+              <Heading level={4}>Heading Level 4</Heading>
+              <Heading level={5}>Heading Level 5</Heading>
+              <Heading level={6}>Heading Level 6</Heading>
+            </div>
+          </Card>
+          <Card title="DECORATED HEADINGS">
+            <div className={styles.typographyStack}>
+              <Heading level={2} decorated decorationStyle="double">Double Border</Heading>
+              <Heading level={2} decorated decorationStyle="single">Single Border</Heading>
+              <Heading level={2} decorated decorationStyle="arrow">Arrow Style</Heading>
+            </div>
+          </Card>
+          <Card title="TEXT VARIANTS">
+            <div className={styles.typographyStack}>
+              <Text>Default body text for general content and descriptions.</Text>
+              <Text variant="secondary">Secondary text for supporting information.</Text>
+              <Text variant="muted">Muted text for less important details.</Text>
+              <Text variant="caption">Caption text for annotations and metadata.</Text>
+            </div>
+          </Card>
+          <Card title="TEXT SIZES">
+            <div className={styles.typographyStack}>
+              <Text size="xs">Extra small text (xs)</Text>
+              <Text size="sm">Small text (sm)</Text>
+              <Text size="md">Medium text (md) - default</Text>
+              <Text size="lg">Large text (lg)</Text>
+              <Text size="xl">Extra large text (xl)</Text>
+            </div>
+          </Card>
+          <Card title="INLINE CODE">
+            <Text>
+              Use <Code>npm install tuimorphic</Code> to install the package.
+              Press <Code kbd>Ctrl</Code>+<Code kbd>C</Code> to copy.
+            </Text>
+            <div className={styles.codeVariants}>
+              <Text><Code variant="default">default code</Code></Text>
+              <Text><Code variant="subtle">subtle code</Code></Text>
+              <Text><Code variant="accent">accent code</Code></Text>
+            </div>
+          </Card>
+          <Card title="LABELS">
+            <div className={styles.labelGrid}>
+              <Label>Default Label</Label>
+              <Label required>Required Label</Label>
+              <Label optional>Optional Label</Label>
+              <Label variant="disabled">Disabled Label</Label>
+            </div>
+            <div className={styles.labelGrid}>
+              <Label size="sm">Small Label</Label>
+              <Label size="md">Medium Label</Label>
+              <Label size="lg">Large Label</Label>
+            </div>
           </Card>
         </section>
       </main>
