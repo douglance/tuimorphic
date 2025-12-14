@@ -10,8 +10,7 @@
 
 @font-face {
   font-family: 'Unifont';
-  /* Font shipped with package in dist/fonts/ */
-  src: url('./fonts/Unifont.woff2') format('woff2');
+  src: url('../fonts/Unifont.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
