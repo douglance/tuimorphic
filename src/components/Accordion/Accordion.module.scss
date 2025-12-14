@@ -20,9 +20,12 @@
     inset 0 2px 0 0 var(--theme-border),
     inset 0 -2px 0 0 var(--theme-border);
 
-  // Collapse adjacent borders
+  // Remove top border on subsequent items to prevent doubling
   & + & {
-    margin-top: -2px;
+    box-shadow:
+      inset 2px 0 0 0 var(--theme-border),
+      inset -2px 0 0 0 var(--theme-border),
+      inset 0 -2px 0 0 var(--theme-border);
   }
 
   &[data-disabled] {
