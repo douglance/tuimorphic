@@ -36,7 +36,11 @@
   border: none;
   outline: none;
   background: var(--theme-background-input);
-  box-shadow: inset 0 0 0 2px var(--theme-border);
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-border),
+    inset -2px 0 0 0 var(--theme-border),
+    inset 0 2px 0 0 var(--theme-border),
+    inset 0 -2px 0 0 var(--theme-border);
   font-family: var(--font-family-mono);
   font-size: var(--font-size);
   line-height: var(--theme-line-height-base);
@@ -50,7 +54,10 @@
 
   &:focus {
     box-shadow:
-      inset 0 0 0 2px var(--theme-border),
+      inset 2px 0 0 0 var(--theme-border),
+      inset -2px 0 0 0 var(--theme-border),
+      inset 0 2px 0 0 var(--theme-border),
+      inset 0 -2px 0 0 var(--theme-border),
       0 0 0 2px var(--theme-focused-border);
   }
 

@@ -26,17 +26,22 @@
 }
 
 .primary {
-  background: var(--theme-button);
-  color: var(--theme-button-text);
+  background: var(--theme-background);
+  color: var(--theme-text);
+  box-shadow:
+    inset 2px 0 0 0 var(--theme-text),
+    inset -2px 0 0 0 var(--theme-text),
+    inset 0 2px 0 0 var(--theme-text),
+    inset 0 -2px 0 0 var(--theme-text);
 
   &:hover {
-    background: var(--theme-focused-foreground);
-    color: var(--theme-text);
+    background: var(--theme-text);
+    color: var(--theme-background);
   }
 
   &:focus {
-    background: var(--theme-focused-foreground);
-    color: var(--theme-text);
+    background: var(--theme-text);
+    color: var(--theme-background);
   }
 
   &:focus-visible {

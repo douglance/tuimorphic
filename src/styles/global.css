@@ -35,13 +35,33 @@
    ============================================ */
 
 :root {
-  /* Typography */
+  /* Typography - Font Families */
   --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-family-mono: 'Unifont', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+
+  /* Typography - Font Sizes */
+  --font-size-xs: 10px;
+  --font-size-sm: 12px;
   --font-size: 14px;
   --font-size-small: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
   --font-size-large: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+
+  /* Typography - Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
   --theme-line-height-base: 1.5;
+
+  /* Typography - Letter Spacing */
+  --letter-spacing-tight: 0.02em;
+  --letter-spacing-normal: 0.05em;
+  --letter-spacing-wide: 0.1em;
+  --letter-spacing-hero: 0.25em;
 
   /* Z-Index Scale */
   --z-index-1: 1;

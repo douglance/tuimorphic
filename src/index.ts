@@ -142,6 +142,12 @@ export { Navigation, type NavigationProps, type NavItem } from './components/Nav
 // Media
 export { Avatar, type AvatarProps } from './components/Avatar';
 
+// Typography
+export { Text, type TextProps } from './components/Text';
+export { Heading, type HeadingProps } from './components/Heading';
+export { Code, type CodeProps } from './components/Code';
+export { Label, type LabelProps } from './components/Label';
+
 // Form Controls (additional)
 export { ComboBox, type ComboBoxProps, type ComboBoxOption } from './components/ComboBox';
 export { DatePicker, type DatePickerProps } from './components/DatePicker';

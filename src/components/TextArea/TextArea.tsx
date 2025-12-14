@@ -91,7 +91,6 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            placeholder={placeholder}
             {...props}
           />
 

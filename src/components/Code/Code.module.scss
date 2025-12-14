@@ -1,0 +1,43 @@
+.code {
+  display: inline;
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.5ch;
+  border-radius: 0;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+/* Variants */
+.default {
+  background: var(--theme-background-secondary);
+  color: var(--theme-text);
+  border: 1px solid var(--theme-border-light);
+}
+
+.subtle {
+  background: transparent;
+  color: var(--theme-text-secondary);
+  border: none;
+}
+
+.accent {
+  background: var(--theme-accent-light);
+  color: var(--theme-accent);
+  border: 1px solid var(--theme-accent);
+}
+
+/* Keyboard shortcut styling */
+.kbd {
+  display: inline-block;
+  padding: 0.15em 0.5ch;
+  font-size: var(--font-size-sm);
+  font-weight: normal;
+  background: var(--theme-background-secondary);
+  color: var(--theme-text);
+  border: 1px solid var(--theme-border);
+  border-bottom-width: 2px;
+  box-shadow: inset 0 -1px 0 var(--theme-border-light);
+  text-transform: none;
+  letter-spacing: 0;
+}
