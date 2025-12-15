@@ -60,7 +60,7 @@ export default function PreviewPage() {
           <InteractiveDualPreview
             title="Login Form - Full Interaction"
             demo="interactive"
-            terminalCols={120}
+            terminalCols={40}
             terminalRows={20}
             webComponent={
               <Card title="Login">
@@ -92,7 +92,7 @@ export default function PreviewPage() {
           <InteractiveDualPreview
             title="Button Variants & States"
             demo="button"
-            terminalCols={120}
+            terminalCols={40}
             terminalRows={18}
             webComponent={
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -121,7 +121,7 @@ export default function PreviewPage() {
           <InteractiveDualPreview
             title="Card Layouts"
             demo="card"
-            terminalCols={120}
+            terminalCols={40}
             terminalRows={25}
             webComponent={
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
@@ -179,7 +179,7 @@ export default function PreviewPage() {
           <InteractiveDualPreview
             title="Registration Form"
             demo="form"
-            terminalCols={120}
+            terminalCols={40}
             terminalRows={25}
             webComponent={
               <Card title="Registration Form">
@@ -217,7 +217,7 @@ export default function PreviewPage() {
           <InteractiveDualPreview
             title="Progress Bars & Spinners"
             demo="progress"
-            terminalCols={120}
+            terminalCols={40}
             terminalRows={25}
             webComponent={
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
