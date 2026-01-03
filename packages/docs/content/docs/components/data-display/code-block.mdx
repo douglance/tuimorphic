@@ -1,0 +1,120 @@
+---
+title: CodeBlock
+description: Multi-line code display with line numbers and copy-to-clipboard functionality.
+---
+
+## Import
+
+```tsx
+import { CodeBlock } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <CodeBlockBasic />
+</ComponentPreview>
+
+```tsx
+<CodeBlock
+  code="const x = 1;\nconst y = 2;"
+  language="typescript"
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| code | `string` | - | The code string to display (required) |
+| language | `string` | - | Programming language for semantic purposes |
+| showLineNumbers | `boolean` | `true` | Whether to show line numbers on the left side |
+| startLineNumber | `number` | `1` | Starting line number |
+| showCopyButton | `boolean` | `false` | Whether to show the copy button |
+| onCopy | `(code: string) => void` | - | Callback fired when code is copied |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Basic Code Block
+
+<ComponentPreview>
+  <CodeBlockBasic />
+</ComponentPreview>
+
+```tsx
+<CodeBlock
+  code="const greeting = 'Hello, World!';\nconsole.log(greeting);"
+  language="javascript"
+/>
+```
+
+### With Language Label
+
+<ComponentPreview>
+  <CodeBlockWithLanguage />
+</ComponentPreview>
+
+```tsx
+<CodeBlock
+  code={`interface User {\n  name: string;\n  age: number;\n}`}
+  language="typescript"
+  showCopyButton
+/>
+```
+
+### Without Line Numbers
+
+<ComponentPreview>
+  <CodeBlockNoLineNumbers />
+</ComponentPreview>
+
+```tsx
+<CodeBlock
+  code="npm install tuimorphic"
+  showLineNumbers={false}
+/>
+```
+
+### Custom Start Line
+
+<ComponentPreview>
+  <CodeBlockCustomStartLine />
+</ComponentPreview>
+
+```tsx
+<CodeBlock
+  code={`  if (condition) {\n    doSomething();\n  }`}
+  language="javascript"
+  startLineNumber={42}
+/>
+```
+
+### With Copy Button
+
+```tsx
+<CodeBlock
+  code={`function add(a, b) {\n  return a + b;\n}`}
+  language="javascript"
+  showCopyButton
+  onCopy={(code) => console.log('Copied:', code)}
+/>
+```
+
+### Multi-language Examples
+
+```tsx
+// TypeScript
+<CodeBlock
+  code={`interface User {\n  name: string;\n  age: number;\n}`}
+  language="typescript"
+  showCopyButton
+/>
+
+// Shell
+<CodeBlock
+  code="npm install tuimorphic\nnpm run dev"
+  language="shell"
+  showLineNumbers={false}
+/>
+```

@@ -88,6 +88,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(function Tab
     </table>
   );
 });
+Table.displayName = 'Table';
 
 // ============================================================================
 // Table Header
@@ -116,6 +117,7 @@ export const TableHeader = React.forwardRef<HTMLTableSectionElement, TableHeader
     );
   }
 );
+TableHeader.displayName = 'TableHeader';
 
 // ============================================================================
 // Table Body
@@ -144,6 +146,7 @@ export const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProp
     );
   }
 );
+TableBody.displayName = 'TableBody';
 
 // ============================================================================
 // Table Footer
@@ -172,6 +175,7 @@ export const TableFooter = React.forwardRef<HTMLTableSectionElement, TableFooter
     );
   }
 );
+TableFooter.displayName = 'TableFooter';
 
 // ============================================================================
 // Table Row
@@ -207,6 +211,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
     );
   }
 );
+TableRow.displayName = 'TableRow';
 
 // ============================================================================
 // Table Head (Header Cell)
@@ -246,6 +251,7 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
     );
   }
 );
+TableHead.displayName = 'TableHead';
 
 // ============================================================================
 // Table Cell (Data Cell)
@@ -294,6 +300,7 @@ export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
     );
   }
 );
+TableCell.displayName = 'TableCell';
 
 // ============================================================================
 // Table Caption
@@ -332,5 +339,6 @@ export const TableCaption = React.forwardRef<HTMLTableCaptionElement, TableCapti
     );
   }
 );
+TableCaption.displayName = 'TableCaption';
 
 export default Table;

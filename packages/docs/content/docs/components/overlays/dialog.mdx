@@ -1,0 +1,121 @@
+---
+title: Dialog
+description: Modal dialog for focused interactions with backdrop overlay.
+---
+
+## Import
+
+```tsx
+import { Dialog } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <DialogBasic />
+</ComponentPreview>
+
+```tsx
+<Dialog
+  trigger={<Button>Open Dialog</Button>}
+  title="Confirm Action"
+>
+  <p>Are you sure you want to proceed?</p>
+</Dialog>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| open | `boolean` | - | Whether the dialog is open (controlled) |
+| defaultOpen | `boolean` | - | Default open state (uncontrolled) |
+| onOpenChange | `(open: boolean) => void` | - | Callback when open state changes |
+| title | `React.ReactNode` | - | Dialog title |
+| children | `React.ReactNode` | - | Dialog content |
+| trigger | `React.ReactElement` | - | Trigger element |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### With Content
+
+<ComponentPreview>
+  <DialogWithContent />
+</ComponentPreview>
+
+```tsx
+<Dialog
+  trigger={<Button>Open</Button>}
+  title="Dialog Title"
+>
+  <p>Dialog content goes here.</p>
+</Dialog>
+```
+
+### Controlled
+
+<ComponentPreview>
+  <DialogControlled />
+</ComponentPreview>
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<Button onClick={() => setOpen(true)}>Open Dialog</Button>
+
+<Dialog
+  open={open}
+  onOpenChange={setOpen}
+  title="Controlled Dialog"
+>
+  <p>This dialog is controlled externally.</p>
+  <Button onClick={() => setOpen(false)}>Close</Button>
+</Dialog>
+```
+
+### Confirmation Dialog
+
+```tsx
+<Dialog
+  trigger={<Button variant="secondary">Delete Item</Button>}
+  title="Confirm Deletion"
+>
+  <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+  <div style={{ display: 'flex', gap: '1ch', marginTop: '2ch' }}>
+    <Button variant="secondary">Cancel</Button>
+    <Button variant="primary">Delete</Button>
+  </div>
+</Dialog>
+```
+
+## Compound Components
+
+For advanced usage, use the exported sub-components:
+
+```tsx
+import {
+  DialogRoot,
+  DialogTrigger,
+  DialogPortal,
+  DialogBackdrop,
+  DialogPopup,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+} from 'tuimorphic';
+
+<DialogRoot>
+  <DialogTrigger render={<Button>Open</Button>} />
+  <DialogPortal>
+    <DialogBackdrop />
+    <DialogPopup>
+      <DialogTitle>Custom Dialog</DialogTitle>
+      <DialogDescription>
+        Full control over dialog structure.
+      </DialogDescription>
+      <DialogClose>[X]</DialogClose>
+    </DialogPopup>
+  </DialogPortal>
+</DialogRoot>
+```

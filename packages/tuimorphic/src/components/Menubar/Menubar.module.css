@@ -15,7 +15,7 @@
 .trigger {
   display: inline-flex;
   align-items: center;
-  padding: 0.25em 1.5ch;
+  padding: var(--line-quarter) 1.5ch;
   background: transparent;
   border: none;
   outline: none;
@@ -48,8 +48,8 @@
 }
 
 .popup {
-  min-width: 180px;
-  padding: 0.25em 0;
+  min-width: var(--popup-min-width);
+  padding: var(--line-quarter) 0;
   background: var(--theme-background);
   box-shadow:
     inset 2px 0 0 0 var(--theme-text),
@@ -76,7 +76,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 2ch;
-  padding: 0.25em 1.5ch;
+  padding: var(--line-quarter) 1.5ch;
   cursor: pointer;
   outline: none;
 
@@ -112,6 +112,6 @@
 
 .separator {
   height: 1px;
-  margin: 0.25em 1ch;
+  margin: var(--line-quarter) 1ch;
   background: var(--theme-border);
 }

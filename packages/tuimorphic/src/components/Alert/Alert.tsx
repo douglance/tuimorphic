@@ -19,24 +19,21 @@ export interface AlertProps extends Omit<React.HTMLAttributes<HTMLDivElement>, '
   className?: string;
 }
 
+// Icons matching React Ink terminal version
+const VARIANT_ICONS: Record<NonNullable<AlertProps['variant']>, string> = {
+  default: '•',
+  info: 'ℹ',
+  success: '✓',
+  warning: '⚠',
+  error: '✗',
+};
+
 /**
  * Alert component for displaying important messages to users.
  *
- * Features MS-DOS terminal aesthetics with box-shadow borders
+ * Features terminal aesthetics with solid single-line borders
  * and variant-based color coding for different severity levels.
- *
- * @example
- * <Alert>Default alert message</Alert>
- *
- * @example
- * <Alert variant="success" title="Success">
- *   Operation completed successfully.
- * </Alert>
- *
- * @example
- * <Alert variant="error" title="Error" dismissible onDismiss={() => setVisible(false)}>
- *   An error occurred while processing your request.
- * </Alert>
+ * Designed for visual parity with React Ink terminal version.
  */
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   function Alert(
@@ -55,15 +52,9 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       onDismiss?.();
     }, [onDismiss]);
 
-    const handleKeyDown = React.useCallback(
-      (event: React.KeyboardEvent<HTMLButtonElement>) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          onDismiss?.();
-        }
-      },
-      [onDismiss]
-    );
+    const hasTitle = Boolean(title);
+    const showTitleRow = hasTitle || dismissible;
+    const icon = VARIANT_ICONS[variant] || VARIANT_ICONS.default;
 
     return (
       <div
@@ -72,41 +63,29 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         className={classNames(styles.alert, styles[variant], className)}
         {...props}
       >
-        {(title || dismissible) && (
-          <div className={styles.header}>
-            <div className={styles.leftBorder} aria-hidden="true">
-              ┌─
+        <div className={styles.box}>
+          {showTitleRow && (
+            <div className={styles.titleRow}>
+              {hasTitle && <span className={styles.icon}>{icon}</span>}
+              {hasTitle && <span className={styles.title}>{title}</span>}
+              {dismissible && (
+                <button
+                  type="button"
+                  className={styles.closeButton}
+                  onClick={handleDismiss}
+                  aria-label="Dismiss alert"
+                >
+                  [X]
+                </button>
+              )}
             </div>
-            {title && <span className={styles.title}>{title}</span>}
-            <div className={styles.headerLine} aria-hidden="true" />
-            {dismissible && (
-              <button
-                type="button"
-                className={styles.closeButton}
-                onClick={handleDismiss}
-                onKeyDown={handleKeyDown}
-                aria-label="Dismiss alert"
-              >
-                [X]
-              </button>
-            )}
-            <div className={styles.rightBorder} aria-hidden="true">
-              ┐
-            </div>
-          </div>
-        )}
-        {!title && !dismissible && (
-          <div className={styles.headerSimple} aria-hidden="true">
-            ┌────────────────────────────────────────┐
-          </div>
-        )}
-        <div className={styles.content}>{children}</div>
-        <div className={styles.footer} aria-hidden="true">
-          └────────────────────────────────────────┘
+          )}
+          <div className={styles.content}>{children}</div>
         </div>
       </div>
     );
   }
 );
+Alert.displayName = 'Alert';
 
 export default Alert;

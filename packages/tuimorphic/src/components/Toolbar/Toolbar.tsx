@@ -76,6 +76,7 @@ export const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>(
     );
   }
 );
+Toolbar.displayName = 'Toolbar';
 
 /**
  * ToolbarButton component for toolbar actions.
@@ -95,6 +96,7 @@ export const ToolbarButton = React.forwardRef<
     </BaseToolbar.Button>
   );
 });
+ToolbarButton.displayName = 'ToolbarButton';
 
 /**
  * ToolbarLink component for navigation within the toolbar.
@@ -112,6 +114,7 @@ export const ToolbarLink = React.forwardRef<HTMLAnchorElement, ToolbarLinkProps>
     );
   }
 );
+ToolbarLink.displayName = 'ToolbarLink';
 
 /**
  * ToolbarSeparator component for visual separation of toolbar items.

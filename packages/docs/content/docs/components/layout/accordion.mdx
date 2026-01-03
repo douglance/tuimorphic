@@ -1,0 +1,129 @@
+---
+title: Accordion
+description: Expandable content sections for organizing related information with terminal-style indicators.
+---
+
+## Import
+
+```tsx
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from 'tuimorphic';
+```
+
+## Usage
+
+The Accordion component provides expandable content sections with terminal-aesthetic indicators.
+
+<ComponentPreview>
+  <AccordionBasic />
+</ComponentPreview>
+
+```tsx
+<Accordion defaultValue={['item-1']}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Section 1</AccordionTrigger>
+    <AccordionContent>Content for section 1</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Section 2</AccordionTrigger>
+    <AccordionContent>Content for section 2</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Props
+
+### Accordion
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | `string[]` | - | Selected value(s) for controlled mode |
+| defaultValue | `string[]` | - | Default open item value(s) for uncontrolled mode |
+| onValueChange | `(value: string[]) => void` | - | Callback when open items change |
+| type | `'single' \| 'multiple'` | `'multiple'` | Whether multiple items can be open at once |
+| disabled | `boolean` | `false` | Whether the accordion is disabled |
+| children | `React.ReactNode` | - | Accordion items |
+| className | `string` | - | Additional CSS class names |
+
+### AccordionItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | `string` | - | Unique value identifying this item (required) |
+| disabled | `boolean` | - | Whether this item is disabled |
+| children | `React.ReactNode` | - | Item content (AccordionTrigger and AccordionContent) |
+| className | `string` | - | Additional CSS class names |
+
+### AccordionTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | Trigger content |
+| className | `string` | - | Additional CSS class names |
+
+### AccordionContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | Panel content |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Default Open
+
+<ComponentPreview>
+  <AccordionDefaultOpen />
+</ComponentPreview>
+
+```tsx
+<Accordion defaultValue={['item-1']}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>First Section (Open by Default)</AccordionTrigger>
+    <AccordionContent>This section is open by default.</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Second Section</AccordionTrigger>
+    <AccordionContent>Content for section 2</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+### Single Expansion Mode
+
+Only one item can be open at a time:
+
+<ComponentPreview>
+  <AccordionSingleMode />
+</ComponentPreview>
+
+```tsx
+<Accordion type="single" defaultValue={['faq-1']}>
+  <AccordionItem value="faq-1">
+    <AccordionTrigger>What is Tuimorphic?</AccordionTrigger>
+    <AccordionContent>A terminal-aesthetic component library.</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="faq-2">
+    <AccordionTrigger>How do I install it?</AccordionTrigger>
+    <AccordionContent>Run npm install tuimorphic.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+### Controlled Mode
+
+Manage the open state externally:
+
+```tsx
+const [openItems, setOpenItems] = useState(['item-1']);
+
+<Accordion value={openItems} onValueChange={setOpenItems}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>First Section</AccordionTrigger>
+    <AccordionContent>First content</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Second Section</AccordionTrigger>
+    <AccordionContent>Second content</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```

@@ -59,5 +59,6 @@ export const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
     );
   }
 );
+ActionBar.displayName = 'ActionBar';
 
 export default ActionBar;

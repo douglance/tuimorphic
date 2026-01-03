@@ -17,7 +17,7 @@
   font-size: var(--font-size);
   line-height: calc(var(--theme-line-height-base) * 2em);
   min-height: calc(var(--theme-line-height-base) * (var(--font-size) * 2));
-  padding: 0 1ch;
+  padding: 0 0.5ch;
   text-transform: uppercase;
   transition: 200ms ease all;
   cursor: pointer;

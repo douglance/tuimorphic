@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { forwardRef } from 'react';
 import { Popover as BasePopover } from '@base-ui/react/popover';
 import { classNames } from '@/utils/classNames';
 import styles from './Popover.module.css';
@@ -109,7 +108,7 @@ export function Popover({
   );
 }
 
-export const PopoverTitle = forwardRef<HTMLHeadingElement, PopoverTitleProps>(
+export const PopoverTitle = React.forwardRef<HTMLHeadingElement, PopoverTitleProps>(
   ({ className, children, ...props }, ref) => (
     <BasePopover.Title
       ref={ref}
@@ -127,7 +126,7 @@ export const PopoverTitle = forwardRef<HTMLHeadingElement, PopoverTitleProps>(
 );
 PopoverTitle.displayName = 'PopoverTitle';
 
-export const PopoverDescription = forwardRef<
+export const PopoverDescription = React.forwardRef<
   HTMLParagraphElement,
   PopoverDescriptionProps
 >(({ className, children, ...props }, ref) => (
@@ -146,7 +145,7 @@ export const PopoverDescription = forwardRef<
 ));
 PopoverDescription.displayName = 'PopoverDescription';
 
-export const PopoverClose = forwardRef<HTMLButtonElement, PopoverCloseProps>(
+export const PopoverClose = React.forwardRef<HTMLButtonElement, PopoverCloseProps>(
   ({ className, children = '[X]', ...props }, ref) => (
     <BasePopover.Close
       ref={ref}
@@ -169,7 +168,7 @@ export const PopoverRoot = (props: PopoverRootProps) => (
 );
 PopoverRoot.displayName = 'PopoverRoot';
 
-export const PopoverTrigger = forwardRef<HTMLButtonElement, PopoverTriggerProps>(
+export const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
   (props, ref) => <BasePopover.Trigger ref={ref} {...props} />
 );
 PopoverTrigger.displayName = 'PopoverTrigger';
@@ -179,7 +178,7 @@ export const PopoverPortal = (props: PopoverPortalProps) => (
 );
 PopoverPortal.displayName = 'PopoverPortal';
 
-export const PopoverBackdrop = forwardRef<HTMLDivElement, PopoverBackdropProps>(
+export const PopoverBackdrop = React.forwardRef<HTMLDivElement, PopoverBackdropProps>(
   ({ className, ...props }, ref) => (
     <BasePopover.Backdrop
       ref={ref}
@@ -195,7 +194,7 @@ export const PopoverBackdrop = forwardRef<HTMLDivElement, PopoverBackdropProps>(
 );
 PopoverBackdrop.displayName = 'PopoverBackdrop';
 
-export const PopoverPositioner = forwardRef<
+export const PopoverPositioner = React.forwardRef<
   HTMLDivElement,
   PopoverPositionerProps
 >(({ className, children, ...props }, ref) => (
@@ -205,7 +204,7 @@ export const PopoverPositioner = forwardRef<
 ));
 PopoverPositioner.displayName = 'PopoverPositioner';
 
-export const PopoverPopup = forwardRef<HTMLDivElement, PopoverPopupProps>(
+export const PopoverPopup = React.forwardRef<HTMLDivElement, PopoverPopupProps>(
   ({ className, children, ...props }, ref) => (
     <BasePopover.Popup
       ref={ref}
@@ -223,7 +222,7 @@ export const PopoverPopup = forwardRef<HTMLDivElement, PopoverPopupProps>(
 );
 PopoverPopup.displayName = 'PopoverPopup';
 
-export const PopoverArrow = forwardRef<HTMLDivElement, PopoverArrowProps>(
+export const PopoverArrow = React.forwardRef<HTMLDivElement, PopoverArrowProps>(
   ({ className, children, ...props }, ref) => (
     <BasePopover.Arrow
       ref={ref}

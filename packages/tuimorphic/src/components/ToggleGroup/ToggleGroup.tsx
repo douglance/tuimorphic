@@ -110,6 +110,7 @@ export const ToggleGroup = React.forwardRef<HTMLDivElement, ToggleGroupProps>(
     );
   }
 );
+ToggleGroup.displayName = 'ToggleGroup';
 
 /**
  * ToggleGroupItem component representing a single toggle option.
@@ -131,5 +132,6 @@ export const ToggleGroupItem = React.forwardRef<
     </BaseToggle>
   );
 });
+ToggleGroupItem.displayName = 'ToggleGroupItem';
 
 export default ToggleGroup;

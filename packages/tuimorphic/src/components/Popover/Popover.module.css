@@ -27,13 +27,12 @@
   min-width: 20ch;
   z-index: var(--z-index-10);
 
-  /* MS-DOS style border + spread shadow */
+  /* MS-DOS style border */
   box-shadow:
     inset 2px 0 0 0 var(--theme-text),
     inset -2px 0 0 0 var(--theme-text),
     inset 0 2px 0 0 var(--theme-text),
-    inset 0 -2px 0 0 var(--theme-text),
-    0 0 0 1ch var(--theme-border-subdued);
+    inset 0 -2px 0 0 var(--theme-text);
 
   /* Animation with transform-origin from positioner */
   opacity: 0;

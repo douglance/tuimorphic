@@ -1,0 +1,82 @@
+---
+title: Code
+description: Inline code and keyboard shortcut display with terminal styling.
+---
+
+## Import
+
+```tsx
+import { Code } from 'tuimorphic';
+```
+
+## Usage
+
+The Code component displays inline code snippets and keyboard shortcuts. For multi-line code, use the CodeBlock component.
+
+<ComponentPreview>
+  <CodeBasic />
+</ComponentPreview>
+
+```tsx
+<Code>const x = 42</Code>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | `'default' \| 'subtle' \| 'accent'` | `'default'` | Visual variant |
+| kbd | `boolean` | `false` | Render as keyboard shortcut styling |
+| children | `React.ReactNode` | - | Code content |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Default
+
+<ComponentPreview>
+  <CodeInline />
+</ComponentPreview>
+
+```tsx
+<Code>const x = 42</Code>
+```
+
+### Subtle
+
+<ComponentPreview>
+  <CodeVariants />
+</ComponentPreview>
+
+```tsx
+<Code variant="subtle">npm install</Code>
+```
+
+### Accent
+
+```tsx
+<Code variant="accent">npm install tuimorphic</Code>
+```
+
+### Keyboard Shortcut
+
+Use the `kbd` prop for keyboard shortcut styling:
+
+<ComponentPreview>
+  <CodeKeyboard />
+</ComponentPreview>
+
+```tsx
+<Code kbd>Ctrl+C</Code>
+<Code kbd>Cmd+V</Code>
+<Code kbd>Alt+Tab</Code>
+```
+
+### Inline with Text
+
+```tsx
+<p>
+  Run <Code>npm install</Code> to install dependencies,
+  then press <Code kbd>Ctrl+C</Code> to stop the server.
+</p>
+```

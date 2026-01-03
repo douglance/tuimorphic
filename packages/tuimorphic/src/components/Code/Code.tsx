@@ -45,5 +45,6 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(function Code(
     </Component>
   );
 });
+Code.displayName = 'Code';
 
 export default Code;

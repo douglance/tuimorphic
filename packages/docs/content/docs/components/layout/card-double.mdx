@@ -1,0 +1,115 @@
+---
+title: CardDouble
+description: Double-line bordered container with corner labels for nested layouts.
+---
+
+## Import
+
+```tsx
+import { CardDouble, CardDoubleInner } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <CardDoubleBasic />
+</ComponentPreview>
+
+```tsx
+<CardDouble title="SYSTEM INFO">
+  <p>System status: OK</p>
+  <p>Last checked: 2024-01-15 14:32:00 UTC</p>
+</CardDouble>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'title', type: 'string', description: 'Title displayed in the card header' },
+  { name: 'leftCorner', type: 'string', description: 'Left corner label text' },
+  { name: 'rightCorner', type: 'string', description: 'Right corner label text' },
+  { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+]} />
+
+### CardDoubleInner Props
+
+<PropsTable props={[
+  { name: 'title', type: 'string', description: 'Title displayed in the inner card header' },
+  { name: 'children', type: 'React.ReactNode', required: true, description: 'Inner card content' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+]} />
+
+## Variants
+
+### With Corner Labels
+
+Use corner labels to add window-style decorations:
+
+<ComponentPreview>
+  <CardDoubleWithCorners />
+</ComponentPreview>
+
+```tsx
+<CardDouble title="MAIN WINDOW" leftCorner="[1]" rightCorner="[X]">
+  <p>Double-bordered container with corner labels.</p>
+  <p>Perfect for terminal-style dialogs and windows.</p>
+</CardDouble>
+```
+
+### Nested Cards
+
+Use `CardDoubleInner` for multi-level nesting:
+
+<ComponentPreview>
+  <CardDoubleNested />
+</ComponentPreview>
+
+```tsx
+<CardDouble title="APPLICATION">
+  <CardDoubleInner title="SETTINGS">
+    <p>Theme: Dark</p>
+    <p>Font: Unifont</p>
+  </CardDoubleInner>
+  <CardDoubleInner title="STATUS">
+    <p>Connection: Active</p>
+    <p>Uptime: 12:34:56</p>
+  </CardDoubleInner>
+</CardDouble>
+```
+
+### Multiple Cards
+
+Use multiple CardDouble components for dashboards:
+
+<ComponentPreview className="column">
+  <CardDoubleMultiple />
+</ComponentPreview>
+
+```tsx
+<CardDouble title="SERVER 01" leftCorner="[OK]">
+  <p>CPU: 45% | MEM: 2.1GB | NET: 12Mbps</p>
+</CardDouble>
+<CardDouble title="SERVER 02" leftCorner="[OK]">
+  <p>CPU: 62% | MEM: 3.4GB | NET: 8Mbps</p>
+</CardDouble>
+<CardDouble title="SERVER 03" leftCorner="[!!]" rightCorner="[!]">
+  <p>CPU: 92% | MEM: 7.8GB | NET: 2Mbps</p>
+</CardDouble>
+```
+
+## Accessibility
+
+- Uses semantic `<article>` elements for proper document structure
+- Header titles use appropriate heading levels (`<h2>`, `<h3>`)
+- Corner labels are marked with `aria-hidden` when empty
+
+## Styling
+
+CardDouble uses CSS custom properties for theming:
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Border color for double-line borders |
+| `--theme-background` | Card background color |
+| `--theme-foreground` | Text color |

@@ -1,0 +1,114 @@
+---
+title: Loader
+description: Animated loading indicators with terminal-style character displays.
+---
+
+## Import
+
+```tsx
+import { BarLoader, BlockLoader } from 'tuimorphic';
+```
+
+## BarLoader
+
+Horizontal progress bar with terminal-style character display. Supports both determinate and indeterminate modes.
+
+### Usage
+
+<ComponentPreview>
+  <LoaderBar />
+</ComponentPreview>
+
+```tsx
+// Indeterminate mode - animated loading
+<BarLoader />
+
+// Determinate mode - shows specific progress
+<BarLoader progress={50} />
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| progress | `number` | - | Progress value (0-100). If undefined, runs in indeterminate mode |
+| width | `number` | `20` | Width in characters |
+| fillChar | `string` | `'█'` | Character used for filled portion |
+| emptyChar | `string` | `'░'` | Character used for empty portion |
+| interval | `number` | `100` | Animation interval in milliseconds (indeterminate mode) |
+| className | `string` | - | Additional CSS class names |
+
+### Variants
+
+<ComponentPreview>
+  <LoaderBarDeterminate />
+</ComponentPreview>
+
+```tsx
+// Determinate
+<BarLoader progress={25} />
+<BarLoader progress={50} />
+<BarLoader progress={75} />
+<BarLoader progress={100} />
+
+// Custom characters
+<BarLoader progress={75} fillChar="=" emptyChar="-" />
+
+// Custom width
+<BarLoader progress={50} width={30} />
+```
+
+## BlockLoader
+
+Single-character animated loader with 12 different character pattern modes.
+
+### Usage
+
+<ComponentPreview>
+  <LoaderBlock />
+</ComponentPreview>
+
+```tsx
+<BlockLoader />
+<BlockLoader mode={1} />
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| mode | `number` | `0` | Animation mode (0-11), each with different character patterns |
+| interval | `number` | `80` | Animation interval in milliseconds |
+| className | `string` | - | Additional CSS class names |
+
+### Animation Modes
+
+<ComponentPreview>
+  <LoaderBlockModes />
+</ComponentPreview>
+
+| Mode | Pattern | Characters |
+|------|---------|------------|
+| 0 | Braille dots (sparse) | `⠁⠂⠄⡀⢀⠠⠐⠈` |
+| 1 | Braille spinner (dense) | `⣾⣽⣻⢿⡿⣟⣯⣷` |
+| 2 | Box quadrant | `▖▘▝▗` |
+| 3 | Vertical blocks | `▁▂▃▄▅▆▇█` |
+| 4 | Horizontal blocks | `▉▊▋▌▍▎▏` |
+| 5 | Arrows | `←↖↑↗→↘↓↙` |
+| 6 | Box drawing | `┤┘┴└├┌┬┐` |
+| 7 | Triangles | `◢◣◤◥` |
+| 8 | Box corners | `◰◳◲◱` |
+| 9 | Circle pie | `◴◷◶◵` |
+| 10 | Circle halves | `◐◓◑◒` |
+| 11 | Simple dots | `...` |
+
+### Examples
+
+```tsx
+<BlockLoader mode={0} />  // Braille dots
+<BlockLoader mode={5} />  // Rotating arrows
+<BlockLoader mode={11} /> // Simple dots
+
+// Slower animation
+<BlockLoader mode={5} interval={200} />
+```

@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { forwardRef } from 'react';
 import { Tabs as BaseTabs } from '@base-ui/react/tabs';
 import { classNames } from '@/utils/classNames';
 import styles from './Tabs.module.css';
@@ -133,7 +132,7 @@ export interface TabsContentProps {
  * </Tabs>
  * ```
  */
-export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
+export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   { value, defaultValue, onValueChange, children, className },
   ref
 ) {
@@ -155,7 +154,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
  *
  * Provides horizontal layout for tab buttons with terminal-style borders.
  */
-export const TabsList = forwardRef<HTMLDivElement, TabsListPropsLegacy>(
+export const TabsList = React.forwardRef<HTMLDivElement, TabsListPropsLegacy>(
   function TabsList({ children, className }, ref) {
     return (
       <BaseTabs.List ref={ref} className={classNames(styles.list, className)}>
@@ -170,7 +169,7 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListPropsLegacy>(
  *
  * Must be used within a TabsList. The value prop must match a corresponding TabsContent.
  */
-export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
+export const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
   function TabsTrigger({ value, children, disabled, className }, ref) {
     return (
       <BaseTabs.Tab
@@ -191,7 +190,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
  * The value prop must match a corresponding TabsTrigger.
  * Only the active panel is rendered.
  */
-export const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
+export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
   function TabsContent({ value, children, className }, ref) {
     return (
       <BaseTabs.Panel
@@ -207,7 +206,7 @@ export const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
 
 // Compound components for advanced usage (extending Base UI props)
 
-export const TabsRoot = forwardRef<HTMLDivElement, TabsRootProps>(
+export const TabsRoot = React.forwardRef<HTMLDivElement, TabsRootProps>(
   ({ className, ...props }, ref) => (
     <BaseTabs.Root
       ref={ref}
@@ -223,7 +222,7 @@ export const TabsRoot = forwardRef<HTMLDivElement, TabsRootProps>(
 );
 TabsRoot.displayName = 'TabsRoot';
 
-export const TabsListAdvanced = forwardRef<HTMLDivElement, TabsListProps>(
+export const TabsListAdvanced = React.forwardRef<HTMLDivElement, TabsListProps>(
   ({ className, ...props }, ref) => (
     <BaseTabs.List
       ref={ref}
@@ -239,7 +238,7 @@ export const TabsListAdvanced = forwardRef<HTMLDivElement, TabsListProps>(
 );
 TabsListAdvanced.displayName = 'TabsListAdvanced';
 
-export const TabsTab = forwardRef<HTMLButtonElement, TabsTabProps>(
+export const TabsTab = React.forwardRef<HTMLButtonElement, TabsTabProps>(
   ({ className, ...props }, ref) => (
     <BaseTabs.Tab
       ref={ref}
@@ -255,7 +254,7 @@ export const TabsTab = forwardRef<HTMLButtonElement, TabsTabProps>(
 );
 TabsTab.displayName = 'TabsTab';
 
-export const TabsPanel = forwardRef<HTMLDivElement, TabsPanelProps>(
+export const TabsPanel = React.forwardRef<HTMLDivElement, TabsPanelProps>(
   ({ className, ...props }, ref) => (
     <BaseTabs.Panel
       ref={ref}
@@ -271,7 +270,7 @@ export const TabsPanel = forwardRef<HTMLDivElement, TabsPanelProps>(
 );
 TabsPanel.displayName = 'TabsPanel';
 
-export const TabsIndicator = forwardRef<HTMLSpanElement, TabsIndicatorProps>(
+export const TabsIndicator = React.forwardRef<HTMLSpanElement, TabsIndicatorProps>(
   ({ className, ...props }, ref) => (
     <BaseTabs.Indicator
       ref={ref}

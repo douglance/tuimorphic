@@ -19,14 +19,14 @@
 
 .horizontal {
   flex-direction: row;
-  padding: 0.25em 0.5ch;
-  gap: 0.5ch;
+  padding: var(--line-quarter) var(--space-half);
+  gap: var(--space-half);
 }
 
 .vertical {
   flex-direction: column;
-  padding: 0.5em 0.25ch;
-  gap: 0.25em;
+  padding: var(--line-half) var(--space-half);
+  gap: var(--line-quarter);
 }
 
 .button,
@@ -34,7 +34,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25em 1ch;
+  padding: var(--line-quarter) 1ch;
   background: transparent;
   border: none;
   outline: none;
@@ -67,7 +67,7 @@
 
 .separator {
   width: 1px;
-  height: 1em;
+  height: var(--line-1);
   background: var(--theme-border);
 
   .vertical > & {

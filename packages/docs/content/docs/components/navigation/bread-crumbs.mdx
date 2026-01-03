@@ -1,0 +1,107 @@
+---
+title: BreadCrumbs
+description: Hierarchical navigation paths with linked text segments and chevron separators.
+---
+
+## Import
+
+```tsx
+import { BreadCrumbs } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <BreadCrumbsBasic />
+</ComponentPreview>
+
+```tsx
+<BreadCrumbs
+  items={[
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'Widget' }
+  ]}
+/>
+```
+
+## Props
+
+### BreadCrumbs
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| items | `BreadCrumbItem[]` | - | Array of breadcrumb items to display (required) |
+| separator | `React.ReactNode` | `'>'` | Separator element between breadcrumb items |
+| className | `string` | - | Additional CSS class names |
+
+### BreadCrumbItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| label | `string` | - | Display label for the breadcrumb (required) |
+| href | `string` | - | URL to navigate to when clicked |
+| onClick | `() => void` | - | Click handler for custom navigation logic |
+
+## Variants
+
+### Basic Navigation
+
+<ComponentPreview>
+  <BreadCrumbsBasic />
+</ComponentPreview>
+
+```tsx
+<BreadCrumbs
+  items={[
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'Widget' }
+  ]}
+/>
+```
+
+### With Custom Separator
+
+<ComponentPreview>
+  <BreadCrumbsCustomSeparator />
+</ComponentPreview>
+
+```tsx
+<BreadCrumbs
+  items={[
+    { label: 'Root', href: '/' },
+    { label: 'Section', href: '/section' },
+    { label: 'Current' }
+  ]}
+  separator="/"
+/>
+```
+
+### With Click Handlers
+
+<ComponentPreview>
+  <BreadCrumbsWithClickHandlers />
+</ComponentPreview>
+
+```tsx
+<BreadCrumbs
+  items={[
+    { label: 'Home', onClick: () => navigate('/') },
+    { label: 'Products', onClick: () => navigate('/products') },
+    { label: 'Current Page' }
+  ]}
+/>
+```
+
+### Mixed Navigation
+
+```tsx
+<BreadCrumbs
+  items={[
+    { label: 'Home', href: '/', onClick: trackNavigation },
+    { label: 'Category', href: '/category' },
+    { label: 'Details' }
+  ]}
+/>
+```

@@ -52,6 +52,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     );
   }
 );
+RadioGroup.displayName = 'RadioGroup';
 
 /**
  * Radio component with terminal-style rotated square indicator.
@@ -81,5 +82,6 @@ export const Radio = React.forwardRef<HTMLButtonElement, RadioProps>(
     );
   }
 );
+Radio.displayName = 'Radio';
 
 export default RadioGroup;

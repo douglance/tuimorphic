@@ -1,131 +1,93 @@
 /**
  * Alert Styles
- * MS-DOS terminal aesthetic with box-shadow borders
+ * Terminal aesthetic with solid single-line borders
+ * Designed for visual parity with React Ink terminal version
  */
 
 .alert {
-  position: relative;
-  display: block;
   font-family: var(--font-family-mono);
   font-size: var(--font-size);
   line-height: var(--theme-line-height-base);
   white-space: pre-wrap;
 }
 
-/* Header with title and optional close button */
-.header {
+/* Box with solid border matching terminal borderStyle="single" */
+.box {
+  border: 1px solid var(--alert-border-color, var(--theme-text));
+  padding: 0.5em 1ch;
+  background: var(--alert-background, transparent);
+}
+
+/* Title row */
+.titleRow {
   display: flex;
   align-items: center;
-  min-height: calc(var(--theme-line-height-base) * 1em);
+  gap: 1ch;
 }
 
-.leftBorder {
-  flex-shrink: 0;
-  color: var(--alert-border-color, var(--theme-text));
-}
-
-.rightBorder {
-  flex-shrink: 0;
-  color: var(--alert-border-color, var(--theme-text));
+.icon {
+  color: var(--alert-title-color, var(--theme-text));
 }
 
 .title {
-  flex-shrink: 0;
-  padding: 0 1ch;
-  font-size: var(--font-size);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-weight: 700;
   color: var(--alert-title-color, var(--theme-text));
-  white-space: nowrap;
 }
 
-.headerLine {
-  flex-grow: 1;
-  height: 1px;
-  min-width: 2ch;
-  border-bottom: 2px dashed var(--alert-border-color, var(--theme-text));
-  margin: 0 0.5ch;
+/* Content */
+.content {
+  color: var(--alert-text-color, var(--theme-text));
 }
 
-.headerSimple {
-  color: var(--alert-border-color, var(--theme-text));
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: clip;
-}
-
+/* Close button */
 .closeButton {
-  flex-shrink: 0;
+  margin-left: auto;
   background: none;
   border: none;
-  padding: 0 1ch;
-  margin: 0;
+  padding: 0;
   font-family: var(--font-family-mono);
   font-size: var(--font-size);
   color: var(--alert-title-color, var(--theme-text));
   cursor: pointer;
   outline: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--theme-accent);
-    outline-offset: 1px;
-  }
 }
 
-/* Content area */
-.content {
-  padding: calc(var(--theme-line-height-base) * 0.25em) 2ch;
-  box-shadow:
-    inset 2px 0 0 0 var(--alert-border-color, var(--theme-text)),
-    inset -2px 0 0 0 var(--alert-border-color, var(--theme-text));
-  color: var(--alert-text-color, var(--theme-text));
-  background: var(--alert-background, transparent);
+.closeButton:hover {
+  text-decoration: underline;
 }
 
-.footer {
-  color: var(--alert-border-color, var(--theme-text));
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: clip;
+.closeButton:focus-visible {
+  outline: 2px solid var(--theme-accent);
+  outline-offset: 1px;
 }
 
-/* Variant styles */
+/* Variant styles - matching terminal ANSI colors */
 .default {
   --alert-border-color: var(--theme-text);
   --alert-title-color: var(--theme-text);
   --alert-text-color: var(--theme-text);
-  --alert-background: transparent;
-}
-
-.success {
-  --alert-border-color: var(--theme-success);
-  --alert-title-color: var(--theme-success);
-  --alert-text-color: var(--theme-text);
-  --alert-background: transparent;
-}
-
-.warning {
-  --alert-border-color: var(--theme-warning);
-  --alert-title-color: var(--theme-warning);
-  --alert-text-color: var(--theme-text);
-  --alert-background: transparent;
-}
-
-.error {
-  --alert-border-color: var(--theme-error);
-  --alert-title-color: var(--theme-error);
-  --alert-text-color: var(--theme-text);
-  --alert-background: transparent;
 }
 
 .info {
-  --alert-border-color: var(--theme-accent);
-  --alert-title-color: var(--theme-accent);
+  --alert-border-color: #6272a4;
+  --alert-title-color: #6272a4;
   --alert-text-color: var(--theme-text);
-  --alert-background: transparent;
+}
+
+.success {
+  --alert-border-color: #50fa7b;
+  --alert-title-color: #50fa7b;
+  --alert-text-color: var(--theme-text);
+}
+
+.warning {
+  --alert-border-color: #f1fa8c;
+  --alert-title-color: #f1fa8c;
+  --alert-text-color: var(--theme-text);
+}
+
+.error {
+  --alert-border-color: #ff5555;
+  --alert-title-color: #ff5555;
+  --alert-text-color: var(--theme-text);
 }

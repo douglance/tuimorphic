@@ -1,8 +1,8 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  padding: 1em 2ch;
+  gap: var(--line-1);
+  padding: var(--line-1) 2ch;
   margin: 0;
   font-family: var(--font-family-mono);
   font-size: var(--font-size);

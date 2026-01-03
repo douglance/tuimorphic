@@ -1,0 +1,155 @@
+---
+title: Select
+description: Terminal-style dropdown select component for choosing from a list of options.
+---
+
+## Import
+
+```tsx
+import { Select } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <SelectBasic />
+</ComponentPreview>
+
+```tsx
+<Select
+  placeholder="Select a country"
+  options={[
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+  ]}
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'options', type: 'SelectOption[]', required: true, description: 'Array of options to display' },
+  { name: 'value', type: 'string', description: 'Selected value (controlled)' },
+  { name: 'defaultValue', type: 'string', description: 'Default selected value (uncontrolled)' },
+  { name: 'onValueChange', type: '(value: string) => void', description: 'Callback when value changes' },
+  { name: 'placeholder', type: 'string', default: "'Select...'", description: 'Placeholder text' },
+  { name: 'label', type: 'string', description: 'Label text' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the select is disabled' },
+  { name: 'name', type: 'string', description: 'Name attribute for forms' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+]} />
+
+### SelectOption Type
+
+```tsx
+interface SelectOption {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}
+```
+
+## With Label
+
+<ComponentPreview>
+  <SelectWithLabel />
+</ComponentPreview>
+
+```tsx
+<Select
+  label="Country"
+  placeholder="Select a country"
+  options={countries}
+/>
+```
+
+## Disabled State
+
+<ComponentPreview>
+  <SelectDisabled />
+</ComponentPreview>
+
+```tsx
+<Select
+  label="Country (Disabled)"
+  placeholder="Select a country"
+  options={countries}
+  disabled
+/>
+```
+
+## Disabled Options
+
+Individual options can be disabled:
+
+```tsx
+<Select
+  label="Select Plan"
+  placeholder="Choose a plan"
+  options={[
+    { value: 'free', label: 'Free Plan' },
+    { value: 'basic', label: 'Basic Plan' },
+    { value: 'pro', label: 'Pro Plan', disabled: true },
+    { value: 'enterprise', label: 'Enterprise Plan', disabled: true },
+  ]}
+/>
+```
+
+## Controlled Select
+
+<ComponentPreview>
+  <SelectControlled />
+</ComponentPreview>
+
+```tsx
+const [value, setValue] = useState('');
+
+<Select
+  label="Country"
+  placeholder="Select a country"
+  options={countries}
+  value={value}
+  onValueChange={setValue}
+/>
+```
+
+## Features
+
+- Built on Base UI's accessible select primitive
+- Keyboard navigation (Arrow keys, Enter, Escape)
+- Supports disabled state and disabled options
+- Works as controlled or uncontrolled component
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `Space` / `Enter` | Open dropdown / select highlighted option |
+| `Arrow Down` | Highlight next option |
+| `Arrow Up` | Highlight previous option |
+| `Escape` | Close dropdown |
+| `Home` | Highlight first option |
+| `End` | Highlight last option |
+
+## Accessibility
+
+- Built on accessible Base UI primitives
+- Proper ARIA attributes for screen readers
+- Keyboard navigable
+- Focus management
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Select border color |
+| `--theme-background` | Select background |
+| `--theme-text` | Select text color |
+| `--theme-button` | Option hover background |
+
+## Related Components
+
+- [ComboBox](/docs/components/forms/combo-box) - Searchable select
+- [RadioGroup](/docs/components/forms/radio) - For small option sets
+- [Input](/docs/components/forms/input) - Text input

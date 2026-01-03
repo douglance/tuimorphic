@@ -1,0 +1,117 @@
+---
+title: Menu
+description: Dropdown menu for actions and navigation with keyboard support.
+---
+
+## Import
+
+```tsx
+import { Menu, MenuItem, MenuSeparator } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <MenuBasic />
+</ComponentPreview>
+
+```tsx
+<Menu trigger={<Button>Actions</Button>}>
+  <MenuItem onSelect={() => console.log('Edit')}>Edit</MenuItem>
+  <MenuItem onSelect={() => console.log('Delete')}>Delete</MenuItem>
+</Menu>
+```
+
+## Props
+
+### Menu
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| trigger | `React.ReactElement` | - | Element that triggers the menu to open |
+| children | `React.ReactNode` | - | Menu items and content |
+| className | `string` | - | Additional CSS class names |
+
+### MenuItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| onSelect | `() => void` | - | Callback when item is selected |
+| disabled | `boolean` | - | Whether the item is disabled |
+| children | `React.ReactNode` | - | Item content |
+| className | `string` | - | Additional CSS class names |
+
+### MenuSeparator
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Basic
+
+<ComponentPreview>
+  <MenuBasic />
+</ComponentPreview>
+
+```tsx
+<Menu trigger={<Button>Actions</Button>}>
+  <MenuItem onSelect={() => console.log('Edit')}>Edit</MenuItem>
+  <MenuItem onSelect={() => console.log('Delete')}>Delete</MenuItem>
+</Menu>
+```
+
+### With Separator
+
+<ComponentPreview>
+  <MenuWithActions />
+</ComponentPreview>
+
+```tsx
+<Menu trigger={<Button>File</Button>}>
+  <MenuItem onSelect={handleNew}>New</MenuItem>
+  <MenuItem onSelect={handleOpen}>Open</MenuItem>
+  <MenuSeparator />
+  <MenuItem onSelect={handleSave}>Save</MenuItem>
+  <MenuItem disabled>Save As...</MenuItem>
+</Menu>
+```
+
+### User Actions Menu
+
+<ComponentPreview>
+  <MenuUserActions />
+</ComponentPreview>
+
+```tsx
+<Menu trigger={<Button>Options</Button>}>
+  <MenuItem onSelect={handleAction}>Available Action</MenuItem>
+  <MenuItem disabled>Unavailable Action</MenuItem>
+</Menu>
+```
+
+## Compound Components
+
+For advanced control:
+
+```tsx
+import {
+  MenuRoot,
+  MenuTrigger,
+  MenuPortal,
+  MenuPositioner,
+  MenuPopup,
+} from 'tuimorphic';
+
+<MenuRoot>
+  <MenuTrigger render={<Button>Options</Button>} />
+  <MenuPortal>
+    <MenuPositioner sideOffset={4}>
+      <MenuPopup>
+        <MenuItem onSelect={handleAction}>Action</MenuItem>
+      </MenuPopup>
+    </MenuPositioner>
+  </MenuPortal>
+</MenuRoot>
+```

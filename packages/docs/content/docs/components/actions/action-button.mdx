@@ -1,0 +1,164 @@
+---
+title: ActionButton
+description: Terminal-style action button with hotkey display, inspired by classic file managers.
+---
+
+## Import
+
+```tsx
+import { ActionButton } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <ActionButtonBasic />
+</ComponentPreview>
+
+```tsx
+<ActionButton>Action</ActionButton>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'variant', type: "'primary' | 'secondary'", default: "'primary'", description: 'Visual style variant' },
+  { name: 'hotkey', type: 'string', description: 'Hotkey label displayed before the action text (e.g., "F1", "^S")' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the button is disabled' },
+  { name: 'children', type: 'React.ReactNode', required: true, description: 'Action label text' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+  { name: 'onClick', type: '(event: MouseEvent) => void', description: 'Click event handler' },
+  { name: 'ref', type: 'React.Ref<HTMLButtonElement>', description: 'Forwarded ref to the button element' },
+]} />
+
+## Variants
+
+### All Variants
+
+<ComponentPreview>
+  <ActionButtonVariants />
+</ComponentPreview>
+
+```tsx
+<ActionButton variant="primary">Primary</ActionButton>
+<ActionButton variant="secondary">Secondary</ActionButton>
+```
+
+**Primary** - Default style for standard actions.
+
+**Secondary** - Subdued style for less prominent actions.
+
+## States
+
+### Default States
+
+<ComponentPreview>
+  <ActionButtonStates />
+</ComponentPreview>
+
+```tsx
+<ActionButton>Default</ActionButton>
+<ActionButton disabled>Disabled</ActionButton>
+```
+
+### All Variants Disabled
+
+<ComponentPreview>
+  <ActionButtonAllVariantsDisabled />
+</ComponentPreview>
+
+```tsx
+<ActionButton variant="primary" disabled>Primary</ActionButton>
+<ActionButton variant="secondary" disabled>Secondary</ActionButton>
+```
+
+## With Hotkeys
+
+Display keyboard shortcuts using the `hotkey` prop:
+
+<ComponentPreview>
+  <ActionButtonWithHotkeys />
+</ComponentPreview>
+
+```tsx
+<ActionButton hotkey="S">Save</ActionButton>
+<ActionButton hotkey="O">Open</ActionButton>
+<ActionButton hotkey="Q" variant="secondary">Quit</ActionButton>
+```
+
+### Hotkey Conventions
+
+| Format | Example | Usage |
+|--------|---------|-------|
+| `F1-F12` | `hotkey="F1"` | Function keys |
+| `^X` | `hotkey="^S"` | Ctrl+Key (caret notation) |
+| `A-Z` | `hotkey="S"` | Single letter shortcuts |
+| `1-9` | `hotkey="1"` | Number keys |
+
+## Interactive Example
+
+<ComponentPreview className="column">
+  <ActionButtonInteractive />
+</ComponentPreview>
+
+```tsx
+const [message, setMessage] = useState('Click an action');
+
+<ActionButton hotkey="N" onClick={() => setMessage('New file created')}>
+  New
+</ActionButton>
+<ActionButton hotkey="S" onClick={() => setMessage('File saved')}>
+  Save
+</ActionButton>
+<ActionButton hotkey="D" variant="secondary" onClick={() => setMessage('Item deleted')}>
+  Delete
+</ActionButton>
+```
+
+## Custom Sizes
+
+<ComponentPreview>
+  <ActionButtonSizes />
+</ComponentPreview>
+
+```tsx
+<ActionButton style={{ fontSize: '10px' }}>Small</ActionButton>
+<ActionButton>Default</ActionButton>
+<ActionButton style={{ fontSize: '16px' }}>Large</ActionButton>
+```
+
+## Accessibility
+
+- Built on Base UI's accessible button primitive
+- Hotkeys are displayed visually but not automatically bound
+- Use a keyboard event listener to implement actual hotkey functionality
+- Supports keyboard navigation with Enter/Space
+- Clear focus states for keyboard users
+
+## Usage with ActionBar
+
+ActionButton is designed to be used inside ActionBar for toolbar-style layouts:
+
+```tsx
+import { ActionBar, ActionButton } from 'tuimorphic';
+
+<ActionBar>
+  <ActionButton hotkey="F1">Help</ActionButton>
+  <ActionButton hotkey="F2">Rename</ActionButton>
+  <ActionButton hotkey="F8" variant="secondary">Delete</ActionButton>
+</ActionBar>
+```
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-button` | Primary button background |
+| `--theme-button-text` | Primary button text |
+| `--theme-button-background` | Secondary button background |
+| `--theme-focused-border` | Focus outline color |
+
+## Related Components
+
+- [ActionBar](/docs/components/actions/action-bar) - Container for action buttons
+- [Button](/docs/components/actions/button) - Standard button component

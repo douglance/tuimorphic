@@ -22,7 +22,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 320px;
+  min-width: var(--dialog-min-width);
   max-width: 90vw;
   background: var(--theme-background);
   font-family: var(--font-family-mono);

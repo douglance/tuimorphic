@@ -253,5 +253,6 @@ export const SidebarLayout = React.forwardRef<HTMLDivElement, SidebarLayoutProps
     );
   }
 );
+SidebarLayout.displayName = 'SidebarLayout';
 
 export default SidebarLayout;

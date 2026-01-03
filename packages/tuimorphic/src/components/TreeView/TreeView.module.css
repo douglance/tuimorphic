@@ -29,7 +29,7 @@
   background: transparent;
   border: none;
   text-align: left;
-  min-height: 1em;
+  min-height: var(--line-1);
 
   &:hover {
     background: var(--theme-background-hover);

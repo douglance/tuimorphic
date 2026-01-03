@@ -154,5 +154,6 @@ export const CodeBlock = React.forwardRef<HTMLElement, CodeBlockProps>(function 
     </figure>
   );
 });
+CodeBlock.displayName = 'CodeBlock';
 
 export default CodeBlock;

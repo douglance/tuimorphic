@@ -1,0 +1,154 @@
+---
+title: Checkbox
+description: Terminal-style checkbox with [X] indicator for boolean selections.
+---
+
+## Import
+
+```tsx
+import { Checkbox } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <CheckboxBasic />
+</ComponentPreview>
+
+```tsx
+<Checkbox label="Accept terms and conditions" />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'checked', type: 'boolean', description: 'Whether the checkbox is checked (controlled)' },
+  { name: 'defaultChecked', type: 'boolean', default: 'false', description: 'Default checked state (uncontrolled)' },
+  { name: 'onCheckedChange', type: '(checked: boolean) => void', description: 'Callback when checked state changes' },
+  { name: 'label', type: 'string', description: 'Label text displayed next to checkbox' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the checkbox is disabled' },
+  { name: 'name', type: 'string', description: 'Name attribute for forms' },
+  { name: 'value', type: 'string', description: 'Value attribute for forms' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+  { name: 'ref', type: 'React.Ref<HTMLButtonElement>', description: 'Forwarded ref to the button element' },
+]} />
+
+## With Label
+
+<ComponentPreview>
+  <CheckboxWithLabel />
+</ComponentPreview>
+
+```tsx
+<Checkbox label="Accept terms and conditions" />
+```
+
+## Checkbox Group
+
+<ComponentPreview>
+  <CheckboxGroup />
+</ComponentPreview>
+
+```tsx
+<div className="space-y-2">
+  <Checkbox label="Option A" />
+  <Checkbox label="Option B" />
+  <Checkbox label="Option C" />
+</div>
+```
+
+## Disabled States
+
+<ComponentPreview>
+  <CheckboxDisabled />
+</ComponentPreview>
+
+```tsx
+<Checkbox label="Disabled unchecked" disabled />
+<Checkbox label="Disabled checked" disabled checked />
+```
+
+## Controlled Checkbox
+
+<ComponentPreview>
+  <CheckboxControlled />
+</ComponentPreview>
+
+```tsx
+const [checked, setChecked] = useState(false);
+
+<Checkbox
+  label="I agree to the terms"
+  checked={checked}
+  onCheckedChange={setChecked}
+/>
+```
+
+## Multiple Selections Example
+
+For multiple selections, manage state manually:
+
+```tsx
+const [selected, setSelected] = useState<string[]>(['notifications']);
+
+const toggleOption = (option: string) => {
+  setSelected((prev) =>
+    prev.includes(option)
+      ? prev.filter((o) => o !== option)
+      : [...prev, option]
+  );
+};
+
+<fieldset>
+  <legend>Notification Preferences</legend>
+  <Checkbox
+    label="Email notifications"
+    checked={selected.includes('email')}
+    onCheckedChange={() => toggleOption('email')}
+  />
+  <Checkbox
+    label="Push notifications"
+    checked={selected.includes('notifications')}
+    onCheckedChange={() => toggleOption('notifications')}
+  />
+  <Checkbox
+    label="SMS notifications"
+    checked={selected.includes('sms')}
+    onCheckedChange={() => toggleOption('sms')}
+  />
+</fieldset>
+```
+
+## Visual Design
+
+The checkbox uses a terminal-style indicator:
+- **Unchecked**: `[ ]`
+- **Checked**: `[X]`
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `Space` | Toggle checked state |
+| `Enter` | Toggle checked state |
+| `Tab` | Move focus to next element |
+
+## Accessibility
+
+- Built on Base UI's accessible checkbox primitive
+- Proper ARIA attributes for screen readers
+- Keyboard accessible
+- Label properly associated with checkbox
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Checkbox border color |
+| `--theme-text` | Indicator and label color |
+| `--theme-focused-border` | Border color when focused |
+
+## Related Components
+
+- [Radio](/docs/components/forms/radio) - For single selection from multiple options
+- [Toggle](/docs/components/forms/toggle) - For on/off switches

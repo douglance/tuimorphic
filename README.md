@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/tuimorphic.svg)](https://www.npmjs.com/package/tuimorphic)
 [![npm downloads](https://img.shields.io/npm/dm/tuimorphic.svg)](https://www.npmjs.com/package/tuimorphic)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue.svg)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
 
 Terminal-aesthetic React components built on [Base UI](https://base-ui.com/) with styling inspired by [SRCL/Sacred Computer](https://sacred.computer).
 
@@ -11,11 +11,11 @@ Terminal-aesthetic React components built on [Base UI](https://base-ui.com/) wit
 
 ## Features
 
-- **37 accessible components** built on Base UI primitives
+- **54 accessible components** built on Base UI primitives
 - **Light/dark themes** with 7 color tints
 - **Terminal aesthetic** with box-drawing characters and monospace typography
 - **TypeScript-first** with full type definitions
-- **SCSS Modules** for scoped, customizable styling
+- **CSS Modules** for scoped, customizable styling
 - **GNU Unifont** monospace font included
 - **React Server Components** compatible (`'use client'` directives)
 - **WAI-ARIA compliant** with full keyboard navigation

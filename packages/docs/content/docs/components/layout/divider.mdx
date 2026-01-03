@@ -1,0 +1,71 @@
+---
+title: Divider
+description: Visual separator for content sections with horizontal or vertical orientation.
+---
+
+## Import
+
+```tsx
+import { Divider } from 'tuimorphic';
+```
+
+## Usage
+
+The Divider component separates content sections with a simple line in either horizontal or vertical orientation.
+
+<ComponentPreview>
+  <DividerBasic />
+</ComponentPreview>
+
+```tsx
+<Divider />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| orientation | `'horizontal' \| 'vertical'` | `'horizontal'` | Orientation of the divider |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Horizontal
+
+<ComponentPreview>
+  <DividerBasic />
+</ComponentPreview>
+
+```tsx
+<p>Content above</p>
+<Divider />
+<p>Content below</p>
+```
+
+### Vertical
+
+<ComponentPreview>
+  <DividerVertical />
+</ComponentPreview>
+
+```tsx
+<div style={{ display: 'flex', alignItems: 'center', height: '50px' }}>
+  <span>Left</span>
+  <Divider orientation="vertical" />
+  <span>Right</span>
+</div>
+```
+
+### In Card Layout
+
+<ComponentPreview>
+  <DividerInCard />
+</ComponentPreview>
+
+```tsx
+<Card title="Settings">
+  <p>General settings</p>
+  <Divider />
+  <p>Advanced settings</p>
+</Card>
+```

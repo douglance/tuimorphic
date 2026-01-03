@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { forwardRef } from 'react';
 import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import { classNames } from '@/utils/classNames';
 import styles from './Dialog.module.css';
@@ -106,7 +105,7 @@ export const DialogRoot = (props: DialogRootProps) => (
 );
 DialogRoot.displayName = 'DialogRoot';
 
-export const DialogTrigger = forwardRef<HTMLButtonElement, DialogTriggerProps>(
+export const DialogTrigger = React.forwardRef<HTMLButtonElement, DialogTriggerProps>(
   (props, ref) => <BaseDialog.Trigger ref={ref} {...props} />
 );
 DialogTrigger.displayName = 'DialogTrigger';
@@ -116,7 +115,7 @@ export const DialogPortal = (props: DialogPortalProps) => (
 );
 DialogPortal.displayName = 'DialogPortal';
 
-export const DialogBackdrop = forwardRef<HTMLDivElement, DialogBackdropProps>(
+export const DialogBackdrop = React.forwardRef<HTMLDivElement, DialogBackdropProps>(
   ({ className, ...props }, ref) => (
     <BaseDialog.Backdrop
       ref={ref}
@@ -132,7 +131,7 @@ export const DialogBackdrop = forwardRef<HTMLDivElement, DialogBackdropProps>(
 );
 DialogBackdrop.displayName = 'DialogBackdrop';
 
-export const DialogPopup = forwardRef<HTMLDivElement, DialogPopupProps>(
+export const DialogPopup = React.forwardRef<HTMLDivElement, DialogPopupProps>(
   ({ className, children, ...props }, ref) => (
     <BaseDialog.Popup
       ref={ref}
@@ -150,7 +149,7 @@ export const DialogPopup = forwardRef<HTMLDivElement, DialogPopupProps>(
 );
 DialogPopup.displayName = 'DialogPopup';
 
-export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
+export const DialogTitle = React.forwardRef<HTMLHeadingElement, DialogTitleProps>(
   ({ className, ...props }, ref) => (
     <BaseDialog.Title
       ref={ref}
@@ -166,7 +165,7 @@ export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
 );
 DialogTitle.displayName = 'DialogTitle';
 
-export const DialogDescription = forwardRef<
+export const DialogDescription = React.forwardRef<
   HTMLParagraphElement,
   DialogDescriptionProps
 >(({ className, ...props }, ref) => (
@@ -183,7 +182,7 @@ export const DialogDescription = forwardRef<
 ));
 DialogDescription.displayName = 'DialogDescription';
 
-export const DialogClose = forwardRef<HTMLButtonElement, DialogCloseProps>(
+export const DialogClose = React.forwardRef<HTMLButtonElement, DialogCloseProps>(
   ({ className, children = '[X]', ...props }, ref) => (
     <BaseDialog.Close
       ref={ref}

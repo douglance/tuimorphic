@@ -1,0 +1,180 @@
+---
+title: TreeView
+description: Hierarchical file/folder structure with box-drawing characters and keyboard navigation.
+---
+
+## Import
+
+```tsx
+import { TreeView } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <TreeViewBasic />
+</ComponentPreview>
+
+```tsx
+const data = [
+  {
+    id: 'src',
+    label: 'src',
+    children: [
+      { id: 'index.ts', label: 'index.ts', isFile: true },
+      {
+        id: 'components',
+        label: 'components',
+        children: [
+          { id: 'Button.tsx', label: 'Button.tsx', isFile: true },
+        ],
+      },
+    ],
+  },
+];
+
+<TreeView data={data} defaultExpanded={['src']} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| data | `TreeNode[]` | - | Tree data structure to render (required) |
+| defaultExpanded | `string[]` | `[]` | Node IDs that should be expanded by default |
+| expanded | `string[]` | - | Controlled expanded state |
+| onSelect | `(node: TreeNode) => void` | - | Callback when a node is selected |
+| onToggle | `(nodeId: string, expanded: boolean) => void` | - | Callback when a node is expanded/collapsed |
+| className | `string` | - | Additional CSS class names |
+
+### TreeNode
+
+| Prop | Type | Description |
+|------|------|-------------|
+| id | `string` | Unique identifier for the node |
+| label | `string` | Display label for the node |
+| children | `TreeNode[]` | Child nodes (makes this a folder/branch) |
+| isFile | `boolean` | Whether this is a file (leaf node) |
+| icon | `React.ReactNode` | Custom icon to display |
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| Arrow Up/Down | Navigate between nodes |
+| Arrow Right | Expand folder or move to first child |
+| Arrow Left | Collapse folder or move to parent |
+| Enter/Space | Select node and toggle expansion |
+
+## Variants
+
+### File Tree
+
+<ComponentPreview>
+  <TreeViewBasic />
+</ComponentPreview>
+
+```tsx
+const fileTree = [
+  {
+    id: 'src',
+    label: 'src',
+    children: [
+      { id: 'index.ts', label: 'index.ts', isFile: true },
+      {
+        id: 'components',
+        label: 'components',
+        children: [
+          { id: 'Button.tsx', label: 'Button.tsx', isFile: true },
+          { id: 'Card.tsx', label: 'Card.tsx', isFile: true },
+        ],
+      },
+    ],
+  },
+  { id: 'package.json', label: 'package.json', isFile: true },
+];
+
+<TreeView data={fileTree} defaultExpanded={['src', 'components']} />
+```
+
+### With Selection Callback
+
+<ComponentPreview>
+  <TreeViewWithSelection />
+</ComponentPreview>
+
+```tsx
+<TreeView
+  data={fileTree}
+  onSelect={(node) => console.log('Selected:', node.label)}
+  onToggle={(id, expanded) => console.log(id, expanded)}
+/>
+```
+
+### Controlled Expansion
+
+```tsx
+const [expanded, setExpanded] = useState(['src']);
+
+<TreeView
+  data={fileTree}
+  expanded={expanded}
+  onToggle={(nodeId, isExpanded) => {
+    if (isExpanded) {
+      setExpanded([...expanded, nodeId]);
+    } else {
+      setExpanded(expanded.filter(id => id !== nodeId));
+    }
+  }}
+/>
+```
+
+### Deep Nesting
+
+<ComponentPreview>
+  <TreeViewDeepNesting />
+</ComponentPreview>
+
+```tsx
+const deepTree = [
+  {
+    id: 'level-1',
+    label: 'Level 1',
+    children: [
+      {
+        id: 'level-2',
+        label: 'Level 2',
+        children: [
+          {
+            id: 'level-3',
+            label: 'Level 3',
+            children: [
+              { id: 'file', label: 'deep-file.txt', isFile: true },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+<TreeView data={deepTree} defaultExpanded={['level-1', 'level-2', 'level-3']} />
+```
+
+### Custom Icons
+
+```tsx
+const treeWithIcons = [
+  {
+    id: 'folder',
+    label: 'Documents',
+    icon: '[]',
+    children: [
+      { id: 'file1', label: 'readme.txt', isFile: true, icon: '#' },
+      { id: 'file2', label: 'notes.md', isFile: true, icon: '*' },
+    ],
+  },
+];
+
+<TreeView data={treeWithIcons} />
+```

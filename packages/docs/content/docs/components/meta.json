@@ -1,0 +1,23 @@
+{
+  "title": "Components",
+  "pages": [
+    "---Actions---",
+    "...actions",
+    "---Form Controls---",
+    "...forms",
+    "---Layout---",
+    "...layout",
+    "---Navigation---",
+    "...navigation",
+    "---Overlays---",
+    "...overlays",
+    "---Feedback---",
+    "...feedback",
+    "---Data Display---",
+    "...data-display",
+    "---Typography---",
+    "...typography",
+    "---Misc---",
+    "...misc"
+  ]
+}

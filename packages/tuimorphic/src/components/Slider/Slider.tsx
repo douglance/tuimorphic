@@ -100,5 +100,6 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     );
   }
 );
+Slider.displayName = 'Slider';
 
 export default Slider;

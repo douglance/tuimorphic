@@ -1,0 +1,95 @@
+---
+title: Heading
+description: Titles and section headers with optional terminal-style box-drawing decorations.
+---
+
+## Import
+
+```tsx
+import { Heading } from 'tuimorphic';
+```
+
+## Usage
+
+The Heading component renders semantic heading elements with optional terminal-style decorations using box-drawing characters.
+
+<ComponentPreview>
+  <HeadingBasic />
+</ComponentPreview>
+
+```tsx
+<Heading level={1}>Main Title</Heading>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| level | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `2` | Heading level (maps to h1-h6) |
+| decorated | `boolean` | `false` | Add terminal-style box-drawing decorations |
+| decorationStyle | `'double' \| 'single' \| 'arrow'` | `'double'` | Decoration style |
+| align | `'left' \| 'center' \| 'right'` | - | Text alignment |
+| transform | `'uppercase' \| 'lowercase' \| 'capitalize' \| 'none'` | `'uppercase'` | Text transform |
+| hero | `boolean` | `false` | Use hero styling with wide letter spacing |
+| children | `React.ReactNode` | - | Heading content |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Heading Levels
+
+<ComponentPreview>
+  <HeadingLevels />
+</ComponentPreview>
+
+```tsx
+<Heading level={1}>Heading 1</Heading>
+<Heading level={2}>Heading 2</Heading>
+<Heading level={3}>Heading 3</Heading>
+<Heading level={4}>Heading 4</Heading>
+<Heading level={5}>Heading 5</Heading>
+<Heading level={6}>Heading 6</Heading>
+```
+
+### Decorated
+
+<ComponentPreview>
+  <HeadingDecorated />
+</ComponentPreview>
+
+```tsx
+<Heading level={2} decorated>Section Title</Heading>
+<Heading level={2} decorated decorationStyle="single">Single Line</Heading>
+<Heading level={2} decorated decorationStyle="arrow">Arrow Style</Heading>
+```
+
+### Alignment
+
+<ComponentPreview>
+  <HeadingAlignment />
+</ComponentPreview>
+
+```tsx
+<Heading align="left">Left Aligned</Heading>
+<Heading align="center">Center Aligned</Heading>
+<Heading align="right">Right Aligned</Heading>
+```
+
+### Text Transform
+
+```tsx
+<Heading transform="uppercase">Uppercase</Heading>
+<Heading transform="lowercase">Lowercase</Heading>
+<Heading transform="capitalize">Capitalize</Heading>
+<Heading transform="none">No Transform</Heading>
+```
+
+### Hero Style
+
+<ComponentPreview>
+  <HeadingHero />
+</ComponentPreview>
+
+```tsx
+<Heading level={1} hero>Hero Title</Heading>
+```

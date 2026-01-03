@@ -148,6 +148,7 @@ export const BarLoader = React.forwardRef<HTMLDivElement, BarLoaderProps>(
     );
   }
 );
+BarLoader.displayName = 'BarLoader';
 
 export interface BlockLoaderProps {
   /** Animation mode (0-11), each with different character patterns */
@@ -231,3 +232,4 @@ export const BlockLoader = React.forwardRef<HTMLSpanElement, BlockLoaderProps>(
     );
   }
 );
+BlockLoader.displayName = 'BlockLoader';

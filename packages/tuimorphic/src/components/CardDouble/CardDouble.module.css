@@ -7,8 +7,8 @@
  */
 
 .card {
-  --card-double-border-width: 6px;
-  --card-double-top-gutter: 6px;
+  --card-double-border-width: 0.5ch;
+  --card-double-top-gutter: 0.5lh;
 
   position: relative;
   display: block;

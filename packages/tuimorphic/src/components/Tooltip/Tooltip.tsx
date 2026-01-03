@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { forwardRef } from 'react';
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip';
 import { classNames } from '@/utils/classNames';
 import styles from './Tooltip.module.css';
@@ -107,7 +106,7 @@ export const TooltipRoot = (props: TooltipRootProps) => (
 );
 TooltipRoot.displayName = 'TooltipRoot';
 
-export const TooltipTrigger = forwardRef<HTMLButtonElement, TooltipTriggerProps>(
+export const TooltipTrigger = React.forwardRef<HTMLButtonElement, TooltipTriggerProps>(
   ({ className, ...props }, ref) => (
     <BaseTooltip.Trigger
       ref={ref}
@@ -125,7 +124,7 @@ export const TooltipPortal = (props: TooltipPortalProps) => (
 );
 TooltipPortal.displayName = 'TooltipPortal';
 
-export const TooltipPositioner = forwardRef<HTMLDivElement, TooltipPositionerProps>(
+export const TooltipPositioner = React.forwardRef<HTMLDivElement, TooltipPositionerProps>(
   ({ className, ...props }, ref) => (
     <BaseTooltip.Positioner
       ref={ref}
@@ -138,7 +137,7 @@ export const TooltipPositioner = forwardRef<HTMLDivElement, TooltipPositionerPro
 );
 TooltipPositioner.displayName = 'TooltipPositioner';
 
-export const TooltipPopup = forwardRef<HTMLDivElement, TooltipPopupProps>(
+export const TooltipPopup = React.forwardRef<HTMLDivElement, TooltipPopupProps>(
   ({ className, ...props }, ref) => (
     <BaseTooltip.Popup
       ref={ref}
@@ -154,7 +153,7 @@ export const TooltipPopup = forwardRef<HTMLDivElement, TooltipPopupProps>(
 );
 TooltipPopup.displayName = 'TooltipPopup';
 
-export const TooltipArrow = forwardRef<HTMLDivElement, TooltipArrowProps>(
+export const TooltipArrow = React.forwardRef<HTMLDivElement, TooltipArrowProps>(
   ({ className, ...props }, ref) => (
     <BaseTooltip.Arrow
       ref={ref}

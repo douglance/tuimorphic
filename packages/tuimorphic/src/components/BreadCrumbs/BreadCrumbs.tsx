@@ -130,5 +130,6 @@ export const BreadCrumbs = React.forwardRef<HTMLElement, BreadCrumbsProps>(
     );
   }
 );
+BreadCrumbs.displayName = 'BreadCrumbs';
 
 export default BreadCrumbs;

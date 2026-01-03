@@ -1,0 +1,86 @@
+---
+title: Alert
+description: Display important messages with terminal styling and variant-based color coding.
+---
+
+## Import
+
+```tsx
+import { Alert } from 'tuimorphic';
+```
+
+## Usage
+
+The Alert component displays important messages with solid single-line borders and variant-based color coding for different severity levels.
+
+<ComponentPreview>
+  <AlertBasic />
+</ComponentPreview>
+
+```tsx
+<Alert>Default alert message</Alert>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | `'default' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'default'` | Visual variant indicating alert severity |
+| title | `React.ReactNode` | - | Optional title displayed in the alert header |
+| children | `React.ReactNode` | - | Alert message content |
+| dismissible | `boolean` | `false` | Whether to show a dismiss button |
+| onDismiss | `() => void` | - | Callback when the alert is dismissed |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Severity Variants
+
+<ComponentPreview>
+  <AlertVariants />
+</ComponentPreview>
+
+```tsx
+<Alert variant="default">Default alert message</Alert>
+<Alert variant="success">Operation completed successfully.</Alert>
+<Alert variant="warning">Please review before proceeding.</Alert>
+<Alert variant="error">An error occurred.</Alert>
+<Alert variant="info">Here is some helpful information.</Alert>
+```
+
+### With Title
+
+<ComponentPreview>
+  <AlertWithTitle />
+</ComponentPreview>
+
+```tsx
+<Alert variant="success" title="Success">
+  Operation completed successfully.
+</Alert>
+
+<Alert variant="error" title="Error">
+  An error occurred while processing your request.
+</Alert>
+```
+
+### Dismissible
+
+<ComponentPreview>
+  <AlertDismissible />
+</ComponentPreview>
+
+```tsx
+const [visible, setVisible] = useState(true);
+
+{visible && (
+  <Alert
+    variant="warning"
+    title="Warning"
+    dismissible
+    onDismiss={() => setVisible(false)}
+  >
+    This alert can be dismissed.
+  </Alert>
+)}
+```

@@ -143,6 +143,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     );
   }
 );
+Accordion.displayName = 'Accordion';
 
 /**
  * AccordionItem wraps a trigger and content panel.
@@ -169,6 +170,7 @@ export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps
     );
   }
 );
+AccordionItem.displayName = 'AccordionItem';
 
 /**
  * AccordionHeader wraps the trigger element.
@@ -193,6 +195,7 @@ export const AccordionHeader = React.forwardRef<HTMLHeadingElement, AccordionHea
     );
   }
 );
+AccordionHeader.displayName = 'AccordionHeader';
 
 /**
  * AccordionTrigger displays the header with indicators.
@@ -225,6 +228,7 @@ export const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTri
     );
   }
 );
+AccordionTrigger.displayName = 'AccordionTrigger';
 
 /**
  * AccordionContent contains the collapsible panel content.
@@ -249,6 +253,7 @@ export const AccordionContent = React.forwardRef<HTMLDivElement, AccordionConten
     );
   }
 );
+AccordionContent.displayName = 'AccordionContent';
 
 // Export Base UI parts for advanced usage
 export const AccordionRoot = BaseAccordion.Root;

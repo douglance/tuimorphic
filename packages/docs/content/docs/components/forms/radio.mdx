@@ -1,0 +1,147 @@
+---
+title: Radio
+description: Terminal-style radio button group for single selection from multiple options.
+---
+
+## Import
+
+```tsx
+import { RadioGroup, Radio } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <RadioBasic />
+</ComponentPreview>
+
+```tsx
+<RadioGroup defaultValue="option1">
+  <Radio value="option1" label="Option 1" />
+  <Radio value="option2" label="Option 2" />
+  <Radio value="option3" label="Option 3" />
+</RadioGroup>
+```
+
+## Props
+
+### RadioGroup Props
+
+<PropsTable props={[
+  { name: 'value', type: 'string', description: 'Selected value (controlled)' },
+  { name: 'defaultValue', type: 'string', description: 'Default selected value (uncontrolled)' },
+  { name: 'onValueChange', type: '(value: string) => void', description: 'Callback when value changes' },
+  { name: 'name', type: 'string', description: 'Name attribute for forms' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the entire group is disabled' },
+  { name: 'children', type: 'React.ReactNode', required: true, description: 'Radio components' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+  { name: 'ref', type: 'React.Ref<HTMLDivElement>', description: 'Forwarded ref to the container' },
+]} />
+
+### Radio Props
+
+<PropsTable props={[
+  { name: 'value', type: 'string', required: true, description: 'Value of this radio option' },
+  { name: 'label', type: 'string', description: 'Label text displayed next to radio' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether this option is disabled' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+  { name: 'ref', type: 'React.Ref<HTMLButtonElement>', description: 'Forwarded ref to the button' },
+]} />
+
+## Horizontal Layout
+
+<ComponentPreview>
+  <RadioHorizontal />
+</ComponentPreview>
+
+```tsx
+<RadioGroup defaultValue="medium" className="flex gap-4">
+  <Radio value="small" label="Small" />
+  <Radio value="medium" label="Medium" />
+  <Radio value="large" label="Large" />
+</RadioGroup>
+```
+
+## Disabled Options
+
+<ComponentPreview>
+  <RadioDisabled />
+</ComponentPreview>
+
+```tsx
+<RadioGroup defaultValue="enabled">
+  <Radio value="enabled" label="Enabled option" />
+  <Radio value="disabled" label="Disabled option" disabled />
+  <Radio value="another" label="Another enabled" />
+</RadioGroup>
+```
+
+## Controlled RadioGroup
+
+<ComponentPreview>
+  <RadioControlled />
+</ComponentPreview>
+
+```tsx
+const [value, setValue] = useState('medium');
+
+<RadioGroup value={value} onValueChange={setValue}>
+  <Radio value="small" label="Small" />
+  <Radio value="medium" label="Medium" />
+  <Radio value="large" label="Large" />
+</RadioGroup>
+```
+
+## Pricing Plans Example
+
+```tsx
+const [plan, setPlan] = useState('pro');
+
+const plans = [
+  { value: 'free', label: 'Free', price: '$0/month' },
+  { value: 'basic', label: 'Basic', price: '$9/month' },
+  { value: 'pro', label: 'Pro', price: '$29/month' },
+  { value: 'enterprise', label: 'Enterprise', price: '$99/month' },
+];
+
+<RadioGroup value={plan} onValueChange={setPlan}>
+  {plans.map((p) => (
+    <Radio key={p.value} value={p.value} label={`${p.label} - ${p.price}`} />
+  ))}
+</RadioGroup>
+```
+
+## Visual Design
+
+The radio uses a terminal-style indicator:
+- **Unselected**: `( )`
+- **Selected**: `(*)`
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `Arrow Down` / `Arrow Right` | Select next option |
+| `Arrow Up` / `Arrow Left` | Select previous option |
+| `Tab` | Move focus to/from radio group |
+
+## Accessibility
+
+- Built on Base UI's accessible radio primitive
+- Proper ARIA attributes for screen readers
+- Keyboard navigable within group
+- Labels properly associated with radio buttons
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Radio border color |
+| `--theme-text` | Indicator and label color |
+| `--theme-focused-border` | Border color when focused |
+
+## Related Components
+
+- [Checkbox](/docs/components/forms/checkbox) - For multiple selections
+- [Select](/docs/components/forms/select) - For longer option lists
+- [Toggle](/docs/components/forms/toggle) - For on/off switches

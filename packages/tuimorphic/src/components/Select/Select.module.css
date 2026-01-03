@@ -75,7 +75,7 @@
   font-size: var(--font-size);
   line-height: var(--theme-line-height-base);
   color: var(--theme-text);
-  max-height: 20rem;
+  max-height: var(--dropdown-max-height);
   overflow-y: auto;
   z-index: var(--z-index-10);
   min-width: var(--anchor-width);
@@ -102,7 +102,7 @@
 .option {
   display: flex;
   align-items: center;
-  padding: 0.25em 1ch;
+  padding: var(--line-quarter) 1ch;
   cursor: pointer;
   outline: none;
 

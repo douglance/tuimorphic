@@ -1,0 +1,97 @@
+---
+title: Message
+description: Chat-style message bubbles with MS-DOS terminal aesthetics.
+---
+
+## Import
+
+```tsx
+import { Message, MessageList } from 'tuimorphic';
+```
+
+## Usage
+
+The Message component displays chat-style messages with rectangular speech bubbles and triangular pointers.
+
+<ComponentPreview>
+  <MessageBasic />
+</ComponentPreview>
+
+```tsx
+<Message position="left" author="Alice" timestamp="10:30 AM">
+  Hello! How are you?
+</Message>
+```
+
+## Props
+
+### Message
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | Message content (required) |
+| position | `'left' \| 'right'` | `'left'` | Position of the message bubble |
+| author | `string` | - | Author name displayed above the message |
+| timestamp | `string` | - | Timestamp displayed below the message |
+| className | `string` | - | Additional CSS class names |
+
+### MessageList
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | Message components to render |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Left Position (Sender)
+
+```tsx
+<Message position="left" author="Alice" timestamp="10:30 AM">
+  Hello! How are you?
+</Message>
+```
+
+### Right Position (Receiver)
+
+```tsx
+<Message position="right" author="Bob" timestamp="10:31 AM">
+  I'm doing great, thanks!
+</Message>
+```
+
+### Conversation Layout
+
+<ComponentPreview>
+  <MessageConversation />
+</ComponentPreview>
+
+```tsx
+<MessageList>
+  <Message position="left" author="Alice" timestamp="10:30 AM">
+    Hello! How are you?
+  </Message>
+  <Message position="right" author="Bob" timestamp="10:31 AM">
+    I'm doing great, thanks!
+  </Message>
+  <Message position="left" author="Alice" timestamp="10:32 AM">
+    That's wonderful to hear!
+  </Message>
+</MessageList>
+```
+
+### Without Author
+
+```tsx
+<Message position="left" timestamp="10:30 AM">
+  Anonymous message
+</Message>
+```
+
+### Without Timestamp
+
+```tsx
+<Message position="left" author="System">
+  This is a system message.
+</Message>
+```

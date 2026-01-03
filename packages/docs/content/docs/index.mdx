@@ -1,0 +1,62 @@
+---
+title: Getting Started
+description: Terminal-aesthetic React components built on Base UI with SRCL styling
+---
+
+## Introduction
+
+Tuimorphic is a terminal-aesthetic React component library built on [Base UI](https://base-ui.com/) with styling inspired by [SRCL/Sacred Computer](https://sacred.computer). It provides beautiful, accessible, and highly customizable components that bring the distinctive look of terminal interfaces to your React applications.
+
+## Features
+
+- **Terminal Aesthetic**: Box-drawing characters, monospace typography, and terminal-inspired visual language
+- **Built on Base UI**: Leverages Base UI primitives for accessibility and headless functionality
+- **Themeable**: Light/dark themes with multiple color tints (green, blue, red, yellow, purple, orange, pink)
+- **TypeScript First**: Full TypeScript support with exported types
+- **React Server Components**: Compatible with RSC via `'use client'` directives
+
+## Quick Start
+
+```bash
+npm install tuimorphic
+```
+
+Import the styles in your app's entry point:
+
+```tsx
+import 'tuimorphic/styles.css';
+```
+
+Then use the components:
+
+```tsx
+import { Button, Card, Input } from 'tuimorphic';
+
+function App() {
+  return (
+    <Card>
+      <Input placeholder="Enter your name" />
+      <Button>Submit</Button>
+    </Card>
+  );
+}
+```
+
+## Theming
+
+Tuimorphic uses CSS custom properties for theming. Apply themes via body classes:
+
+```tsx
+// Dark theme (default)
+<body className="theme-dark">
+
+// Light theme
+<body className="theme-light">
+
+// Color tints
+<body className="theme-dark tint-green">
+<body className="theme-dark tint-blue">
+<body className="theme-dark tint-purple">
+```
+
+Available tints: `green`, `blue`, `red`, `yellow`, `purple`, `orange`, `pink`

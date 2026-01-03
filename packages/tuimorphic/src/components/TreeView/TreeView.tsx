@@ -216,6 +216,7 @@ export const TreeView = React.forwardRef<HTMLDivElement, TreeViewProps>(
     );
   }
 );
+TreeView.displayName = 'TreeView';
 
 /**
  * Navigate to the next or previous focusable tree node.

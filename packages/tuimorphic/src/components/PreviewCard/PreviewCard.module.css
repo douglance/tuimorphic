@@ -18,8 +18,8 @@
 }
 
 .popup {
-  max-width: 320px;
-  padding: 1em 2ch;
+  max-width: var(--width-narrow);
+  padding: var(--line-1) 2ch;
   background: var(--theme-background);
   font-family: var(--font-family-mono);
   font-size: var(--font-size);

@@ -1,0 +1,520 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Tuimorphic Theme Integration
+ * Terminal-aesthetic styling for documentation
+ */
+
+/* ============================================
+   Font Face - GNU Unifont
+   ============================================ */
+
+@font-face {
+  font-family: 'Unifont';
+  src: url('/fonts/Unifont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================
+   CSS Custom Properties (Theme Tokens)
+   ============================================ */
+
+:root {
+  /* Typography - Font Families */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: 'Unifont', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+
+  /* Typography - Font Sizes */
+  --font-size-xs: 10px;
+  --font-size-sm: 12px;
+  --font-size: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+
+  /* Typography - Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --theme-line-height-base: 1.5;
+
+  /* Typography - Letter Spacing */
+  --letter-spacing-tight: 0.02em;
+  --letter-spacing-normal: 0.05em;
+  --letter-spacing-wide: 0.1em;
+  --letter-spacing-hero: 0.25em;
+
+  /* Base Colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Gray Scale */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+  --color-gray-950: #0a0a0a;
+
+  /* Blue Scale */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+
+  /* Green Scale */
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+}
+
+/* ============================================
+   Light Theme (Default)
+   ============================================ */
+
+:root {
+  /* Fumadocs CSS variable overrides */
+  --fd-background: var(--color-white);
+  --fd-foreground: var(--color-black);
+  --fd-muted: var(--color-gray-100);
+  --fd-muted-foreground: var(--color-gray-600);
+  --fd-border: var(--color-gray-300);
+  --fd-accent: var(--color-gray-100);
+  --fd-accent-foreground: var(--color-black);
+  --fd-primary: var(--color-black);
+  --fd-primary-foreground: var(--color-white);
+  --fd-card: var(--color-white);
+  --fd-card-foreground: var(--color-black);
+  --fd-popover: var(--color-white);
+  --fd-popover-foreground: var(--color-black);
+  --fd-secondary: var(--color-gray-100);
+  --fd-secondary-foreground: var(--color-black);
+  --fd-ring: var(--color-black);
+}
+
+/* ============================================
+   Dark Theme
+   ============================================ */
+
+.dark {
+  --fd-background: var(--color-black);
+  --fd-foreground: var(--color-white);
+  --fd-muted: var(--color-gray-900);
+  --fd-muted-foreground: var(--color-gray-400);
+  --fd-border: var(--color-gray-700);
+  --fd-accent: var(--color-gray-800);
+  --fd-accent-foreground: var(--color-white);
+  --fd-primary: var(--color-white);
+  --fd-primary-foreground: var(--color-black);
+  --fd-card: var(--color-gray-950);
+  --fd-card-foreground: var(--color-white);
+  --fd-popover: var(--color-gray-950);
+  --fd-popover-foreground: var(--color-white);
+  --fd-secondary: var(--color-gray-800);
+  --fd-secondary-foreground: var(--color-white);
+  --fd-ring: var(--color-white);
+}
+
+/* ============================================
+   Base Styles - Terminal Aesthetic
+   ============================================ */
+
+html {
+  font-size: var(--font-size);
+  line-height: var(--theme-line-height-base);
+}
+
+body {
+  font-family: var(--font-family-mono) !important;
+  letter-spacing: var(--letter-spacing-tight);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Apply monospace font to all text */
+* {
+  font-family: inherit;
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--fd-border);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fd-muted-foreground);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--fd-border) transparent;
+}
+
+/* ============================================
+   Selection
+   ============================================ */
+
+::selection {
+  background: var(--fd-foreground);
+  color: var(--fd-background);
+}
+
+/* ============================================
+   Fumadocs Overrides - Terminal Aesthetic
+   ============================================ */
+
+/* Remove rounded corners for terminal look */
+[data-radix-popper-content-wrapper],
+.fd-popover,
+.fd-card,
+[role="dialog"],
+button,
+input,
+select,
+textarea,
+.prose pre,
+.prose code {
+  border-radius: 0 !important;
+}
+
+/* Sidebar styling */
+[data-fd-sidebar] {
+  font-size: var(--font-size-sm);
+}
+
+[data-fd-sidebar] a {
+  border-radius: 0 !important;
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+[data-fd-sidebar] [data-active="true"] {
+  background: var(--fd-foreground) !important;
+  color: var(--fd-background) !important;
+}
+
+/* Category headers in sidebar */
+[data-fd-sidebar] [role="group"] > div:first-child {
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-normal);
+  text-transform: uppercase;
+  font-size: var(--font-size-sm);
+  opacity: 0.8;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Navigation styling */
+nav a {
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-mono) !important;
+  letter-spacing: var(--letter-spacing-normal);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+/* Code blocks */
+.prose pre {
+  background: var(--fd-muted) !important;
+  border: 1px solid var(--fd-border) !important;
+}
+
+.prose code {
+  font-family: var(--font-family-mono) !important;
+  font-size: var(--font-size-sm);
+  background: var(--fd-muted);
+  padding: 0.125rem 0.25rem;
+  border: 1px solid var(--fd-border);
+}
+
+.prose pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* Tables */
+.prose table {
+  font-size: var(--font-size-sm);
+}
+
+.prose th {
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-normal);
+  font-size: var(--font-size-xs);
+}
+
+/* Links */
+.prose a {
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.prose a:hover {
+  background: var(--fd-foreground);
+  color: var(--fd-background);
+  border-bottom-color: transparent;
+}
+
+/* Blockquotes */
+.prose blockquote {
+  border-left: 2px solid var(--fd-foreground);
+  font-style: normal;
+  background: var(--fd-muted);
+  padding: 1rem;
+}
+
+/* Search */
+[data-fd-search] input {
+  font-family: var(--font-family-mono) !important;
+  border-radius: 0 !important;
+  border: 1px solid var(--fd-border) !important;
+}
+
+/* Buttons */
+button {
+  font-family: var(--font-family-mono) !important;
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+/* TOC (Table of Contents) */
+[data-fd-toc] a {
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+[data-fd-toc] [data-active="true"] {
+  border-left: 2px solid var(--fd-foreground);
+}
+
+/* ============================================
+   Terminal Box Characters for Decorations
+   ============================================ */
+
+.terminal-box::before {
+  content: '┌';
+}
+
+.terminal-box::after {
+  content: '┐';
+}
+
+/* Hero section styling */
+.hero-title {
+  font-size: var(--font-size-3xl);
+  letter-spacing: var(--letter-spacing-hero);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.hero-description {
+  font-size: var(--font-size-lg);
+  letter-spacing: var(--letter-spacing-normal);
+  opacity: 0.8;
+}
+
+/* ============================================
+   Tuimorphic Component Theme Tokens
+   Required for live component demos
+   ============================================ */
+
+:root {
+  /* Theme Tokens for Components */
+  --theme-background: var(--color-white);
+  --theme-background-secondary: var(--color-gray-50);
+  --theme-background-input: var(--color-white);
+  --theme-text: var(--color-black);
+  --theme-text-secondary: var(--color-gray-600);
+  --theme-border: var(--color-gray-300);
+  --theme-border-light: var(--color-gray-200);
+  --theme-border-subdued: var(--color-gray-100);
+
+  /* Button Tokens */
+  --theme-button: var(--color-black);
+  --theme-button-text: var(--color-white);
+  --theme-button-background: var(--color-gray-100);
+  --theme-button-foreground: var(--color-gray-400);
+
+  /* Interactive States */
+  --theme-focused-foreground: var(--color-gray-100);
+  --theme-focused-border: var(--color-black);
+  --theme-hover-background: var(--color-gray-50);
+  --theme-background-hover: var(--color-gray-50);
+
+  /* Overlay */
+  --theme-overlay: var(--color-gray-500);
+  --theme-overlay-background: rgba(0, 0, 0, 0.5);
+
+  /* Accent Colors */
+  --theme-accent: var(--color-blue-600);
+  --theme-accent-light: var(--color-blue-100);
+  --theme-success: var(--color-green-600);
+  --theme-error: #dc2626;
+  --theme-warning: #ca8a04;
+}
+
+.dark {
+  --theme-background: var(--color-black);
+  --theme-background-secondary: var(--color-gray-900);
+  --theme-background-input: var(--color-gray-950);
+  --theme-text: var(--color-white);
+  --theme-text-secondary: var(--color-gray-400);
+  --theme-border: var(--color-gray-700);
+  --theme-border-light: var(--color-gray-800);
+  --theme-border-subdued: var(--color-gray-900);
+
+  /* Button Tokens */
+  --theme-button: var(--color-white);
+  --theme-button-text: var(--color-black);
+  --theme-button-background: var(--color-gray-800);
+  --theme-button-foreground: var(--color-gray-600);
+
+  /* Interactive States */
+  --theme-focused-foreground: var(--color-gray-800);
+  --theme-focused-border: var(--color-white);
+  --theme-hover-background: var(--color-gray-900);
+  --theme-background-hover: var(--color-gray-900);
+
+  /* Overlay */
+  --theme-overlay: var(--color-gray-500);
+  --theme-overlay-background: rgba(255, 255, 255, 0.1);
+
+  /* Accent Colors */
+  --theme-accent: var(--color-blue-500);
+  --theme-accent-light: var(--color-blue-700);
+  --theme-success: var(--color-green-500);
+  --theme-error: #ef4444;
+  --theme-warning: #eab308;
+}
+
+/* ============================================
+   Component Preview Styling
+   ============================================ */
+
+.component-preview {
+  border: 1px solid var(--fd-border);
+  margin: 1.5rem 0;
+}
+
+.component-preview .preview-content {
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.component-preview.centered .preview-content {
+  justify-content: center;
+  align-items: center;
+}
+
+.component-preview.column .preview-content {
+  flex-direction: column;
+}
+
+/* Props Table Styling */
+.props-table-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid var(--fd-border);
+}
+
+.props-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.props-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: var(--fd-muted);
+  border-bottom: 1px solid var(--fd-border);
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-normal);
+  font-weight: 700;
+}
+
+.props-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--fd-border);
+  vertical-align: top;
+}
+
+.props-table tr:last-child td {
+  border-bottom: none;
+}
+
+.props-table code {
+  font-size: var(--font-size-xs);
+  background: var(--fd-muted);
+  padding: 0.125rem 0.375rem;
+  border: 1px solid var(--fd-border);
+}
+
+.props-table .required {
+  color: var(--theme-error);
+  margin-left: 0.25rem;
+}
+
+/* Example Section Styling */
+.example-section {
+  margin: 2rem 0;
+}
+
+.example-section h3 {
+  font-size: var(--font-size-lg);
+  margin-bottom: 0.5rem;
+}
+
+.example-section p {
+  font-size: var(--font-size-sm);
+  color: var(--fd-muted-foreground);
+  margin-bottom: 1rem;
+}

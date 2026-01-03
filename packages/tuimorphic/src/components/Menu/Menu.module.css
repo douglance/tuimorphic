@@ -4,7 +4,7 @@
   font-size: var(--font-size);
   line-height: var(--theme-line-height-base);
   color: var(--theme-text);
-  max-height: 20rem;
+  max-height: var(--dropdown-max-height);
   overflow-y: auto;
   z-index: var(--z-index-10);
   min-width: 16ch;
@@ -38,7 +38,7 @@
 .item {
   display: flex;
   align-items: center;
-  padding: 0.25em 1ch;
+  padding: var(--line-quarter) 1ch;
   cursor: pointer;
   outline: none;
   text-transform: uppercase;
@@ -75,6 +75,6 @@
 
 .separator {
   height: 1px;
-  margin: 0.25em 1ch;
+  margin: var(--line-quarter) 1ch;
   background: var(--theme-border);
 }

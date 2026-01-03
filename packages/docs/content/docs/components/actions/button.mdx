@@ -1,0 +1,201 @@
+---
+title: Button
+description: Terminal-aesthetic button component built on Base UI for accessibility.
+---
+
+## Import
+
+```tsx
+import { Button } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <ButtonBasic />
+</ComponentPreview>
+
+```tsx
+<Button>Click me</Button>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'variant', type: "'primary' | 'secondary'", default: "'primary'", description: 'Visual style variant of the button' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the button is disabled and non-interactive' },
+  { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content (text, icons, or elements)' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names for custom styling' },
+  { name: 'onClick', type: '(event: MouseEvent) => void', description: 'Click event handler' },
+  { name: 'type', type: "'button' | 'submit' | 'reset'", default: "'button'", description: 'HTML button type attribute' },
+  { name: 'ref', type: 'React.Ref<HTMLButtonElement>', description: 'Forwarded ref to the underlying button element' },
+]} />
+
+All standard HTML button attributes are also supported (`onFocus`, `onBlur`, `aria-*`, etc.).
+
+## Variants
+
+### Primary & Secondary
+
+<ComponentPreview>
+  <ButtonVariants />
+</ComponentPreview>
+
+```tsx
+<Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+```
+
+**Primary** buttons are for main actions. They have a solid background with inverted text.
+
+**Secondary** buttons are for auxiliary actions. They have a transparent background with an inset border.
+
+## States
+
+### Primary States
+
+<ComponentPreview>
+  <ButtonStates />
+</ComponentPreview>
+
+```tsx
+<Button>Default</Button>
+<Button disabled>Disabled</Button>
+```
+
+### Secondary States
+
+<ComponentPreview>
+  <ButtonSecondaryStates />
+</ComponentPreview>
+
+```tsx
+<Button variant="secondary">Default</Button>
+<Button variant="secondary" disabled>Disabled</Button>
+```
+
+## With Icons
+
+Use terminal-style bracket notation for icons:
+
+<ComponentPreview>
+  <ButtonWithIcons />
+</ComponentPreview>
+
+```tsx
+<Button>[+] Add Item</Button>
+<Button>[x] Delete</Button>
+<Button variant="secondary">[<] Back</Button>
+<Button variant="secondary">[>] Next</Button>
+```
+
+## Custom Sizes
+
+Apply custom font sizes and padding via style or className:
+
+<ComponentPreview>
+  <ButtonSizes />
+</ComponentPreview>
+
+```tsx
+<Button style={{ fontSize: '10px', padding: '4px 8px' }}>XS</Button>
+<Button style={{ fontSize: '12px', padding: '6px 12px' }}>SM</Button>
+<Button>Default</Button>
+<Button style={{ fontSize: '16px', padding: '12px 24px' }}>LG</Button>
+```
+
+## Interactive Example
+
+<ComponentPreview>
+  <ButtonInteractive />
+</ComponentPreview>
+
+```tsx
+const [count, setCount] = useState(0);
+
+<Button onClick={() => setCount(c => c - 1)}>[-]</Button>
+<span>{count}</span>
+<Button onClick={() => setCount(c => c + 1)}>[+]</Button>
+<Button variant="secondary" onClick={() => setCount(0)}>Reset</Button>
+```
+
+## Full Width
+
+<ComponentPreview className="column">
+  <ButtonFullWidth />
+</ComponentPreview>
+
+```tsx
+<Button style={{ width: '100%' }}>Full Width Primary</Button>
+<Button variant="secondary" style={{ width: '100%' }}>Full Width Secondary</Button>
+```
+
+## Button Group
+
+Create toggle groups by managing selection state:
+
+<ComponentPreview>
+  <ButtonGroup />
+</ComponentPreview>
+
+```tsx
+const [selected, setSelected] = useState('A');
+
+<div className="flex">
+  {['A', 'B', 'C'].map((option) => (
+    <Button
+      key={option}
+      variant={selected === option ? 'primary' : 'secondary'}
+      onClick={() => setSelected(option)}
+      style={{ marginLeft: option !== 'A' ? '-1px' : 0 }}
+    >
+      Option {option}
+    </Button>
+  ))}
+</div>
+```
+
+## Loading State
+
+Implement loading with disabled state and text change:
+
+<ComponentPreview>
+  <ButtonLoading />
+</ComponentPreview>
+
+```tsx
+const [loading, setLoading] = useState(false);
+
+const handleClick = () => {
+  setLoading(true);
+  setTimeout(() => setLoading(false), 2000);
+};
+
+<Button onClick={handleClick} disabled={loading}>
+  {loading ? '[...] Loading' : 'Submit'}
+</Button>
+```
+
+## Accessibility
+
+- Built on Base UI's accessible button primitive
+- Supports keyboard navigation (Enter/Space to activate)
+- `disabled` attribute properly disables pointer events and keyboard interaction
+- Focus states are clearly visible with outline
+- Works with screen readers
+
+## Styling
+
+The Button uses CSS custom properties for theming:
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-button` | Primary button background |
+| `--theme-button-text` | Primary button text color |
+| `--theme-button-background` | Secondary button background |
+| `--theme-button-foreground` | Secondary button border color |
+| `--theme-focused-border` | Focus outline color |
+
+## Base UI
+
+This component wraps the Base UI `Button` primitive. See the [Base UI Button documentation](https://base-ui.com/react/components/button) for additional details.

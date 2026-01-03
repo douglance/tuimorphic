@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef } from 'react';
+import * as React from 'react';
 import { Select as BaseSelect } from '@base-ui/react/select';
 import { classNames } from '@/utils/classNames';
 import styles from './Select.module.css';
@@ -237,7 +237,7 @@ export function SelectRoot<Value = unknown, Multiple extends boolean | undefined
 }
 SelectRoot.displayName = 'SelectRoot';
 
-export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
+export const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
   ({ className, ...props }, ref) => (
     <BaseSelect.Trigger
       ref={ref}
@@ -258,7 +258,7 @@ export const SelectValue = (props: SelectValueProps) => (
 );
 SelectValue.displayName = 'SelectValue';
 
-export const SelectIcon = forwardRef<HTMLSpanElement, SelectIconProps>(
+export const SelectIcon = React.forwardRef<HTMLSpanElement, SelectIconProps>(
   ({ className, children = '▼', ...props }, ref) => (
     <BaseSelect.Icon
       ref={ref}
@@ -281,7 +281,7 @@ export const SelectPortal = (props: SelectPortalProps) => (
 );
 SelectPortal.displayName = 'SelectPortal';
 
-export const SelectPositioner = forwardRef<HTMLDivElement, SelectPositionerProps>(
+export const SelectPositioner = React.forwardRef<HTMLDivElement, SelectPositionerProps>(
   ({ className, ...props }, ref) => (
     <BaseSelect.Positioner
       ref={ref}
@@ -294,7 +294,7 @@ export const SelectPositioner = forwardRef<HTMLDivElement, SelectPositionerProps
 );
 SelectPositioner.displayName = 'SelectPositioner';
 
-export const SelectPopup = forwardRef<HTMLDivElement, SelectPopupProps>(
+export const SelectPopup = React.forwardRef<HTMLDivElement, SelectPopupProps>(
   ({ className, ...props }, ref) => (
     <BaseSelect.Popup
       ref={ref}
@@ -315,7 +315,7 @@ export const SelectList = (props: SelectListProps) => (
 );
 SelectList.displayName = 'SelectList';
 
-export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
+export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
   ({ className, ...props }, ref) => (
     <BaseSelect.Item
       ref={ref}
@@ -331,7 +331,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
 );
 SelectItem.displayName = 'SelectItem';
 
-export const SelectItemIndicator = forwardRef<HTMLSpanElement, SelectItemIndicatorProps>(
+export const SelectItemIndicator = React.forwardRef<HTMLSpanElement, SelectItemIndicatorProps>(
   ({ className, children = '›', ...props }, ref) => (
     <BaseSelect.ItemIndicator
       ref={ref}
@@ -349,7 +349,7 @@ export const SelectItemIndicator = forwardRef<HTMLSpanElement, SelectItemIndicat
 );
 SelectItemIndicator.displayName = 'SelectItemIndicator';
 
-export const SelectItemText = forwardRef<HTMLDivElement, SelectItemTextProps>(
+export const SelectItemText = React.forwardRef<HTMLDivElement, SelectItemTextProps>(
   ({ className, ...props }, ref) => (
     <BaseSelect.ItemText
       ref={ref}
@@ -362,7 +362,7 @@ export const SelectItemText = forwardRef<HTMLDivElement, SelectItemTextProps>(
 );
 SelectItemText.displayName = 'SelectItemText';
 
-export const SelectGroup = forwardRef<HTMLDivElement, SelectGroupProps>(
+export const SelectGroup = React.forwardRef<HTMLDivElement, SelectGroupProps>(
   ({ className, ...props }, ref) => (
     <BaseSelect.Group
       ref={ref}
@@ -375,7 +375,7 @@ export const SelectGroup = forwardRef<HTMLDivElement, SelectGroupProps>(
 );
 SelectGroup.displayName = 'SelectGroup';
 
-export const SelectGroupLabel = forwardRef<HTMLDivElement, SelectGroupLabelProps>(
+export const SelectGroupLabel = React.forwardRef<HTMLDivElement, SelectGroupLabelProps>(
   ({ className, ...props }, ref) => (
     <BaseSelect.GroupLabel
       ref={ref}
@@ -388,7 +388,7 @@ export const SelectGroupLabel = forwardRef<HTMLDivElement, SelectGroupLabelProps
 );
 SelectGroupLabel.displayName = 'SelectGroupLabel';
 
-export const SelectScrollUpArrow = forwardRef<HTMLDivElement, SelectScrollUpArrowProps>(
+export const SelectScrollUpArrow = React.forwardRef<HTMLDivElement, SelectScrollUpArrowProps>(
   ({ className, ...props }, ref) => (
     <BaseSelect.ScrollUpArrow
       ref={ref}
@@ -401,7 +401,7 @@ export const SelectScrollUpArrow = forwardRef<HTMLDivElement, SelectScrollUpArro
 );
 SelectScrollUpArrow.displayName = 'SelectScrollUpArrow';
 
-export const SelectScrollDownArrow = forwardRef<HTMLDivElement, SelectScrollDownArrowProps>(
+export const SelectScrollDownArrow = React.forwardRef<HTMLDivElement, SelectScrollDownArrowProps>(
   ({ className, ...props }, ref) => (
     <BaseSelect.ScrollDownArrow
       ref={ref}

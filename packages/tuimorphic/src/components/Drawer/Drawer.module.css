@@ -57,7 +57,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 320px;
+  width: var(--drawer-width);
   max-width: 90vw;
 
   /* MS-DOS style border on right edge (exposed side) */
@@ -82,7 +82,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: 320px;
+  width: var(--drawer-width);
   max-width: 90vw;
 
   /* MS-DOS style border on left edge (exposed side) */
@@ -171,7 +171,7 @@
 .headerContent {
   display: flex;
   flex-direction: column;
-  gap: 0.25em;
+  gap: var(--line-quarter);
   min-width: 0;
   flex-grow: 1;
 }
@@ -250,7 +250,7 @@
 
   /* Scrollbar styling for consistency */
   &::-webkit-scrollbar {
-    width: 8px;
+    width: var(--scrollbar-width);
   }
 
   &::-webkit-scrollbar-track {

@@ -32,21 +32,21 @@ a.avatar:focus {
 
 /* Size variants */
 .small {
-  width: 24px;
-  height: 24px;
-  font-size: 10px;
+  width: 3ch;
+  height: 2lh;
+  font-size: var(--font-size-xs);
 }
 
 .medium {
-  width: 32px;
-  height: 32px;
-  font-size: 12px;
+  width: 4ch;
+  height: 2lh;
+  font-size: var(--font-size-sm);
 }
 
 .large {
-  width: 48px;
-  height: 48px;
-  font-size: 16px;
+  width: 6ch;
+  height: 3lh;
+  font-size: var(--font-size);
 }
 
 /* Image styling */

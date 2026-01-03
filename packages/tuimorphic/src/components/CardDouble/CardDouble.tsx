@@ -89,6 +89,7 @@ export const CardDouble = React.forwardRef<HTMLElement, CardDoubleProps>(functio
     </article>
   );
 });
+CardDouble.displayName = 'CardDouble';
 
 /**
  * CardDoubleInner component for nesting inside CardDouble.
@@ -125,5 +126,6 @@ export const CardDoubleInner = React.forwardRef<HTMLElement, CardDoubleInnerProp
     );
   }
 );
+CardDoubleInner.displayName = 'CardDoubleInner';
 
 export default CardDouble;

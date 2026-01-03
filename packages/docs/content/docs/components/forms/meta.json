@@ -1,0 +1,15 @@
+{
+  "title": "Form Controls",
+  "defaultOpen": true,
+  "pages": [
+    "input",
+    "text-area",
+    "select",
+    "checkbox",
+    "radio",
+    "toggle",
+    "slider",
+    "combo-box",
+    "date-picker"
+  ]
+}

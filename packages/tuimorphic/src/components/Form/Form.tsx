@@ -71,5 +71,6 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
     );
   }
 );
+Form.displayName = 'Form';
 
 export default Form;

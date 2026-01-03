@@ -1,0 +1,145 @@
+---
+title: Tabs
+description: Organize content into selectable panels with terminal-style borders.
+---
+
+## Import
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from 'tuimorphic';
+```
+
+## Usage
+
+The Tabs component organizes content into selectable panels with terminal aesthetics.
+
+<ComponentPreview>
+  <TabsBasic />
+</ComponentPreview>
+
+```tsx
+<Tabs defaultValue="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">Overview</TabsTrigger>
+    <TabsTrigger value="tab2">Details</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">
+    <p>Overview content goes here.</p>
+  </TabsContent>
+  <TabsContent value="tab2">
+    <p>Details content goes here.</p>
+  </TabsContent>
+</Tabs>
+```
+
+## Props
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | `string \| number \| null` | - | Selected tab value (controlled) |
+| defaultValue | `string \| number \| null` | - | Default selected tab value (uncontrolled) |
+| onValueChange | `(value: string \| number \| null) => void` | - | Callback when selected tab changes |
+| children | `React.ReactNode` | - | Tab list and content panels |
+| className | `string` | - | Additional CSS class names |
+
+### TabsList
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | Tab triggers |
+| className | `string` | - | Additional CSS class names |
+
+### TabsTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | `string \| number \| null` | - | Value that identifies this tab (required) |
+| children | `React.ReactNode` | - | Tab label content |
+| disabled | `boolean` | - | Whether this tab is disabled |
+| className | `string` | - | Additional CSS class names |
+
+### TabsContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | `string \| number \| null` | - | Value that identifies this panel (required) |
+| children | `React.ReactNode` | - | Panel content |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Basic
+
+<ComponentPreview>
+  <TabsBasic />
+</ComponentPreview>
+
+```tsx
+<Tabs defaultValue="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">Overview</TabsTrigger>
+    <TabsTrigger value="tab2">Details</TabsTrigger>
+    <TabsTrigger value="tab3">Settings</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">
+    <p>Overview content goes here.</p>
+  </TabsContent>
+  <TabsContent value="tab2">
+    <p>Details content goes here.</p>
+  </TabsContent>
+  <TabsContent value="tab3">
+    <p>Settings content goes here.</p>
+  </TabsContent>
+</Tabs>
+```
+
+### Controlled
+
+<ComponentPreview>
+  <TabsControlled />
+</ComponentPreview>
+
+```tsx
+const [activeTab, setActiveTab] = useState<string | number | null>('tab1');
+
+<Tabs value={activeTab} onValueChange={setActiveTab}>
+  <TabsList>
+    <TabsTrigger value="tab1">First</TabsTrigger>
+    <TabsTrigger value="tab2">Second</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">First panel</TabsContent>
+  <TabsContent value="tab2">Second panel</TabsContent>
+</Tabs>
+```
+
+### With Disabled Tab
+
+```tsx
+<Tabs defaultValue="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">Active</TabsTrigger>
+    <TabsTrigger value="tab2">Also Active</TabsTrigger>
+    <TabsTrigger value="tab3" disabled>Disabled</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">Content 1</TabsContent>
+  <TabsContent value="tab2">Content 2</TabsContent>
+  <TabsContent value="tab3">Content 3</TabsContent>
+</Tabs>
+```
+
+### Numeric Values
+
+```tsx
+<Tabs defaultValue={0}>
+  <TabsList>
+    <TabsTrigger value={0}>Tab 0</TabsTrigger>
+    <TabsTrigger value={1}>Tab 1</TabsTrigger>
+    <TabsTrigger value={2}>Tab 2</TabsTrigger>
+  </TabsList>
+  <TabsContent value={0}>Content 0</TabsContent>
+  <TabsContent value={1}>Content 1</TabsContent>
+  <TabsContent value={2}>Content 2</TabsContent>
+</Tabs>
+```

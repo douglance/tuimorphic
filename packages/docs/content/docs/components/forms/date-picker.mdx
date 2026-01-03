@@ -1,0 +1,195 @@
+---
+title: DatePicker
+description: MS-DOS inspired calendar interface for date selection.
+---
+
+## Import
+
+```tsx
+import { DatePicker } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <DatePickerBasic />
+</ComponentPreview>
+
+```tsx
+<DatePicker />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'value', type: 'Date', description: 'Selected date value (controlled)' },
+  { name: 'defaultValue', type: 'Date', description: 'Default selected date (uncontrolled)' },
+  { name: 'onValueChange', type: '(date: Date) => void', description: 'Callback when date changes' },
+  { name: 'minDate', type: 'Date', description: 'Minimum selectable date' },
+  { name: 'maxDate', type: 'Date', description: 'Maximum selectable date' },
+  { name: 'label', type: 'string', description: 'Label text for the date picker' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+]} />
+
+## With Label
+
+<ComponentPreview>
+  <DatePickerWithLabel />
+</ComponentPreview>
+
+```tsx
+<DatePicker label="Select Date" />
+```
+
+## Default Value
+
+<ComponentPreview>
+  <DatePickerDefaultValue />
+</ComponentPreview>
+
+```tsx
+<DatePicker
+  label="Birthday"
+  defaultValue={new Date(1990, 0, 15)}
+/>
+```
+
+## Date Constraints
+
+Restrict selectable dates with `minDate` and `maxDate`:
+
+<ComponentPreview className="column">
+  <DatePickerMinMax />
+</ComponentPreview>
+
+```tsx
+const today = new Date();
+const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+
+<DatePicker label="Future dates only" minDate={today} />
+<DatePicker label="Past dates only" maxDate={today} />
+<DatePicker label="Next 30 days" minDate={today} maxDate={nextMonth} />
+```
+
+## Controlled DatePicker
+
+<ComponentPreview className="column">
+  <DatePickerControlled />
+</ComponentPreview>
+
+```tsx
+const [date, setDate] = useState<Date | undefined>(undefined);
+
+<DatePicker
+  label="Appointment Date"
+  value={date}
+  onValueChange={setDate}
+/>
+```
+
+## Date Range Selection
+
+<ComponentPreview className="column">
+  <DatePickerInteractive />
+</ComponentPreview>
+
+```tsx
+const [startDate, setStartDate] = useState<Date | undefined>(undefined);
+const [endDate, setEndDate] = useState<Date | undefined>(undefined);
+
+<DatePicker
+  label="Start Date"
+  value={startDate}
+  onValueChange={setStartDate}
+/>
+<DatePicker
+  label="End Date"
+  value={endDate}
+  onValueChange={setEndDate}
+  minDate={startDate}
+/>
+```
+
+## Booking Example
+
+<ComponentPreview className="column">
+  <DatePickerBooking />
+</ComponentPreview>
+
+```tsx
+const [checkIn, setCheckIn] = useState<Date | undefined>(undefined);
+const [checkOut, setCheckOut] = useState<Date | undefined>(undefined);
+
+const today = new Date();
+const maxDate = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
+
+<DatePicker
+  label="Check-in"
+  value={checkIn}
+  onValueChange={setCheckIn}
+  minDate={today}
+  maxDate={maxDate}
+/>
+<DatePicker
+  label="Check-out"
+  value={checkOut}
+  onValueChange={setCheckOut}
+  minDate={checkIn || today}
+  maxDate={maxDate}
+/>
+```
+
+## Features
+
+- **Calendar grid**: 7-column week layout (Su Mo Tu We Th Fr Sa)
+- **Month/year navigation**: Arrow buttons for previous/next month and year
+- **Visual indicators**: Today's date and selected date highlighted
+- **Date constraints**: Optional min/max date restrictions
+- **Keyboard navigation**: Full keyboard support
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `Arrow Left` | Previous day |
+| `Arrow Right` | Next day |
+| `Arrow Up` | Previous week |
+| `Arrow Down` | Next week |
+| `Home` | First day of month |
+| `End` | Last day of month |
+| `Page Up` | Previous month |
+| `Shift + Page Up` | Previous year |
+| `Page Down` | Next month |
+| `Shift + Page Down` | Next year |
+| `Enter` / `Space` | Select focused date |
+
+## Visual Design
+
+The calendar uses MS-DOS inspired styling:
+- Navigation: `<<` `<` `YEAR MONTH` `>` `>>`
+- Day headers: `Su Mo Tu We Th Fr Sa`
+- Days displayed as two-digit numbers (`01`, `15`, etc.)
+- Selected date inverted (dark on light)
+- Today's date underlined
+
+## Accessibility
+
+- Proper grid ARIA attributes
+- Screen reader support for date selection
+- Full keyboard navigation
+- Focus management within calendar
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Calendar border |
+| `--theme-background` | Calendar background |
+| `--theme-text` | Day text color |
+| `--theme-button` | Selected day background |
+| `--theme-focused-border` | Focus outline |
+
+## Related Components
+
+- [Input](/docs/components/forms/input) - For text-based date entry
+- [Select](/docs/components/forms/select) - For selecting from preset dates

@@ -1,0 +1,148 @@
+---
+title: Theming
+description: Customize Tuimorphic with themes and color tints
+---
+
+## Theme Modes
+
+Tuimorphic supports light and dark themes via CSS classes on the `<body>` element:
+
+```tsx
+// Dark theme (default)
+<body className="theme-dark">
+
+// Light theme
+<body className="theme-light">
+```
+
+## Color Tints
+
+Apply color tints to shift the accent color across your entire UI:
+
+```tsx
+<body className="theme-dark tint-green">
+<body className="theme-dark tint-blue">
+<body className="theme-dark tint-red">
+<body className="theme-dark tint-yellow">
+<body className="theme-dark tint-purple">
+<body className="theme-dark tint-orange">
+<body className="theme-dark tint-pink">
+```
+
+Tints work with both light and dark themes.
+
+## CSS Custom Properties
+
+Tuimorphic exposes CSS custom properties for fine-grained control:
+
+### Colors
+
+```css
+:root {
+  /* Background colors */
+  --color-background: #000;
+  --color-background-secondary: #111;
+
+  /* Text colors */
+  --color-text: #fff;
+  --color-text-muted: #888;
+
+  /* Border colors */
+  --color-border: #333;
+  --color-border-focus: #fff;
+
+  /* Accent colors (affected by tints) */
+  --color-accent: #00ff00;
+  --color-accent-muted: #008800;
+}
+```
+
+### Typography
+
+```css
+:root {
+  --font-mono: 'GNU Unifont', monospace;
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --font-size-lg: 18px;
+}
+```
+
+### Spacing
+
+```css
+:root {
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+```
+
+## Runtime Theme Switching
+
+Implement runtime theme switching by toggling classes on the body:
+
+```tsx
+function ThemeToggle() {
+  const [isDark, setIsDark] = useState(true);
+
+  const toggleTheme = () => {
+    document.body.classList.toggle('theme-dark');
+    document.body.classList.toggle('theme-light');
+    setIsDark(!isDark);
+  };
+
+  return (
+    <Button onClick={toggleTheme}>
+      {isDark ? 'Light Mode' : 'Dark Mode'}
+    </Button>
+  );
+}
+```
+
+## Tint Switching
+
+```tsx
+function TintSelector() {
+  const tints = ['green', 'blue', 'red', 'yellow', 'purple', 'orange', 'pink'];
+
+  const setTint = (tint: string) => {
+    // Remove existing tints
+    tints.forEach(t => document.body.classList.remove(`tint-${t}`));
+    // Add new tint
+    document.body.classList.add(`tint-${tint}`);
+  };
+
+  return (
+    <Select onValueChange={setTint}>
+      {tints.map(tint => (
+        <Select.Option key={tint} value={tint}>
+          {tint}
+        </Select.Option>
+      ))}
+    </Select>
+  );
+}
+```
+
+## Custom Themes
+
+Create fully custom themes by overriding the CSS custom properties:
+
+```css
+.theme-custom {
+  --color-background: #1a1a2e;
+  --color-background-secondary: #16213e;
+  --color-text: #eee;
+  --color-border: #0f3460;
+  --color-accent: #e94560;
+}
+```
+
+Then apply:
+
+```tsx
+<body className="theme-custom">
+```

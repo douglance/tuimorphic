@@ -1,0 +1,131 @@
+---
+title: TextArea
+description: Terminal-style multi-line text input with custom caret.
+---
+
+## Import
+
+```tsx
+import { TextArea } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <TextAreaBasic />
+</ComponentPreview>
+
+```tsx
+<TextArea placeholder="Enter your message..." />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'label', type: 'string', description: 'Label text for the textarea' },
+  { name: 'rows', type: 'number', default: '4', description: 'Number of visible rows' },
+  { name: 'caretChars', type: 'string', default: "' '", description: 'Custom caret character' },
+  { name: 'isBlink', type: 'boolean', default: 'true', description: 'Whether the caret should blink' },
+  { name: 'value', type: 'string', description: 'Controlled value' },
+  { name: 'defaultValue', type: 'string', description: 'Default value for uncontrolled mode' },
+  { name: 'placeholder', type: 'string', description: 'Placeholder text' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the textarea is disabled' },
+  { name: 'readOnly', type: 'boolean', default: 'false', description: 'Whether the textarea is read-only' },
+  { name: 'maxLength', type: 'number', description: 'Maximum character length' },
+  { name: 'onChange', type: '(event: ChangeEvent) => void', description: 'Change event handler' },
+  { name: 'onFocus', type: '(event: FocusEvent) => void', description: 'Focus event handler' },
+  { name: 'onBlur', type: '(event: FocusEvent) => void', description: 'Blur event handler' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+  { name: 'ref', type: 'React.Ref<HTMLTextAreaElement>', description: 'Forwarded ref to the textarea element' },
+]} />
+
+All standard HTML textarea attributes are also supported.
+
+## With Label
+
+<ComponentPreview>
+  <TextAreaWithLabel />
+</ComponentPreview>
+
+```tsx
+<TextArea label="Description" placeholder="Enter a description..." />
+```
+
+## Row Heights
+
+Control the visible height with the `rows` prop:
+
+<ComponentPreview>
+  <TextAreaRows />
+</ComponentPreview>
+
+```tsx
+<TextArea label="2 rows" rows={2} placeholder="Small textarea..." />
+<TextArea label="4 rows (default)" rows={4} placeholder="Default textarea..." />
+<TextArea label="8 rows" rows={8} placeholder="Large textarea..." />
+```
+
+## With Placeholder
+
+<ComponentPreview>
+  <TextAreaPlaceholder />
+</ComponentPreview>
+
+```tsx
+<TextArea placeholder="Write your message here..." rows={4} />
+```
+
+## Custom Caret
+
+```tsx
+<TextArea label="Default caret" placeholder="Type here..." />
+<TextArea label="Block caret" caretChars="█" placeholder="Type here..." />
+<TextArea label="No blink" isBlink={false} placeholder="Type here..." />
+```
+
+## States
+
+```tsx
+<TextArea label="Default" placeholder="Enabled textarea" />
+<TextArea label="Disabled" placeholder="Disabled textarea" disabled />
+<TextArea label="Read-only" value="Read-only content..." readOnly />
+```
+
+## Controlled with Character Count
+
+```tsx
+const [value, setValue] = useState('');
+const charCount = value.length;
+const maxChars = 280;
+
+<TextArea
+  label="Tweet"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  placeholder="What's happening?"
+  rows={4}
+  maxLength={maxChars}
+/>
+<div>{charCount}/{maxChars} characters</div>
+```
+
+## Accessibility
+
+- Semantic `<textarea>` element with proper labeling
+- Supports all standard textarea attributes
+- Keyboard accessible with visible focus states
+- Works with screen readers
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Textarea border color |
+| `--theme-background` | Textarea background color |
+| `--theme-text` | Textarea text color |
+| `--theme-focused-border` | Border color when focused |
+
+## Related Components
+
+- [Input](/docs/components/forms/input) - Single-line text input
+- [Select](/docs/components/forms/select) - Dropdown selection

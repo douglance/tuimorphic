@@ -94,6 +94,7 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(function Grid(
 		</div>
 	);
 });
+Grid.displayName = 'Grid';
 
 // ============================================================================
 // Grid Item
@@ -148,5 +149,6 @@ export const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
 		);
 	},
 );
+GridItem.displayName = 'GridItem';
 
 export default Grid;

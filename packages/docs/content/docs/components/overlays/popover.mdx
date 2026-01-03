@@ -1,0 +1,120 @@
+---
+title: Popover
+description: Transient overlay content with positioning and optional title/description.
+---
+
+## Import
+
+```tsx
+import { Popover, PopoverTitle, PopoverDescription, PopoverClose } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <PopoverBasic />
+</ComponentPreview>
+
+```tsx
+<Popover trigger={<Button>Open</Button>}>
+  <p>Popover content goes here</p>
+</Popover>
+```
+
+## Props
+
+### Popover
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| trigger | `React.ReactElement` | - | Element that triggers the popover to open |
+| children | `React.ReactNode` | - | Popover content |
+| side | `'top' \| 'bottom' \| 'left' \| 'right'` | `'bottom'` | Placement relative to trigger |
+| align | `'start' \| 'center' \| 'end'` | `'center'` | Alignment along the side |
+| sideOffset | `number` | `4` | Distance from the trigger element in pixels |
+| open | `boolean` | - | Whether the popover is open (controlled) |
+| defaultOpen | `boolean` | - | Default open state (uncontrolled) |
+| onOpenChange | `(open: boolean) => void` | - | Callback when open state changes |
+| className | `string` | - | Additional CSS class names for the popup |
+
+## Variants
+
+### Positions
+
+<ComponentPreview>
+  <PopoverPositions />
+</ComponentPreview>
+
+```tsx
+<Popover trigger={<Button>Top</Button>} side="top">
+  <p>Above the trigger</p>
+</Popover>
+
+<Popover trigger={<Button>Right</Button>} side="right">
+  <p>Right of the trigger</p>
+</Popover>
+
+<Popover trigger={<Button>Left</Button>} side="left">
+  <p>Left of the trigger</p>
+</Popover>
+```
+
+### With Form
+
+<ComponentPreview>
+  <PopoverWithForm />
+</ComponentPreview>
+
+```tsx
+<Popover
+  trigger={<Button>Info</Button>}
+  side="bottom"
+  align="start"
+  sideOffset={8}
+>
+  <PopoverTitle>Information</PopoverTitle>
+  <PopoverDescription>
+    Additional details about this item.
+  </PopoverDescription>
+</Popover>
+```
+
+### With Close Button
+
+```tsx
+<Popover trigger={<Button>Settings</Button>}>
+  <PopoverTitle>Settings</PopoverTitle>
+  <PopoverDescription>Configure your preferences.</PopoverDescription>
+  <PopoverClose>[X]</PopoverClose>
+</Popover>
+```
+
+### Controlled
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<Popover
+  open={open}
+  onOpenChange={setOpen}
+  trigger={<Button>Toggle</Button>}
+>
+  <p>Controlled popover content</p>
+  <PopoverClose>Close</PopoverClose>
+</Popover>
+```
+
+## Compound Components
+
+For advanced usage:
+
+```tsx
+import {
+  PopoverRoot,
+  PopoverTrigger,
+  PopoverPortal,
+  PopoverPositioner,
+  PopoverPopup,
+  PopoverArrow,
+} from 'tuimorphic';
+```

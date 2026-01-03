@@ -117,5 +117,6 @@ export const Avatar = React.forwardRef<
     </span>
   );
 });
+Avatar.displayName = 'Avatar';
 
 export default Avatar;

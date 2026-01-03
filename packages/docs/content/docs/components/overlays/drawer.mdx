@@ -1,0 +1,139 @@
+---
+title: Drawer
+description: Slide-in panel from screen edges for secondary content and navigation.
+---
+
+## Import
+
+```tsx
+import { Drawer } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <DrawerBasic />
+</ComponentPreview>
+
+```tsx
+<Drawer
+  trigger={<Button>Open Menu</Button>}
+  title="NAVIGATION"
+  side="left"
+>
+  <nav>Navigation links here</nav>
+</Drawer>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| open | `boolean` | - | Whether the drawer is open (controlled) |
+| defaultOpen | `boolean` | - | Default open state (uncontrolled) |
+| onOpenChange | `(open: boolean) => void` | - | Callback when open state changes |
+| side | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` | Side the drawer slides in from |
+| title | `React.ReactNode` | - | Drawer title displayed in the header |
+| description | `React.ReactNode` | - | Drawer description (optional subtitle) |
+| children | `React.ReactNode` | - | Drawer content |
+| trigger | `React.ReactElement` | - | Trigger element for uncontrolled usage |
+| className | `string` | - | Additional CSS class names for the drawer panel |
+
+## Variants
+
+### Right Side
+
+<ComponentPreview>
+  <DrawerRight />
+</ComponentPreview>
+
+```tsx
+<Drawer trigger={<Button>Right</Button>} side="right" title="RIGHT">
+  <p>Content slides from right</p>
+</Drawer>
+```
+
+### Bottom Side
+
+<ComponentPreview>
+  <DrawerBottom />
+</ComponentPreview>
+
+```tsx
+<Drawer trigger={<Button>Bottom</Button>} side="bottom" title="BOTTOM">
+  <p>Content slides from bottom</p>
+</Drawer>
+```
+
+### With Content
+
+<ComponentPreview>
+  <DrawerWithContent />
+</ComponentPreview>
+
+```tsx
+<Drawer
+  trigger={<Button>Open</Button>}
+  title="ACCOUNT"
+  description="Manage your account settings"
+  side="right"
+>
+  <p>Account content</p>
+</Drawer>
+```
+
+### Side Variants
+
+```tsx
+<Drawer trigger={<Button>Left</Button>} side="left" title="LEFT">
+  <p>Content slides from left</p>
+</Drawer>
+
+<Drawer trigger={<Button>Right</Button>} side="right" title="RIGHT">
+  <p>Content slides from right</p>
+</Drawer>
+
+<Drawer trigger={<Button>Top</Button>} side="top" title="TOP">
+  <p>Content slides from top</p>
+</Drawer>
+
+<Drawer trigger={<Button>Bottom</Button>} side="bottom" title="BOTTOM">
+  <p>Content slides from bottom</p>
+</Drawer>
+```
+
+### Controlled
+
+```tsx
+const [isOpen, setIsOpen] = useState(false);
+
+<Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
+
+<Drawer
+  open={isOpen}
+  onOpenChange={setIsOpen}
+  title="SETTINGS"
+  side="right"
+>
+  <p>Settings content here</p>
+</Drawer>
+```
+
+## Compound Components
+
+For advanced usage:
+
+```tsx
+import {
+  DrawerRoot,
+  DrawerTrigger,
+  DrawerPortal,
+  DrawerBackdrop,
+  DrawerPanel,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerClose,
+  DrawerContent,
+} from 'tuimorphic';
+```

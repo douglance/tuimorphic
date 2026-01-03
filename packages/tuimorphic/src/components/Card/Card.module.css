@@ -90,3 +90,29 @@
   /* Center text baseline on the border line */
   transform: translateY(-0.5ch) !important;
 }
+
+.middle {
+  flex: 1;
+  min-width: 2ch;
+  box-shadow: inset 0 2px 0 0 var(--theme-text);
+  padding: calc((var(--font-size) * 0.5) * var(--theme-line-height-base)) 0 0 0;
+}
+
+.actions {
+  flex-shrink: 0;
+  padding: 0 1ch;
+  /* Center text baseline on the border line */
+  transform: translateY(-0.5ch);
+  font-size: var(--font-size);
+  line-height: 1;
+}
+
+.actions a {
+  color: var(--theme-text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.actions a:hover {
+  color: var(--theme-focused-text);
+}

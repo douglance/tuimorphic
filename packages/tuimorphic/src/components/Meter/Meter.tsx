@@ -147,5 +147,6 @@ export const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
     );
   }
 );
+Meter.displayName = 'Meter';
 
 export default Meter;

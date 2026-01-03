@@ -1,0 +1,162 @@
+---
+title: Slider
+description: Terminal-style horizontal slider with ASCII track display.
+---
+
+## Import
+
+```tsx
+import { Slider } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <SliderBasic />
+</ComponentPreview>
+
+```tsx
+<Slider />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'value', type: 'number', description: 'Current value (controlled)' },
+  { name: 'defaultValue', type: 'number', default: '0', description: 'Default value (uncontrolled)' },
+  { name: 'onValueChange', type: '(value: number) => void', description: 'Callback when value changes' },
+  { name: 'min', type: 'number', default: '0', description: 'Minimum value' },
+  { name: 'max', type: 'number', default: '100', description: 'Maximum value' },
+  { name: 'step', type: 'number', default: '1', description: 'Step increment' },
+  { name: 'label', type: 'string', description: 'Label text' },
+  { name: 'showValue', type: 'boolean', default: 'false', description: 'Whether to show current value' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the slider is disabled' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+  { name: 'ref', type: 'React.Ref<HTMLDivElement>', description: 'Forwarded ref to the container' },
+]} />
+
+## With Label
+
+<ComponentPreview>
+  <SliderWithLabel />
+</ComponentPreview>
+
+```tsx
+<Slider label="Volume" />
+```
+
+## Show Value
+
+<ComponentPreview>
+  <SliderShowValue />
+</ComponentPreview>
+
+```tsx
+<Slider label="Brightness" showValue />
+```
+
+## Custom Range
+
+<ComponentPreview>
+  <SliderRange />
+</ComponentPreview>
+
+```tsx
+<Slider label="Temperature" min={0} max={50} defaultValue={25} showValue />
+```
+
+## Step Values
+
+```tsx
+<Slider label="Step 1 (default)" min={0} max={100} step={1} showValue />
+<Slider label="Step 5" min={0} max={100} step={5} showValue />
+<Slider label="Step 10" min={0} max={100} step={10} showValue />
+<Slider label="Step 25" min={0} max={100} step={25} showValue />
+```
+
+## States
+
+```tsx
+<Slider label="Enabled" defaultValue={50} showValue />
+<Slider label="Disabled" defaultValue={50} showValue disabled />
+```
+
+## Controlled Slider
+
+<ComponentPreview>
+  <SliderControlled />
+</ComponentPreview>
+
+```tsx
+const [value, setValue] = useState(50);
+
+<Slider
+  label="Brightness"
+  value={value}
+  onValueChange={setValue}
+  showValue
+/>
+```
+
+## Volume Control Example
+
+```tsx
+const [volume, setVolume] = useState(75);
+
+<Slider
+  label="Volume"
+  value={volume}
+  onValueChange={setVolume}
+  showValue
+/>
+```
+
+## Interactive RGB Example
+
+```tsx
+const [r, setR] = useState(128);
+const [g, setG] = useState(128);
+const [b, setB] = useState(128);
+
+<Slider label="Red" min={0} max={255} value={r} onValueChange={setR} showValue />
+<Slider label="Green" min={0} max={255} value={g} onValueChange={setG} showValue />
+<Slider label="Blue" min={0} max={255} value={b} onValueChange={setB} showValue />
+```
+
+## Visual Design
+
+The slider uses ASCII characters to create a terminal-style track:
+- Track: `-` (box drawing horizontal)
+- Handle: `*` (bullet)
+- Display: `[-----*------]`
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `Arrow Left` / `Arrow Down` | Decrease by step |
+| `Arrow Right` / `Arrow Up` | Increase by step |
+| `Home` | Go to minimum |
+| `End` | Go to maximum |
+| `Page Up` | Increase by large step |
+| `Page Down` | Decrease by large step |
+
+## Accessibility
+
+- Built on Base UI's accessible slider primitive
+- Proper ARIA attributes for screen readers
+- Full keyboard navigation support
+- Focus visible states
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-text` | Track and handle color |
+| `--theme-border` | Container border |
+| `--theme-focused-border` | Focus outline color |
+
+## Related Components
+
+- [Input](/docs/components/forms/input) - For numeric text entry
+- [Toggle](/docs/components/forms/toggle) - For on/off values

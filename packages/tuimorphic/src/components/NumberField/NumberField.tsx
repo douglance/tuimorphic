@@ -106,6 +106,7 @@ export const NumberField = React.forwardRef<HTMLDivElement, NumberFieldProps>(
     );
   }
 );
+NumberField.displayName = 'NumberField';
 
 // Compound components for advanced usage
 
@@ -129,6 +130,7 @@ export const NumberFieldRoot = React.forwardRef<HTMLDivElement, NumberFieldRootP
     );
   }
 );
+NumberFieldRoot.displayName = 'NumberFieldRoot';
 
 export interface NumberFieldGroupProps
   extends React.ComponentPropsWithoutRef<typeof BaseNumberField.Group> {
@@ -150,6 +152,7 @@ export const NumberFieldGroup = React.forwardRef<HTMLDivElement, NumberFieldGrou
     );
   }
 );
+NumberFieldGroup.displayName = 'NumberFieldGroup';
 
 export interface NumberFieldDecrementProps
   extends React.ComponentPropsWithoutRef<typeof BaseNumberField.Decrement> {
@@ -176,6 +179,7 @@ export const NumberFieldDecrement = React.forwardRef<
     </BaseNumberField.Decrement>
   );
 });
+NumberFieldDecrement.displayName = 'NumberFieldDecrement';
 
 export interface NumberFieldInputProps
   extends React.ComponentPropsWithoutRef<typeof BaseNumberField.Input> {
@@ -197,6 +201,7 @@ export const NumberFieldInput = React.forwardRef<HTMLInputElement, NumberFieldIn
     );
   }
 );
+NumberFieldInput.displayName = 'NumberFieldInput';
 
 export interface NumberFieldIncrementProps
   extends React.ComponentPropsWithoutRef<typeof BaseNumberField.Increment> {
@@ -223,6 +228,7 @@ export const NumberFieldIncrement = React.forwardRef<
     </BaseNumberField.Increment>
   );
 });
+NumberFieldIncrement.displayName = 'NumberFieldIncrement';
 
 export interface NumberFieldLabelProps extends React.HTMLAttributes<HTMLLabelElement> {
   /** Additional CSS class names */
@@ -241,6 +247,7 @@ export const NumberFieldLabel = React.forwardRef<HTMLLabelElement, NumberFieldLa
     );
   }
 );
+NumberFieldLabel.displayName = 'NumberFieldLabel';
 
 export interface NumberFieldScrubAreaProps
   extends React.ComponentPropsWithoutRef<typeof BaseNumberField.ScrubArea> {
@@ -263,5 +270,6 @@ export const NumberFieldScrubArea = React.forwardRef<
     />
   );
 });
+NumberFieldScrubArea.displayName = 'NumberFieldScrubArea';
 
 export default NumberField;

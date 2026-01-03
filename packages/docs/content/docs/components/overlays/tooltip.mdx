@@ -1,0 +1,106 @@
+---
+title: Tooltip
+description: Contextual information displayed on hover with configurable positioning.
+---
+
+## Import
+
+```tsx
+import { Tooltip } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <TooltipBasic />
+</ComponentPreview>
+
+```tsx
+<Tooltip content="Save your work">
+  <Button>Save</Button>
+</Tooltip>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| content | `React.ReactNode` | - | Tooltip content (required) |
+| children | `React.ReactElement` | - | Element that triggers the tooltip (required) |
+| side | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Preferred side to render |
+| delay | `number` | `200` | Delay before showing (ms) |
+| className | `string` | - | Additional CSS class names for the popup |
+
+## Variants
+
+### Position Variants
+
+<ComponentPreview>
+  <TooltipPositions />
+</ComponentPreview>
+
+```tsx
+<Tooltip content="Above" side="top">
+  <Button>Top</Button>
+</Tooltip>
+
+<Tooltip content="Below" side="bottom">
+  <Button>Bottom</Button>
+</Tooltip>
+
+<Tooltip content="To the left" side="left">
+  <Button>Left</Button>
+</Tooltip>
+
+<Tooltip content="To the right" side="right">
+  <Button>Right</Button>
+</Tooltip>
+```
+
+### Custom Delay
+
+<ComponentPreview>
+  <TooltipDelay />
+</ComponentPreview>
+
+```tsx
+<Tooltip content="Quick tooltip" delay={0}>
+  <Button>Instant</Button>
+</Tooltip>
+
+<Tooltip content="Slow tooltip" delay={500}>
+  <Button>Delayed</Button>
+</Tooltip>
+```
+
+### Rich Content
+
+```tsx
+<Tooltip content={<><strong>Tip:</strong> Press Ctrl+S to save</>}>
+  <Button>Save</Button>
+</Tooltip>
+```
+
+### With Icons
+
+```tsx
+<Tooltip content="More options">
+  <Button>...</Button>
+</Tooltip>
+
+<Tooltip content="Settings">
+  <Button>Gear Icon</Button>
+</Tooltip>
+```
+
+### On Various Elements
+
+```tsx
+<Tooltip content="Click to learn more">
+  <a href="/docs">Documentation</a>
+</Tooltip>
+
+<Tooltip content="Current status: Active">
+  <Badge variant="success">Online</Badge>
+</Tooltip>
+```

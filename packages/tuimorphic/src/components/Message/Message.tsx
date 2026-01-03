@@ -82,6 +82,7 @@ export const Message = React.forwardRef<HTMLDivElement, MessageProps>(
     );
   }
 );
+Message.displayName = 'Message';
 
 /**
  * MessageList component for grouping Message components in a conversation layout.
@@ -112,5 +113,6 @@ export const MessageList = React.forwardRef<HTMLDivElement, MessageListProps>(
     );
   }
 );
+MessageList.displayName = 'MessageList';
 
 export default Message;

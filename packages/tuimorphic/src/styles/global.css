@@ -62,6 +62,42 @@
   --letter-spacing-wide: 0.1em;
   --letter-spacing-hero: 0.25em;
 
+  /* ============================================
+     Monospace Grid System
+     All spacing derives from character cells
+     ============================================ */
+
+  /* Base grid units */
+  --cell: 1ch;           /* Horizontal: 1 character width */
+  --line: 1lh;           /* Vertical: 1 line height */
+
+  /* Standard container widths (terminal-inspired) */
+  --width-narrow: 40ch;
+  --width-standard: 64ch;
+  --width-wide: 80ch;
+  --width-ultra: 120ch;
+
+  /* Horizontal spacing scale (character-based) */
+  --space-1: 1ch;
+  --space-2: 2ch;
+  --space-4: 4ch;
+  --space-8: 8ch;
+  --space-half: 0.5ch;
+
+  /* Vertical spacing scale (line-based) */
+  --line-half: 0.5lh;
+  --line-1: 1lh;
+  --line-2: 2lh;
+  --line-4: 4lh;
+  --line-quarter: 0.25lh;
+
+  /* Component dimensions */
+  --scrollbar-width: 1ch;
+  --dropdown-max-height: 20lh;
+  --drawer-width: 40ch;
+  --dialog-min-width: 40ch;
+  --popup-min-width: 24ch;
+
   /* Z-Index Scale */
   --z-index-1: 1;
   --z-index-2: 2;
@@ -354,8 +390,8 @@ body {
    ============================================ */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
 }
 
 ::-webkit-scrollbar-track {

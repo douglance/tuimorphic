@@ -1,0 +1,5 @@
+{
+  "title": "Data Display",
+  "defaultOpen": true,
+  "pages": ["table", "code-block", "tree-view"]
+}

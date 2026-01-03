@@ -89,6 +89,7 @@ export const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
     );
   }
 );
+Collapsible.displayName = 'Collapsible';
 
 /**
  * CollapsibleTrigger displays the header with ▾/▸ indicators.
@@ -109,6 +110,7 @@ export const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, Collapsibl
     );
   }
 );
+CollapsibleTrigger.displayName = 'CollapsibleTrigger';
 
 /**
  * CollapsibleContent contains the collapsible panel content.
@@ -127,6 +129,7 @@ export const CollapsibleContent = React.forwardRef<HTMLDivElement, CollapsibleCo
     );
   }
 );
+CollapsibleContent.displayName = 'CollapsibleContent';
 
 // Export Base UI parts for advanced usage
 export const CollapsibleRoot = BaseCollapsible.Root;

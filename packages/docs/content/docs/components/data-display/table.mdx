@@ -1,0 +1,243 @@
+---
+title: Table
+description: Data table with MS-DOS terminal aesthetics and TUI-style borders.
+---
+
+## Import
+
+```tsx
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
+} from 'tuimorphic';
+```
+
+## Usage
+
+The Table component provides a declarative grid structure for organizing data with monospace alignment.
+
+<ComponentPreview>
+  <TableBasic />
+</ComponentPreview>
+
+```tsx
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>System A</TableCell>
+      <TableCell>Online</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## Props
+
+### Table
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | Table content (required) |
+| bordered | `boolean` | `false` | Whether to show borders between cells |
+| striped | `boolean` | `false` | Whether to show striped rows |
+| size | `'compact' \| 'default'` | `'default'` | Row height |
+| className | `string` | - | Additional CSS class name |
+
+### TableRow
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | TableHead or TableCell elements |
+| selected | `boolean` | `false` | Whether this row is highlighted |
+| className | `string` | - | Additional CSS class name |
+
+### TableHead / TableCell
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | Cell content |
+| align | `'left' \| 'center' \| 'right'` | `'left'` | Text alignment |
+| className | `string` | - | Additional CSS class name |
+
+### TableCell (additional)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| numeric | `boolean` | `false` | Enable monospace number alignment |
+| truncate | `boolean` | `false` | Truncate overflowing text |
+
+### TableCaption
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | Caption text |
+| position | `'top' \| 'bottom'` | `'top'` | Position relative to table |
+
+## Variants
+
+### Basic
+
+<ComponentPreview>
+  <TableBasic />
+</ComponentPreview>
+
+```tsx
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Server A</TableCell>
+      <TableCell>Online</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+### Bordered
+
+<ComponentPreview>
+  <TableBordered />
+</ComponentPreview>
+
+```tsx
+<Table bordered>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Server</TableHead>
+      <TableHead align="right">CPU</TableHead>
+      <TableHead align="right">Memory</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>web-01</TableCell>
+      <TableCell align="right">45%</TableCell>
+      <TableCell align="right">2.1GB</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+### Striped
+
+<ComponentPreview>
+  <TableStriped />
+</ComponentPreview>
+
+```tsx
+<Table bordered striped>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Server</TableHead>
+      <TableHead align="right">CPU</TableHead>
+      <TableHead align="right">Memory</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>web-01</TableCell>
+      <TableCell align="right">45%</TableCell>
+      <TableCell align="right">2.1GB</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>web-02</TableCell>
+      <TableCell align="right">32%</TableCell>
+      <TableCell align="right">1.8GB</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>web-03</TableCell>
+      <TableCell align="right">67%</TableCell>
+      <TableCell align="right">3.2GB</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+### With Selection
+
+<ComponentPreview>
+  <TableWithSelection />
+</ComponentPreview>
+
+```tsx
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableCell>Regular row</TableCell>
+    </TableRow>
+    <TableRow selected>
+      <TableCell>Selected row</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+### With Caption
+
+```tsx
+<Table bordered>
+  <TableCaption>Server Status Report</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Server</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>web-01</TableCell>
+      <TableCell>Online</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+### Compact Size
+
+```tsx
+<Table bordered striped size="compact">
+  {/* ... */}
+</Table>
+```
+
+### With Footer
+
+```tsx
+<Table bordered>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Item</TableHead>
+      <TableHead align="right">Price</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Widget A</TableCell>
+      <TableCell align="right" numeric>$10.00</TableCell>
+    </TableRow>
+  </TableBody>
+  <TableFooter>
+    <TableRow>
+      <TableCell>Total</TableCell>
+      <TableCell align="right" numeric>$10.00</TableCell>
+    </TableRow>
+  </TableFooter>
+</Table>
+```

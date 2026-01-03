@@ -19,12 +19,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3ch;
+  width: 2ch;
   height: calc(var(--font-size) * var(--theme-line-height-base));
   background: var(--theme-button-foreground);
   border: none;
   outline: none;
-  padding: 0 1ch;
+  padding: 0;
   margin: 0;
   font-family: var(--font-family-mono);
   font-size: var(--font-size);

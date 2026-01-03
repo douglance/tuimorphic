@@ -1,0 +1,107 @@
+---
+title: Avatar
+description: Display user images, initials, or icons for visual identification.
+---
+
+## Import
+
+```tsx
+import { Avatar } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <AvatarBasic />
+</ComponentPreview>
+
+```tsx
+<Avatar src="/user.jpg" alt="John Doe" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| src | `string` | - | Image source URL |
+| alt | `string` | `''` | Alt text for the image |
+| initials | `string` | - | Initials to display when no image is provided or image fails to load |
+| size | `'small' \| 'medium' \| 'large'` | `'medium'` | Size variant |
+| href | `string` | - | Optional link URL - renders as anchor when provided |
+| target | `string` | - | Link target (e.g., "_blank") |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### With Image
+
+<ComponentPreview>
+  <AvatarWithImage />
+</ComponentPreview>
+
+```tsx
+<Avatar src="/user.jpg" alt="John Doe" />
+```
+
+### With Initials Fallback
+
+<ComponentPreview>
+  <AvatarWithFallback />
+</ComponentPreview>
+
+```tsx
+<Avatar initials="JD" />
+```
+
+### As a Link
+
+<ComponentPreview>
+  <AvatarAsLink />
+</ComponentPreview>
+
+```tsx
+<Avatar src="/user.jpg" alt="Profile" href="/profile" />
+<Avatar src="/user.jpg" href="/profile" target="_blank" />
+```
+
+### Size Variants
+
+<ComponentPreview>
+  <AvatarSizes />
+</ComponentPreview>
+
+```tsx
+<Avatar initials="SM" size="small" />
+<Avatar initials="MD" size="medium" />
+<Avatar initials="LG" size="large" />
+```
+
+### Avatar Group
+
+<ComponentPreview>
+  <AvatarGroup />
+</ComponentPreview>
+
+```tsx
+<div style={{ display: 'flex', gap: '8px' }}>
+  <Avatar initials="JD" />
+  <Avatar initials="AS" />
+  <Avatar initials="MK" />
+</div>
+```
+
+### Image with Fallback
+
+When the image fails to load, initials are displayed:
+
+<ComponentPreview>
+  <AvatarImageFallback />
+</ComponentPreview>
+
+```tsx
+<Avatar
+  src="/nonexistent.jpg"
+  alt="Jane Smith"
+  initials="JS"
+/>
+```

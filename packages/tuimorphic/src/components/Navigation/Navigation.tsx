@@ -108,6 +108,7 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
     );
   }
 );
+Navigation.displayName = 'Navigation';
 
 interface NavItemElementProps {
   item: NavItem;

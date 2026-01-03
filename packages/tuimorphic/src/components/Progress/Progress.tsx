@@ -98,6 +98,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     );
   }
 );
+Progress.displayName = 'Progress';
 
 // Export sub-components for advanced usage
 export const ProgressRoot = BaseProgress.Root;
@@ -117,6 +118,7 @@ export const ProgressTrack = React.forwardRef<HTMLDivElement, ProgressTrackProps
     );
   }
 );
+ProgressTrack.displayName = 'ProgressTrack';
 
 export const ProgressIndicator = React.forwardRef<HTMLDivElement, ProgressIndicatorProps>(
   function ProgressIndicator({ className, ...props }, ref) {
@@ -133,6 +135,7 @@ export const ProgressIndicator = React.forwardRef<HTMLDivElement, ProgressIndica
     );
   }
 );
+ProgressIndicator.displayName = 'ProgressIndicator';
 
 // Export state types for consumers
 export type {

@@ -117,7 +117,7 @@
 
   /* Hide scrollbar but keep functionality */
   &::-webkit-scrollbar {
-    height: 8px;
+    height: var(--scrollbar-width);
   }
 
   &::-webkit-scrollbar-track {

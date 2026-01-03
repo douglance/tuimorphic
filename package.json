@@ -7,12 +7,15 @@
   "scripts": {
     "dev": "pnpm --filter tuimorphic dev",
     "dev:docs": "pnpm --filter docs dev",
+    "dev:preview": "pnpm --filter preview-server dev",
+    "dev:all": "pnpm dev:preview & pnpm dev:docs",
     "build": "pnpm --filter tuimorphic build",
     "build:docs": "pnpm --filter tuimorphic build && pnpm --filter docs build",
     "lint": "pnpm -r lint",
     "deploy:docs": "pnpm build:docs && wrangler pages deploy packages/docs/out --project-name tuimorphic"
   },
   "devDependencies": {
+    "playwright": "^1.57.0",
     "typescript": "^5.5.0",
     "wrangler": "^3.0.0"
   },

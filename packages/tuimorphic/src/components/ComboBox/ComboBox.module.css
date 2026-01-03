@@ -103,7 +103,7 @@
   top: 100%;
   left: 0;
   right: 0;
-  margin-top: 4px;
+  margin-top: var(--line-quarter);
   background: var(--theme-background);
   box-shadow:
     inset 2px 0 0 0 var(--theme-text),
@@ -114,7 +114,7 @@
   font-size: var(--font-size);
   line-height: var(--theme-line-height-base);
   color: var(--theme-text);
-  max-height: 20rem;
+  max-height: var(--dropdown-max-height);
   overflow-y: auto;
   z-index: var(--z-index-10);
   list-style: none;
@@ -138,7 +138,7 @@
 .option {
   display: flex;
   flex-direction: column;
-  padding: 0.25em 1ch;
+  padding: var(--line-quarter) 1ch;
   cursor: pointer;
   outline: none;
 
@@ -175,7 +175,7 @@
 }
 
 .noResults {
-  padding: 0.5em 1ch;
+  padding: var(--line-half) 1ch;
   font-style: italic;
   color: var(--theme-text-secondary);
 }

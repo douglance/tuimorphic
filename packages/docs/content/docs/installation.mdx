@@ -1,0 +1,86 @@
+---
+title: Installation
+description: How to install and set up Tuimorphic in your project
+---
+
+## Installation
+
+Install Tuimorphic using your preferred package manager:
+
+```bash
+npm install tuimorphic
+```
+
+```bash
+pnpm add tuimorphic
+```
+
+```bash
+yarn add tuimorphic
+```
+
+## Requirements
+
+Tuimorphic requires the following peer dependencies:
+
+- React 18.0.0 or higher (React 19 supported)
+- React DOM 18.0.0 or higher
+
+## Setup
+
+### Import Styles
+
+Import the Tuimorphic styles in your application's entry point:
+
+```tsx title="app/layout.tsx"
+import 'tuimorphic/styles.css';
+```
+
+Or in a client-side app:
+
+```tsx title="src/main.tsx"
+import 'tuimorphic/styles.css';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+
+createRoot(document.getElementById('root')!).render(<App />);
+```
+
+### Configure Theming
+
+Tuimorphic uses CSS classes on the `<body>` element to control themes:
+
+```tsx title="app/layout.tsx"
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body className="theme-dark">
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+### Font (Optional)
+
+Tuimorphic ships with GNU Unifont for the authentic terminal aesthetic. The font is automatically loaded from the package's CSS. If you prefer a different monospace font, you can override the `--font-mono` CSS variable:
+
+```css
+:root {
+  --font-mono: 'JetBrains Mono', monospace;
+}
+```
+
+## TypeScript
+
+Tuimorphic is written in TypeScript and exports all types. Import types alongside components:
+
+```tsx
+import { Button, type ButtonProps } from 'tuimorphic';
+```
+
+## Next Steps
+
+- Browse the [component documentation](/docs/components/button) to see all available components
+- Learn about [theming](/docs/theming) to customize the look and feel

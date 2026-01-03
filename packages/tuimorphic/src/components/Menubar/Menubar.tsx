@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { forwardRef } from 'react';
 import {
   Menubar as BaseMenubar,
   type MenubarProps as BaseMenubarProps,
@@ -48,7 +47,7 @@ export interface MenubarSeparatorProps {
   className?: string;
 }
 
-export const Menubar = forwardRef<HTMLDivElement, MenubarProps>(
+export const Menubar = React.forwardRef<HTMLDivElement, MenubarProps>(
   function Menubar({ children, loop = true, className }, ref) {
     return (
       <BaseMenubar
@@ -120,7 +119,7 @@ export interface MenubarRootProps
   className?: string;
 }
 
-export const MenubarRoot = forwardRef<HTMLDivElement, MenubarRootProps>(
+export const MenubarRoot = React.forwardRef<HTMLDivElement, MenubarRootProps>(
   ({ className, ...props }, ref) => (
     <BaseMenubar
       ref={ref}

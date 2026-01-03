@@ -1,0 +1,167 @@
+---
+title: Toggle
+description: Terminal-style switch component with ON/OFF display.
+---
+
+## Import
+
+```tsx
+import { Toggle } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <ToggleBasic />
+</ComponentPreview>
+
+```tsx
+<Toggle label="Enable feature" />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'checked', type: 'boolean', description: 'Whether the toggle is on (controlled)' },
+  { name: 'defaultChecked', type: 'boolean', default: 'false', description: 'Default checked state (uncontrolled)' },
+  { name: 'onCheckedChange', type: '(checked: boolean) => void', description: 'Callback when state changes' },
+  { name: 'label', type: 'string', description: 'Label text displayed next to toggle' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the toggle is disabled' },
+  { name: 'name', type: 'string', description: 'Name attribute for forms' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+  { name: 'ref', type: 'React.Ref<HTMLButtonElement>', description: 'Forwarded ref to the button element' },
+]} />
+
+## With Label
+
+<ComponentPreview>
+  <ToggleWithLabel />
+</ComponentPreview>
+
+```tsx
+<Toggle label="Enable notifications" />
+```
+
+## Disabled States
+
+<ComponentPreview>
+  <ToggleDisabled />
+</ComponentPreview>
+
+```tsx
+<Toggle label="Disabled off" disabled />
+<Toggle label="Disabled on" disabled checked />
+```
+
+## Controlled Toggle
+
+<ComponentPreview>
+  <ToggleControlled />
+</ComponentPreview>
+
+```tsx
+const [enabled, setEnabled] = useState(false);
+
+<Toggle
+  label="Dark mode"
+  checked={enabled}
+  onCheckedChange={setEnabled}
+/>
+```
+
+## Settings Panel Example
+
+```tsx
+const [notifications, setNotifications] = useState(true);
+const [sound, setSound] = useState(true);
+const [autoSave, setAutoSave] = useState(false);
+const [analytics, setAnalytics] = useState(false);
+
+<div>
+  <Toggle
+    label="Push notifications"
+    checked={notifications}
+    onCheckedChange={setNotifications}
+  />
+  <Toggle
+    label="Sound effects"
+    checked={sound}
+    onCheckedChange={setSound}
+  />
+  <Toggle
+    label="Auto-save drafts"
+    checked={autoSave}
+    onCheckedChange={setAutoSave}
+  />
+  <Toggle
+    label="Usage analytics"
+    checked={analytics}
+    onCheckedChange={setAnalytics}
+  />
+</div>
+```
+
+## Interactive Example
+
+This example shows how toggles can interact with each other:
+
+```tsx
+const [airplaneMode, setAirplaneMode] = useState(false);
+const [wifi, setWifi] = useState(true);
+const [bluetooth, setBluetooth] = useState(false);
+
+const handleAirplaneModeChange = (checked: boolean) => {
+  setAirplaneMode(checked);
+  if (checked) {
+    setWifi(false);
+    setBluetooth(false);
+  }
+};
+
+<Toggle
+  label="Airplane mode"
+  checked={airplaneMode}
+  onCheckedChange={handleAirplaneModeChange}
+/>
+<Toggle
+  label="Wi-Fi"
+  checked={wifi}
+  onCheckedChange={setWifi}
+  disabled={airplaneMode}
+/>
+<Toggle
+  label="Bluetooth"
+  checked={bluetooth}
+  onCheckedChange={setBluetooth}
+  disabled={airplaneMode}
+/>
+```
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `Space` | Toggle state |
+| `Enter` | Toggle state |
+| `Tab` | Move focus to next element |
+
+## Accessibility
+
+- Built on Base UI's accessible switch primitive
+- Proper ARIA attributes for screen readers
+- Keyboard accessible
+- Label properly associated with toggle
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Toggle border color |
+| `--theme-button` | Toggle track background when on |
+| `--theme-text` | Label color |
+| `--theme-focused-border` | Border color when focused |
+
+## Related Components
+
+- [Checkbox](/docs/components/forms/checkbox) - For boolean selections with checkmark
+- [Radio](/docs/components/forms/radio) - For single selection from multiple options

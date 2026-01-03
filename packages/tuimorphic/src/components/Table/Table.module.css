@@ -96,9 +96,9 @@
    ============================================================================ */
 
 .head {
-  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  padding: calc(var(--theme-line-height-base) * 0.25em) 2ch;
   text-align: left;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
@@ -111,7 +111,7 @@
    ============================================================================ */
 
 .cell {
-  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  padding: calc(var(--theme-line-height-base) * 0.25em) 2ch;
   text-align: left;
   vertical-align: top;
   color: var(--theme-text);
@@ -122,7 +122,7 @@
    ============================================================================ */
 
 .caption {
-  padding: calc(var(--theme-line-height-base) * 0.5em) 2ch;
+  padding: calc(var(--theme-line-height-base) * 0.25em) 2ch;
   caption-side: top;
   text-align: left;
   font-weight: 400;

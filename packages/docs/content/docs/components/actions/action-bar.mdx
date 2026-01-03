@@ -1,0 +1,195 @@
+---
+title: ActionBar
+description: Container for ActionButtons, creating toolbar layouts inspired by classic file managers.
+---
+
+## Import
+
+```tsx
+import { ActionBar, ActionButton } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <ActionBarBasic />
+</ComponentPreview>
+
+```tsx
+<ActionBar>
+  <ActionButton hotkey="N">New</ActionButton>
+  <ActionButton hotkey="O">Open</ActionButton>
+  <ActionButton hotkey="S">Save</ActionButton>
+</ActionBar>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'position', type: "'top' | 'bottom'", default: "'top'", description: 'Visual position styling (affects border placement)' },
+  { name: 'children', type: 'React.ReactNode', required: true, description: 'ActionButton components or other elements' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+  { name: 'style', type: 'React.CSSProperties', description: 'Inline styles' },
+  { name: 'ref', type: 'React.Ref<HTMLDivElement>', description: 'Forwarded ref to the container element' },
+]} />
+
+## Positions
+
+<ComponentPreview className="column">
+  <ActionBarPositions />
+</ComponentPreview>
+
+```tsx
+<ActionBar position="top">
+  <ActionButton hotkey="1">Action 1</ActionButton>
+  <ActionButton hotkey="2">Action 2</ActionButton>
+</ActionBar>
+
+<ActionBar position="bottom">
+  <ActionButton hotkey="1">Action 1</ActionButton>
+  <ActionButton hotkey="2">Action 2</ActionButton>
+</ActionBar>
+```
+
+The `position` prop affects border styling to visually anchor the bar to the top or bottom of a container.
+
+## With Danger Actions
+
+<ComponentPreview>
+  <ActionBarWithDanger />
+</ComponentPreview>
+
+```tsx
+<ActionBar>
+  <ActionButton hotkey="E">Edit</ActionButton>
+  <ActionButton hotkey="C">Copy</ActionButton>
+  <ActionButton hotkey="D" variant="secondary">Delete</ActionButton>
+</ActionBar>
+```
+
+## File Manager Style
+
+Classic Norton Commander / Midnight Commander inspired layout:
+
+<ComponentPreview className="column">
+  <ActionBarFileManager />
+</ComponentPreview>
+
+```tsx
+<ActionBar>
+  <ActionButton hotkey="F1">Help</ActionButton>
+  <ActionButton hotkey="F2">Rename</ActionButton>
+  <ActionButton hotkey="F3">View</ActionButton>
+  <ActionButton hotkey="F4">Edit</ActionButton>
+  <ActionButton hotkey="F5">Copy</ActionButton>
+  <ActionButton hotkey="F6">Move</ActionButton>
+  <ActionButton hotkey="F7">Mkdir</ActionButton>
+  <ActionButton hotkey="F8" variant="secondary">Delete</ActionButton>
+</ActionBar>
+```
+
+## Editor Style
+
+Nano/Pico editor inspired layout with control key notation:
+
+<ComponentPreview>
+  <ActionBarEditor />
+</ComponentPreview>
+
+```tsx
+<ActionBar>
+  <ActionButton hotkey="^S">Save</ActionButton>
+  <ActionButton hotkey="^O">Open</ActionButton>
+  <ActionButton hotkey="^X">Cut</ActionButton>
+  <ActionButton hotkey="^C">Copy</ActionButton>
+  <ActionButton hotkey="^V">Paste</ActionButton>
+  <ActionButton hotkey="^Q" variant="secondary">Quit</ActionButton>
+</ActionBar>
+```
+
+## Mixed Variants
+
+<ComponentPreview>
+  <ActionBarMixed />
+</ComponentPreview>
+
+```tsx
+<ActionBar>
+  <ActionButton variant="primary" hotkey="Y">Yes</ActionButton>
+  <ActionButton variant="secondary" hotkey="N">No</ActionButton>
+  <ActionButton variant="secondary" hotkey="C">Cancel</ActionButton>
+</ActionBar>
+```
+
+## Full Width with Spacer
+
+Use flexbox to space groups of actions:
+
+<ComponentPreview className="column">
+  <ActionBarFullWidth />
+</ComponentPreview>
+
+```tsx
+<ActionBar style={{ width: '100%', justifyContent: 'space-between' }}>
+  <div className="flex gap-2">
+    <ActionButton hotkey="N">New</ActionButton>
+    <ActionButton hotkey="O">Open</ActionButton>
+  </div>
+  <div className="flex gap-2">
+    <ActionButton hotkey="S">Save</ActionButton>
+    <ActionButton hotkey="Q" variant="secondary">Quit</ActionButton>
+  </div>
+</ActionBar>
+```
+
+## Layout Patterns
+
+### Fixed Bottom Bar
+
+```tsx
+<div style={{ position: 'relative', height: '300px' }}>
+  <div style={{ padding: '1rem' }}>
+    {/* Content */}
+  </div>
+  <ActionBar
+    position="bottom"
+    style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}
+  >
+    <ActionButton hotkey="S">Save</ActionButton>
+    <ActionButton hotkey="C">Cancel</ActionButton>
+  </ActionBar>
+</div>
+```
+
+### In a Dialog
+
+```tsx
+import { Dialog, ActionBar, ActionButton } from 'tuimorphic';
+
+<Dialog title="Confirm Delete">
+  <p>Are you sure you want to delete this file?</p>
+  <ActionBar position="bottom">
+    <ActionButton variant="primary" hotkey="Y">Yes, Delete</ActionButton>
+    <ActionButton variant="secondary" hotkey="N">Cancel</ActionButton>
+  </ActionBar>
+</Dialog>
+```
+
+## Accessibility
+
+- ActionBar is a semantic `div` container
+- ActionButtons inside receive proper focus management
+- Tab navigation moves between action buttons
+- Works with screen readers
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Border color |
+| `--theme-background` | Background color |
+
+## Related Components
+
+- [ActionButton](/docs/components/actions/action-button) - Buttons used inside ActionBar
+- [Button](/docs/components/actions/button) - Standard button component

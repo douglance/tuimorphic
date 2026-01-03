@@ -164,6 +164,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     );
   }
 );
+Toast.displayName = 'Toast';
 
 /**
  * Hook for imperatively managing toasts.

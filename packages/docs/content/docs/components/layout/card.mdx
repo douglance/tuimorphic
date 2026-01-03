@@ -1,0 +1,86 @@
+---
+title: Card
+description: Container component with MS-DOS terminal aesthetics and configurable title positioning.
+---
+
+## Import
+
+```tsx
+import { Card } from 'tuimorphic';
+```
+
+## Usage
+
+The Card component provides a container with box-shadow borders and configurable title positioning, styled with MS-DOS terminal aesthetics.
+
+<ComponentPreview>
+  <CardBasic />
+</ComponentPreview>
+
+```tsx
+<Card title="LOGIN">
+  <Input label="Username" />
+  <Button>Submit</Button>
+</Card>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| title | `React.ReactNode` | - | Title displayed in the card header |
+| mode | `'left' \| 'right' \| 'center'` | `'center'` | Title alignment mode |
+| children | `React.ReactNode` | - | Card content |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### With Title
+
+<ComponentPreview>
+  <CardWithTitle />
+</ComponentPreview>
+
+```tsx
+<Card title="SETTINGS">
+  <p>Card content with a title</p>
+</Card>
+```
+
+### Title Alignment
+
+<ComponentPreview>
+  <CardModes />
+</ComponentPreview>
+
+```tsx
+<Card title="LEFT ALIGNED" mode="left">
+  <p>Content with left-aligned title</p>
+</Card>
+
+<Card title="CENTER ALIGNED" mode="center">
+  <p>Content with centered title</p>
+</Card>
+
+<Card title="RIGHT ALIGNED" mode="right">
+  <p>Content with right-aligned title</p>
+</Card>
+```
+
+### Without Title
+
+```tsx
+<Card>
+  <p>A card without a title</p>
+</Card>
+```
+
+### Form Container
+
+```tsx
+<Card title="SETTINGS">
+  <Input label="Name" />
+  <Input label="Email" />
+  <Button>Save</Button>
+</Card>
+```

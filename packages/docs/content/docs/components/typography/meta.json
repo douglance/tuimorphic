@@ -1,0 +1,5 @@
+{
+  "title": "Typography",
+  "defaultOpen": true,
+  "pages": ["heading", "text", "label", "code"]
+}

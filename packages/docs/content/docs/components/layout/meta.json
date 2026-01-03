@@ -1,0 +1,13 @@
+{
+  "title": "Layout",
+  "defaultOpen": true,
+  "pages": [
+    "card",
+    "card-double",
+    "grid",
+    "divider",
+    "accordion",
+    "tabs",
+    "sidebar-layout"
+  ]
+}

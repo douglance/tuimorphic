@@ -1,0 +1,100 @@
+---
+title: Label
+description: Form field labels with terminal-aesthetic uppercase styling.
+---
+
+## Import
+
+```tsx
+import { Label } from 'tuimorphic';
+```
+
+## Usage
+
+The Label component provides form field labels with terminal aesthetics and support for required/optional indicators.
+
+<ComponentPreview>
+  <LabelBasic />
+</ComponentPreview>
+
+```tsx
+<Label>USERNAME</Label>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | `'default' \| 'required' \| 'optional' \| 'disabled'` | `'default'` | Visual variant |
+| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Label size |
+| required | `boolean` | `false` | Show required indicator (*) |
+| optional | `boolean` | `false` | Show optional indicator |
+| children | `React.ReactNode` | - | Label content |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Basic
+
+```tsx
+<Label>USERNAME</Label>
+```
+
+### Required
+
+<ComponentPreview>
+  <LabelRequired />
+</ComponentPreview>
+
+```tsx
+<Label required>EMAIL ADDRESS</Label>
+```
+
+### Optional
+
+<ComponentPreview>
+  <LabelOptional />
+</ComponentPreview>
+
+```tsx
+<Label optional>NICKNAME</Label>
+```
+
+### Sizes
+
+<ComponentPreview>
+  <LabelSizes />
+</ComponentPreview>
+
+```tsx
+<Label size="sm">Small Label</Label>
+<Label size="md">Medium Label</Label>
+<Label size="lg">Large Label</Label>
+```
+
+### Variants
+
+<ComponentPreview>
+  <LabelVariants />
+</ComponentPreview>
+
+```tsx
+<Label variant="default">Default</Label>
+<Label variant="required">Required</Label>
+<Label variant="optional">Optional</Label>
+<Label variant="disabled">Disabled</Label>
+```
+
+### With Form Fields
+
+```tsx
+<div>
+  <Label htmlFor="email" required>EMAIL</Label>
+  <Input id="email" type="email" />
+</div>
+
+<div>
+  <Label htmlFor="bio" optional>BIO</Label>
+  <TextArea id="bio" />
+</div>
+```

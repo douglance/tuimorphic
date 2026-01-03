@@ -45,6 +45,7 @@ export const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
     );
   }
 );
+Fieldset.displayName = 'Fieldset';
 
 /**
  * Legend component for Fieldset.
@@ -68,5 +69,6 @@ export const FieldsetLegend = React.forwardRef<HTMLLegendElement, FieldsetLegend
     );
   }
 );
+FieldsetLegend.displayName = 'FieldsetLegend';
 
 export default Fieldset;

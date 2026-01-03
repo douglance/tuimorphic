@@ -1,0 +1,209 @@
+---
+title: ComboBox
+description: Autocomplete input combining text entry with dropdown selection and filtering.
+---
+
+## Import
+
+```tsx
+import { ComboBox } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <ComboBoxBasic />
+</ComponentPreview>
+
+```tsx
+<ComboBox
+  placeholder="Search countries..."
+  options={[
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+  ]}
+/>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'options', type: 'ComboBoxOption[]', required: true, description: 'Options to display in the dropdown' },
+  { name: 'value', type: 'string', description: 'Selected value (controlled)' },
+  { name: 'defaultValue', type: 'string', default: "''", description: 'Default selected value (uncontrolled)' },
+  { name: 'onValueChange', type: '(value: string) => void', description: 'Callback when value changes' },
+  { name: 'placeholder', type: 'string', default: "'Search...'", description: 'Placeholder text' },
+  { name: 'label', type: 'string', description: 'Label text' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the combobox is disabled' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+  { name: 'ref', type: 'React.Ref<HTMLInputElement>', description: 'Forwarded ref to the input element' },
+]} />
+
+### ComboBoxOption Type
+
+```tsx
+interface ComboBoxOption {
+  value: string;
+  label: string;
+  description?: string;
+}
+```
+
+## With Label
+
+<ComponentPreview>
+  <ComboBoxWithLabel />
+</ComponentPreview>
+
+```tsx
+<ComboBox
+  label="Country"
+  placeholder="Search countries..."
+  options={countries}
+/>
+```
+
+## With Descriptions
+
+Options can include descriptions that are also searchable:
+
+<ComponentPreview>
+  <ComboBoxWithDescriptions />
+</ComponentPreview>
+
+```tsx
+<ComboBox
+  label="Country"
+  placeholder="Search by name or region..."
+  options={[
+    { value: 'us', label: 'United States', description: 'North America' },
+    { value: 'uk', label: 'United Kingdom', description: 'Europe' },
+    { value: 'jp', label: 'Japan', description: 'Asia' },
+  ]}
+/>
+```
+
+## States
+
+<ComponentPreview className="column">
+  <ComboBoxStates />
+</ComponentPreview>
+
+```tsx
+<ComboBox label="Enabled" placeholder="Search..." options={options} />
+<ComboBox label="Disabled" placeholder="Search..." options={options} disabled />
+```
+
+## Default Value
+
+<ComponentPreview>
+  <ComboBoxDefaultValue />
+</ComponentPreview>
+
+```tsx
+<ComboBox
+  label="Framework"
+  defaultValue="React"
+  options={frameworks}
+/>
+```
+
+## Controlled ComboBox
+
+<ComponentPreview className="column">
+  <ComboBoxControlled />
+</ComponentPreview>
+
+```tsx
+const [value, setValue] = useState('');
+
+<ComboBox
+  label="Framework"
+  placeholder="Search frameworks..."
+  options={frameworks}
+  value={value}
+  onValueChange={setValue}
+/>
+```
+
+## Interactive Example
+
+<ComponentPreview className="column">
+  <ComboBoxInteractive />
+</ComponentPreview>
+
+```tsx
+const [country, setCountry] = useState('');
+const [framework, setFramework] = useState('');
+
+<ComboBox
+  label="Country"
+  placeholder="Search countries..."
+  options={countries}
+  value={country}
+  onValueChange={setCountry}
+/>
+<ComboBox
+  label="Favorite Framework"
+  placeholder="Search frameworks..."
+  options={frameworks}
+  value={framework}
+  onValueChange={setFramework}
+/>
+```
+
+## Long Option List
+
+Works well with many options:
+
+<ComponentPreview>
+  <ComboBoxLongList />
+</ComponentPreview>
+
+```tsx
+<ComboBox
+  label="Country"
+  placeholder="Type to filter 40+ countries..."
+  options={allCountries}
+/>
+```
+
+## Features
+
+- **Autocomplete filtering**: Type to filter options
+- **Highlight matching text**: Matching portions are highlighted
+- **Keyboard navigation**: Full keyboard support
+- **Descriptions**: Optional description field for each option
+- **Click or type**: Open dropdown by clicking arrow or typing
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `Arrow Down` | Open dropdown / highlight next option |
+| `Arrow Up` | Highlight previous option |
+| `Enter` | Select highlighted option |
+| `Escape` | Close dropdown |
+| `Tab` | Close dropdown and move focus |
+
+## Accessibility
+
+- Proper ARIA combobox attributes
+- Screen reader support
+- Full keyboard navigation
+- Focus management
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Input and dropdown border |
+| `--theme-background` | Input and dropdown background |
+| `--theme-text` | Text color |
+| `--theme-button` | Highlighted option background |
+
+## Related Components
+
+- [Select](/docs/components/forms/select) - For non-searchable dropdowns
+- [Input](/docs/components/forms/input) - For free-form text entry

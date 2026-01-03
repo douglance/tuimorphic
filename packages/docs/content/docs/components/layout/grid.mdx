@@ -1,0 +1,109 @@
+---
+title: Grid
+description: Flexible CSS Grid layout with monospace-aligned character-width spacing.
+---
+
+## Import
+
+```tsx
+import { Grid, GridItem } from 'tuimorphic';
+```
+
+## Usage
+
+The Grid component uses CSS Grid with character-width (`ch`) based gaps for proper TUI alignment.
+
+<ComponentPreview>
+  <GridBasic />
+</ComponentPreview>
+
+```tsx
+<Grid columns={3} gap={2}>
+  <GridItem>Item 1</GridItem>
+  <GridItem>Item 2</GridItem>
+  <GridItem>Item 3</GridItem>
+</Grid>
+```
+
+## Props
+
+### Grid
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | Grid content (typically GridItem elements) |
+| columns | `number \| 'auto'` | `'auto'` | Number of columns, or 'auto' for auto-fit responsive columns |
+| gap | `number` | `2` | Gap between items in ch units |
+| rowGap | `number` | - | Gap between rows in ch units (overrides gap) |
+| columnGap | `number` | - | Gap between columns in ch units (overrides gap) |
+| className | `string` | - | Additional CSS class name |
+
+### GridItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `React.ReactNode` | - | Grid item content |
+| span | `number` | - | Number of columns to span |
+| className | `string` | - | Additional CSS class name |
+
+## Variants
+
+### Basic
+
+<ComponentPreview>
+  <GridBasic />
+</ComponentPreview>
+
+```tsx
+<Grid columns={3} gap={2}>
+  <GridItem>Item 1</GridItem>
+  <GridItem>Item 2</GridItem>
+  <GridItem>Item 3</GridItem>
+  <GridItem>Item 4</GridItem>
+  <GridItem>Item 5</GridItem>
+  <GridItem>Item 6</GridItem>
+</Grid>
+```
+
+### With Spanning
+
+<ComponentPreview>
+  <GridWithSpanning />
+</ComponentPreview>
+
+```tsx
+<Grid columns={4} gap={2}>
+  <GridItem span={2}>Wide Item</GridItem>
+  <GridItem>Normal Item</GridItem>
+  <GridItem>Normal Item</GridItem>
+  <GridItem span={4}>Full Width Item</GridItem>
+</Grid>
+```
+
+### Auto-fit Responsive
+
+<ComponentPreview>
+  <GridAutoFit />
+</ComponentPreview>
+
+```tsx
+<Grid columns="auto" gap={4}>
+  <GridItem>Responsive Item 1</GridItem>
+  <GridItem>Responsive Item 2</GridItem>
+  <GridItem>Responsive Item 3</GridItem>
+</Grid>
+```
+
+### Custom Row/Column Gaps
+
+<ComponentPreview>
+  <GridCustomGaps />
+</ComponentPreview>
+
+```tsx
+<Grid columns={3} rowGap={4} columnGap={2}>
+  <GridItem>Item 1</GridItem>
+  <GridItem>Item 2</GridItem>
+  <GridItem>Item 3</GridItem>
+</Grid>
+```

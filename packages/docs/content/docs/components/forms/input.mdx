@@ -1,0 +1,168 @@
+---
+title: Input
+description: Terminal-style text input with custom blinking caret and arrow key navigation.
+---
+
+## Import
+
+```tsx
+import { Input } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <InputBasic />
+</ComponentPreview>
+
+```tsx
+<Input placeholder="Enter text..." />
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'caretChars', type: 'string', default: "' '", description: 'Custom caret character(s) to display' },
+  { name: 'label', type: 'string', description: 'Label text for the input' },
+  { name: 'isBlink', type: 'boolean', default: 'true', description: 'Whether the caret should blink' },
+  { name: 'type', type: 'string', default: "'text'", description: "Input type (text, password, email, number, etc.)" },
+  { name: 'value', type: 'string', description: 'Controlled input value' },
+  { name: 'defaultValue', type: 'string', description: 'Default value for uncontrolled input' },
+  { name: 'placeholder', type: 'string', description: 'Placeholder text' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the input is disabled' },
+  { name: 'readOnly', type: 'boolean', default: 'false', description: 'Whether the input is read-only' },
+  { name: 'onChange', type: '(event: ChangeEvent) => void', description: 'Change event handler' },
+  { name: 'onFocus', type: '(event: FocusEvent) => void', description: 'Focus event handler' },
+  { name: 'onBlur', type: '(event: FocusEvent) => void', description: 'Blur event handler' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+  { name: 'ref', type: 'React.Ref<HTMLInputElement>', description: 'Forwarded ref to the input element' },
+]} />
+
+All standard HTML input attributes are also supported.
+
+## With Label
+
+<ComponentPreview>
+  <InputWithLabel />
+</ComponentPreview>
+
+```tsx
+<Input label="Username" placeholder="Enter username" />
+```
+
+## Password Input
+
+Password inputs automatically mask the text with bullet characters:
+
+<ComponentPreview>
+  <InputPassword />
+</ComponentPreview>
+
+```tsx
+<Input type="password" label="Password" placeholder="Enter password" />
+```
+
+## With Placeholder
+
+<ComponentPreview>
+  <InputPlaceholder />
+</ComponentPreview>
+
+```tsx
+<Input placeholder="Enter your email..." />
+```
+
+## Disabled State
+
+<ComponentPreview>
+  <InputDisabled />
+</ComponentPreview>
+
+```tsx
+<Input label="Disabled Input" disabled defaultValue="Cannot edit" />
+```
+
+## Custom Caret
+
+Customize the caret character for different visual styles:
+
+```tsx
+<Input label="Default caret" placeholder="Type here..." />
+<Input label="Block caret" caretChars="█" placeholder="Type here..." />
+<Input label="Underscore caret" caretChars="_" placeholder="Type here..." />
+<Input label="Pipe caret" caretChars="|" placeholder="Type here..." />
+```
+
+## Caret Blinking
+
+Control whether the caret blinks:
+
+```tsx
+<Input label="Blinking caret (default)" placeholder="Type here..." />
+<Input label="Static caret" isBlink={false} placeholder="Type here..." />
+```
+
+## Input Types
+
+```tsx
+<Input type="text" label="Text" placeholder="Regular text" />
+<Input type="email" label="Email" placeholder="user@example.com" />
+<Input type="password" label="Password" placeholder="Enter password" />
+<Input type="number" label="Number" placeholder="Enter number" />
+<Input type="tel" label="Phone" placeholder="+1 (555) 000-0000" />
+<Input type="url" label="URL" placeholder="https://example.com" />
+```
+
+## Interactive Example
+
+<ComponentPreview>
+  <InputInteractive />
+</ComponentPreview>
+
+```tsx
+const [value, setValue] = useState('');
+
+<Input
+  label="Interactive Input"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  placeholder="Type something..."
+/>
+```
+
+## Features
+
+- **Custom blinking caret**: Terminal-style caret that blinks at the cursor position
+- **Arrow key navigation**: Press Up/Down arrows to navigate between inputs
+- **Password masking**: Passwords are displayed as bullet characters
+- **Controlled/uncontrolled**: Works both as controlled and uncontrolled component
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `Arrow Up` | Focus previous focusable element |
+| `Arrow Down` | Focus next focusable element |
+| `Arrow Left/Right` | Move caret within input |
+
+## Accessibility
+
+- Semantic `<input>` element with proper labeling
+- Supports all standard input attributes
+- Keyboard accessible with visible focus states
+- Works with screen readers
+
+## Styling
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Input border color |
+| `--theme-background` | Input background color |
+| `--theme-text` | Input text color |
+| `--theme-focused-border` | Border color when focused |
+
+## Related Components
+
+- [TextArea](/docs/components/forms/text-area) - Multi-line text input
+- [Select](/docs/components/forms/select) - Dropdown selection
+- [ComboBox](/docs/components/forms/combo-box) - Searchable dropdown

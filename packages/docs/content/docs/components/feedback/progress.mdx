@@ -1,0 +1,93 @@
+---
+title: Progress
+description: Progress bar with terminal-style character display.
+---
+
+## Import
+
+```tsx
+import { Progress } from 'tuimorphic';
+```
+
+## Usage
+
+The Progress component displays a progress bar with customizable fill and empty characters.
+
+<ComponentPreview>
+  <ProgressBasic />
+</ComponentPreview>
+
+```tsx
+<Progress value={50} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | `number` | - | Current progress value (0-100) (required) |
+| max | `number` | `100` | Maximum value |
+| fillChar | `string` | `'█'` | Character used for filled portion |
+| emptyChar | `string` | `'░'` | Character used for empty portion |
+| width | `number` | `20` | Width in characters |
+| showLabel | `boolean` | `false` | Whether to show percentage label |
+| className | `string` | - | Additional CSS class names |
+
+## Variants
+
+### Basic
+
+```tsx
+<Progress value={50} />
+```
+
+### With Label
+
+<ComponentPreview>
+  <ProgressWithLabel />
+</ComponentPreview>
+
+```tsx
+<Progress value={75} showLabel />
+```
+
+### Animated
+
+<ComponentPreview>
+  <ProgressAnimated />
+</ComponentPreview>
+
+### Custom Characters
+
+<ComponentPreview>
+  <ProgressCustomChars />
+</ComponentPreview>
+
+```tsx
+<Progress value={30} fillChar="=" emptyChar="-" />
+<Progress value={60} fillChar="#" emptyChar="." />
+```
+
+### Different Widths
+
+```tsx
+<Progress value={50} width={10} />
+<Progress value={50} width={20} />
+<Progress value={50} width={30} />
+```
+
+### Progress Steps
+
+```tsx
+<Progress value={0} showLabel />
+<Progress value={25} showLabel />
+<Progress value={50} showLabel />
+<Progress value={75} showLabel />
+<Progress value={100} showLabel />
+```
+
+### With Custom Max
+
+```tsx
+<Progress value={5} max={10} showLabel />
+```

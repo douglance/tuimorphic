@@ -28,7 +28,7 @@
 }
 
 .scrollbarVertical {
-  width: 8px;
+  width: var(--scrollbar-width);
   position: absolute;
   right: 0;
   top: 0;
@@ -36,18 +36,18 @@
 }
 
 .scrollbarHorizontal {
-  height: 8px;
+  height: var(--scrollbar-width);
   position: absolute;
   left: 0;
-  right: 8px; /* Account for corner when both scrollbars present */
+  right: var(--scrollbar-width); /* Account for corner when both scrollbars present */
   bottom: 0;
 }
 
 .thumb {
   background: var(--theme-border);
   flex: 1;
-  min-height: 20px;
-  min-width: 20px;
+  min-height: 1lh;
+  min-width: 1ch;
   transition: background-color 150ms ease;
 
   &:hover {
@@ -60,8 +60,8 @@
 }
 
 .corner {
-  width: 8px;
-  height: 8px;
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
   position: absolute;
   right: 0;
   bottom: 0;

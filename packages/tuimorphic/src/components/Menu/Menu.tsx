@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { forwardRef } from 'react';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { classNames } from '@/utils/classNames';
 import styles from './Menu.module.css';
@@ -62,7 +61,7 @@ export function Menu({ trigger, children, className }: MenuProps) {
   );
 }
 
-export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
+export const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(
   ({ onSelect, className, children, ...props }, ref) => (
     <BaseMenu.Item
       ref={ref}
@@ -84,7 +83,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
 );
 MenuItem.displayName = 'MenuItem';
 
-export const MenuSeparator = forwardRef<HTMLDivElement, MenuSeparatorProps>(
+export const MenuSeparator = React.forwardRef<HTMLDivElement, MenuSeparatorProps>(
   ({ className, ...props }, ref) => (
     <BaseMenu.Separator
       ref={ref}
@@ -103,7 +102,7 @@ MenuSeparator.displayName = 'MenuSeparator';
 export const MenuRoot = (props: MenuRootProps) => <BaseMenu.Root {...props} />;
 MenuRoot.displayName = 'MenuRoot';
 
-export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
+export const MenuTrigger = React.forwardRef<HTMLButtonElement, MenuTriggerProps>(
   (props, ref) => <BaseMenu.Trigger ref={ref} {...props} />
 );
 MenuTrigger.displayName = 'MenuTrigger';
@@ -113,7 +112,7 @@ export const MenuPortal = (props: MenuPortalProps) => (
 );
 MenuPortal.displayName = 'MenuPortal';
 
-export const MenuPositioner = forwardRef<HTMLDivElement, MenuPositionerProps>(
+export const MenuPositioner = React.forwardRef<HTMLDivElement, MenuPositionerProps>(
   ({ className, children, ...props }, ref) => (
     <BaseMenu.Positioner ref={ref} className={className} {...props}>
       {children}
@@ -122,7 +121,7 @@ export const MenuPositioner = forwardRef<HTMLDivElement, MenuPositionerProps>(
 );
 MenuPositioner.displayName = 'MenuPositioner';
 
-export const MenuPopup = forwardRef<HTMLDivElement, MenuPopupProps>(
+export const MenuPopup = React.forwardRef<HTMLDivElement, MenuPopupProps>(
   ({ className, children, ...props }, ref) => (
     <BaseMenu.Popup
       ref={ref}

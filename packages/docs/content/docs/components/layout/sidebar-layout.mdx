@@ -1,0 +1,133 @@
+---
+title: SidebarLayout
+description: Two-column layout with resizable and collapsible sidebar.
+---
+
+## Import
+
+```tsx
+import { SidebarLayout } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <SidebarLayoutBasic />
+</ComponentPreview>
+
+```tsx
+<SidebarLayout sidebar={<nav>Navigation</nav>}>
+  <main>Main content</main>
+</SidebarLayout>
+```
+
+## Props
+
+<PropsTable props={[
+  { name: 'sidebar', type: 'React.ReactNode', required: true, description: 'Content to render in the sidebar panel' },
+  { name: 'children', type: 'React.ReactNode', required: true, description: 'Main content area' },
+  { name: 'defaultSidebarWidth', type: 'number', default: '200', description: 'Default sidebar width in pixels' },
+  { name: 'minSidebarWidth', type: 'number', default: '100', description: 'Minimum sidebar width in pixels' },
+  { name: 'maxSidebarWidth', type: 'number', default: '500', description: 'Maximum sidebar width in pixels' },
+  { name: 'showHandle', type: 'boolean', default: 'false', description: 'Whether to show the resize handle' },
+  { name: 'collapsible', type: 'boolean', default: 'false', description: 'Whether the sidebar can be collapsed' },
+  { name: 'defaultCollapsed', type: 'boolean', default: 'false', description: 'Whether the sidebar starts collapsed' },
+  { name: 'side', type: "'left' | 'right'", default: "'left'", description: 'Which side the sidebar appears on' },
+  { name: 'className', type: 'string', description: 'Additional CSS class names' },
+]} />
+
+## Variants
+
+### Resizable Sidebar
+
+Add a drag handle to allow users to resize the sidebar:
+
+<ComponentPreview>
+  <SidebarLayoutResizable />
+</ComponentPreview>
+
+```tsx
+<SidebarLayout
+  sidebar={<nav>Menu</nav>}
+  defaultSidebarWidth={180}
+  minSidebarWidth={120}
+  maxSidebarWidth={300}
+  showHandle
+>
+  <main>Main content</main>
+</SidebarLayout>
+```
+
+### Collapsible Sidebar
+
+Allow users to collapse and expand the sidebar:
+
+<ComponentPreview>
+  <SidebarLayoutCollapsible />
+</ComponentPreview>
+
+```tsx
+<SidebarLayout
+  sidebar={<nav>Files</nav>}
+  collapsible
+>
+  <main>Main content</main>
+</SidebarLayout>
+```
+
+### Right Sidebar
+
+Position the sidebar on the right side:
+
+<ComponentPreview>
+  <SidebarLayoutRight />
+</ComponentPreview>
+
+```tsx
+<SidebarLayout
+  sidebar={<aside>Details</aside>}
+  side="right"
+  collapsible
+  defaultSidebarWidth={150}
+>
+  <main>Main content</main>
+</SidebarLayout>
+```
+
+### Full-Featured Layout
+
+Combine resizing and collapsing capabilities:
+
+<ComponentPreview>
+  <SidebarLayoutFull />
+</ComponentPreview>
+
+```tsx
+<SidebarLayout
+  sidebar={<nav>Navigation Menu</nav>}
+  defaultSidebarWidth={160}
+  minSidebarWidth={120}
+  maxSidebarWidth={250}
+  showHandle
+  collapsible
+>
+  <main>Application Content</main>
+</SidebarLayout>
+```
+
+## Accessibility
+
+- Resize handle has proper ARIA attributes (`role="separator"`, `aria-orientation`, `aria-valuenow`)
+- Keyboard support for resizing (Arrow keys)
+- Collapse button has `aria-label` and `aria-expanded` attributes
+- Collapsed sidebar has `aria-hidden` attribute
+
+## Styling
+
+SidebarLayout uses CSS custom properties for theming:
+
+| Variable | Description |
+|----------|-------------|
+| `--theme-border` | Divider and handle border color |
+| `--theme-background` | Sidebar background color |
+| `--theme-foreground` | Text and icon color |

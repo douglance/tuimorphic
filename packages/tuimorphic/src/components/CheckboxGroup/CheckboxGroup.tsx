@@ -63,5 +63,6 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
     );
   }
 );
+CheckboxGroup.displayName = 'CheckboxGroup';
 
 export default CheckboxGroup;

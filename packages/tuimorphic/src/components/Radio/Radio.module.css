@@ -25,7 +25,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3ch;
+  width: 2ch;
   height: calc(var(--font-size) * var(--theme-line-height-base));
   background: var(--theme-button-foreground);
   border: none;

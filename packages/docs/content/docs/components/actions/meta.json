@@ -1,0 +1,5 @@
+{
+  "title": "Actions",
+  "defaultOpen": true,
+  "pages": ["button", "action-button", "action-bar"]
+}

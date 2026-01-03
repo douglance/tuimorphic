@@ -1,0 +1,117 @@
+---
+title: Navigation
+description: Top-level navigation bar with logo, nav items, and action elements.
+---
+
+## Import
+
+```tsx
+import { Navigation } from 'tuimorphic';
+```
+
+## Basic Usage
+
+<ComponentPreview>
+  <NavigationBasic />
+</ComponentPreview>
+
+```tsx
+<Navigation
+  logo={<span>ACME</span>}
+  items={[
+    { label: 'Home', href: '/', isActive: true },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+  ]}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| logo | `React.ReactNode` | - | Logo or brand element displayed on the left |
+| items | `NavItem[]` | `[]` | Navigation items displayed center-left |
+| actions | `React.ReactNode` | - | Action elements (search, user menu, etc.) displayed on the right |
+| showBorder | `boolean` | `true` | Whether to show bottom border separator |
+| className | `string` | - | Additional CSS class names |
+
+### NavItem
+
+| Prop | Type | Description |
+|------|------|-------------|
+| label | `string` | Display label for the navigation item |
+| href | `string` | URL for anchor-based navigation |
+| onClick | `() => void` | Click handler for programmatic navigation |
+| isActive | `boolean` | Whether this item represents the current page |
+
+## Variants
+
+### Basic
+
+<ComponentPreview>
+  <NavigationBasic />
+</ComponentPreview>
+
+```tsx
+<Navigation
+  logo={<span>ACME</span>}
+  items={[
+    { label: 'Home', href: '/', isActive: true },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+  ]}
+/>
+```
+
+### With Actions
+
+<ComponentPreview>
+  <NavigationWithActions />
+</ComponentPreview>
+
+```tsx
+<Navigation
+  logo={<span>APP</span>}
+  items={[
+    { label: 'Dashboard', href: '/dashboard', isActive: true },
+    { label: 'Settings', href: '/settings' },
+  ]}
+  actions={
+    <>
+      <Button variant="secondary">Login</Button>
+      <Button variant="primary">Sign Up</Button>
+    </>
+  }
+/>
+```
+
+### With Click Handlers
+
+<ComponentPreview>
+  <NavigationClickHandlers />
+</ComponentPreview>
+
+```tsx
+<Navigation
+  logo={<Logo />}
+  items={[
+    { label: 'Home', onClick: () => navigate('/'), isActive: true },
+    { label: 'Products', onClick: () => navigate('/products') },
+  ]}
+/>
+```
+
+### Without Border
+
+<ComponentPreview>
+  <NavigationNoBorder />
+</ComponentPreview>
+
+```tsx
+<Navigation
+  logo={<span>BRAND</span>}
+  items={navItems}
+  showBorder={false}
+/>
+```
