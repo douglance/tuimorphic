@@ -31,6 +31,7 @@ export function XtermTerminal({
   onReady,
 }: XtermTerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const terminalRef = useRef<any>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const [status, setStatus] = useState<'connecting' | 'connected' | 'disconnected' | 'error'>('connecting');
@@ -39,7 +40,9 @@ export function XtermTerminal({
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let terminal: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let fitAddon: any;
     let ws: WebSocket;
     let aborted = false;
@@ -49,6 +52,7 @@ export function XtermTerminal({
         // Dynamic imports
         const { Terminal } = await import('@xterm/xterm');
         const { FitAddon } = await import('@xterm/addon-fit');
+        // @ts-expect-error - CSS import for xterm styles
         await import('@xterm/xterm/css/xterm.css');
 
         // Check if effect was cleaned up during async imports
@@ -220,19 +224,6 @@ export function XtermTerminal({
       terminalRef.current = null;
     };
   }, [wsUrl, demo, cols, rows, theme, onReady]);
-
-  // Restart demo
-  const restart = () => {
-    if (wsRef.current?.readyState === WebSocket.OPEN) {
-      terminalRef.current?.clear();
-      wsRef.current.send(JSON.stringify({
-        type: 'start',
-        demo,
-        cols,
-        rows,
-      }));
-    }
-  };
 
   return (
     <div className="xterm-wrapper">

@@ -324,7 +324,7 @@ export function TerminalInput({
         borderColor={focused ? 'cyan' : 'default'}
         padding={1}
       >
-        <TerminalText dim={isPlaceholder}>
+        <TerminalText dim={!!isPlaceholder}>
           {displayValue}
           {focused && <span style={{ animation: 'blink 1s infinite' }}>▌</span>}
         </TerminalText>

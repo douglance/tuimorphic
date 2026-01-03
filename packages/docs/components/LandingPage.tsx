@@ -657,7 +657,7 @@ function App() {
 
         {/* Radio */}
         <Card title="RADIO BUTTONS" actions={<DocsLink docsKey="radio" />}>
-          <RadioGroup value={radioValue} onValueChange={setRadioValue}>
+          <RadioGroup value={radioValue} onValueChange={(value) => setRadioValue(value as string)}>
             <Radio value="option1" label="Option Alpha" />
             <Radio value="option2" label="Option Beta" />
             <Radio value="option3" label="Option Gamma" />
@@ -691,7 +691,7 @@ function App() {
           <Slider
             label="VOLUME"
             value={sliderValue}
-            onValueChange={setSliderValue}
+            onValueChange={(value) => setSliderValue(Array.isArray(value) ? value[0] : value)}
             min={0}
             max={100}
             showValue
